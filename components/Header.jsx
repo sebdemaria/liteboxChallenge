@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Image from "next/image";
-import { NavBar } from "./NavBar";
+import { NavBar } from "@/components/NavBar";
 
 import {
     MenuBtnOpen,
@@ -26,11 +26,10 @@ export const Header = () => {
                 className={`relative z-50 col-span-12 flex h-min items-center px-10 pt-4 xs:justify-between md:justify-center`}
             >
                 <div
-                    className={`${
-                        !isMenuOpen
+                    className={`${!isMenuOpen
                             ? "md:w-1/12 lg:w-[6%]"
                             : "md:w-7/12 lg:w-[20%] 2xl:w-[22%]"
-                    } transition-700-in-out xs:order-1 md:order-2`}
+                        } transition-700-in-out xs:order-1 md:order-2`}
                 >
                     {!isMenuOpen ? (
                         <Image
@@ -73,9 +72,8 @@ export const Header = () => {
                 </div>
 
                 <div
-                    className={`xs:hidden md:order-3 md:block md:w-1/12 lg:w-[6%] ${
-                        !isMenuOpen ? "" : "pr-4"
-                    }`}
+                    className={`xs:hidden md:order-3 md:block md:w-1/12 lg:w-[6%] ${!isMenuOpen ? "" : "pr-4"
+                        }`}
                 >
                     <Image alt="notification" src={Notification} />
                 </div>
@@ -87,11 +85,9 @@ export const Header = () => {
 
             {/* NavMenu */}
             <div
-                className={`absolute col-span-12 px-12 pt-[8em] pb-[5em] font-oswald font-thin text-white-lighter xs:w-full md:right-0 md:w-2/4 lg:w-[30%] ${
-                    !isMenuOpen ? "hidden" : "grid bg-liteflixGray"
-                } transition-1000-in-out ${styles.slideMenuOpen} ${
-                    styles.animateMenu
-                }`}
+                className={`absolute col-span-12 px-12 pt-[8em] pb-[5em] font-oswald font-thin text-white-lighter xs:w-full md:right-0 md:w-2/4 lg:w-[30%] ${!isMenuOpen ? "hidden" : "grid bg-liteflixGray"
+                    } transition-1000-in-out ${styles.slideMenuOpen} ${styles.animateMenu
+                    }`}
             >
                 <NavBar
                     customClass={`h-max tracking-superWide ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
