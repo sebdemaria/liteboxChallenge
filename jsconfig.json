@@ -6,7 +6,8 @@
             "@/hooks/*": ["hooks/*"],
             "@/styles/*": ["styles/*"],
             "@/public/*": ["public/*"],
-            "@/templates/*": ["templates/*"]
+            "@/templates/*": ["templates/*"],
+            "@/screens/*": ["screens/*"],
         }
     }
 }

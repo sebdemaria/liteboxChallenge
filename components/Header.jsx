@@ -1,5 +1,8 @@
 import { useState } from "react";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+
 import Image from "next/image";
+
 import { NavBar } from "@/components/NavBar";
 
 import {
@@ -7,6 +10,7 @@ import {
     MenuBtnClose,
     ProfileImg,
     Notification,
+    Plus,
 } from "@/public/assets";
 import { ROUTES } from "consts/Routes";
 import { Button } from "./UI/Button";
@@ -15,25 +19,28 @@ import styles from "@/styles/componentStyles/Navbar.module.scss";
 
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const [setStorageItem] = useLocalStorage();
 
     const handleAddMovie = () => {
-        alert("agregue una peli");
+
+        setStorageItem('peli', JSON.stringify(ProfileImg));
     };
 
     return (
-        <div className={`fixed z-50 grid w-full grid-cols-12`}>
+        <header className={`fixed z-50 grid w-full grid-cols-12`}>
             <div
-                className={`relative z-50 col-span-12 flex h-min items-center px-10 pt-4 xs:justify-between md:justify-center`}
+                className={`relative z-50 col-span-12 flex h-min items-center xs:px-5 sm:px-10 pt-4 xs:justify-between md:justify-center`}
             >
                 <div
                     className={`${!isMenuOpen
-                        ? "md:w-1/12 lg:w-[6%]"
-                        : "md:w-7/12 lg:w-[20%] 2xl:w-[22%]"
+                        ? "md:w-1/12 lg:w-[6%] xl:w-[4%]"
+                        : "md:w-7/12 lg:w-[20%] xl:w-[23%] 2xl:w-[25%]"
                         } transition-700-in-out xs:order-1 md:order-2`}
                 >
                     {!isMenuOpen ? (
                         <Image
                             alt="menu open button"
+                            className='md:scale-x-[-1]'
                             onClick={() =>
                                 setIsMenuOpen((isMenuOpen) => !isMenuOpen)
                             }
@@ -61,10 +68,10 @@ export const Header = () => {
                     </p>
 
                     <Button
-                        customClass={`xs:hidden md:block font-oswald text-white-light tracking-superWide`}
+                        customClass={`xs:hidden md:flex gap-3 items-center font-oswald text-white-light tracking-superWide`}
                         onClick={handleAddMovie}
                     >
-                        <span className="text-xl">+</span>{" "}
+                        <Image src={Plus} alt='add movie' />
                         <span className="font-normal text-white-light">
                             AGREGAR PELÍCULA
                         </span>
@@ -72,7 +79,7 @@ export const Header = () => {
                 </div>
 
                 <div
-                    className={`xs:hidden md:order-3 md:block md:w-1/12 lg:w-[6%] ${!isMenuOpen ? "" : "pr-4"
+                    className={`xs:hidden md:order-3 md:block md:w-1/12 lg:w-[6%] xl:w-[4%] ${!isMenuOpen ? "" : "pr-4"
                         }`}
                 >
                     <Image alt="notification" src={Notification} />
@@ -85,7 +92,7 @@ export const Header = () => {
 
             {/* NavMenu */}
             <div
-                className={`absolute col-span-12 px-12 pt-[8em] pb-[5em] font-oswald font-thin text-white-lighter xs:w-full md:right-0 md:w-2/4 lg:w-[30%] ${!isMenuOpen ? "hidden" : "grid bg-liteflixGray"
+                className={`absolute col-span-12 xs:px-5 sm:px-9 md:px-12 lg:px-8 xl:px-10 pt-[8em] pb-[5em] font-oswald font-thin text-white-lighter xs:w-full md:right-0 md:w-2/4 lg:w-[30%] ${!isMenuOpen ? "hidden" : "grid bg-liteflixGray-normal"
                     } transition-1000-in-out ${styles.slideMenuOpen} ${styles.animateMenu
                     }`}
             >
@@ -95,10 +102,10 @@ export const Header = () => {
                 />
 
                 <Button
-                    customClass={`w-full text-start tracking-superWide my-5 ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
+                    customClass={`md:flex gap-3 items-center w-full text-start tracking-superWide my-5 ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
                     onClick={handleAddMovie}
                 >
-                    <span className="text-xl">+</span>{" "}
+                    <Image src={Plus} alt='add movie' />
                     <span className="font-normal text-white-light">
                         AGREGAR PELÍCULA
                     </span>
@@ -110,6 +117,6 @@ export const Header = () => {
                     CERRAR SESIÓN
                 </Button>
             </div>
-        </div>
+        </header>
     );
 };
