@@ -1,3 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200;400&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    html {
+        font-family: "Bebas Neue", system-ui, cursive;
+    }
+
+    body {
+        background-color: gray;
+        height: 100vh;
+    }
+}
+
+@layer utilities {
+    .transition-500-in-out {
+        @apply transition-all duration-500 ease-in-out;
+    }
+
+    .transition-700-in-out {
+        @apply transition-all duration-700 ease-in-out;
+    }
+
+    .transition-1000-in-out {
+        @apply transition-all duration-1000 ease-in-out;
+    }
+}
