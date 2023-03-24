@@ -11,7 +11,7 @@ import {
 import { ROUTES } from "consts/Routes";
 import { Button } from "./UI/Button";
 
-import styles from "@/styles/componentStyles/NavBar.module.scss";
+import styles from "@/styles/componentStyles/Navbar.module.scss";
 
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,8 +27,8 @@ export const Header = () => {
             >
                 <div
                     className={`${!isMenuOpen
-                            ? "md:w-1/12 lg:w-[6%]"
-                            : "md:w-7/12 lg:w-[20%] 2xl:w-[22%]"
+                        ? "md:w-1/12 lg:w-[6%]"
+                        : "md:w-7/12 lg:w-[20%] 2xl:w-[22%]"
                         } transition-700-in-out xs:order-1 md:order-2`}
                 >
                     {!isMenuOpen ? (
