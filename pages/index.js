@@ -24,8 +24,12 @@ export const getServerSideProps = async () => {
         ENDPOINT: "popular",
     });
 
+    // format image paths and limit results amount
     const moviesFormatted = formatImgPath(movies.movies);
-    const popularMoviesFormatted = formatImgPath(popularMovies.movies);
+    const popularMoviesFormatted = formatImgPath(popularMovies.movies).slice(
+        0,
+        4
+    );
 
     return {
         props: {

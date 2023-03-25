@@ -1,5 +1,4 @@
 export const useLocalStorage = () => {
-
     const setStorageItem = (key, value) => {
         window.localStorage.setItem(key, value);
     };

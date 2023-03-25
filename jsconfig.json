@@ -7,7 +7,7 @@
             "@/styles/*": ["styles/*"],
             "@/public/*": ["public/*"],
             "@/templates/*": ["templates/*"],
-            "@/screens/*": ["screens/*"],
+            "@/screens/*": ["screens/*"]
         }
     }
 }

@@ -22,25 +22,25 @@ export const Header = () => {
     const [setStorageItem] = useLocalStorage();
 
     const handleAddMovie = () => {
-
-        setStorageItem('peli', JSON.stringify(ProfileImg));
+        setStorageItem("peli", JSON.stringify(ProfileImg));
     };
 
     return (
         <header className={`fixed z-50 grid w-full grid-cols-12`}>
             <div
-                className={`relative z-50 col-span-12 flex h-min items-center xs:px-5 sm:px-10 pt-4 xs:justify-between md:justify-center`}
+                className={`relative z-50 col-span-12 flex h-min items-center pt-4 xs:justify-between xs:px-5 sm:px-10 md:justify-center`}
             >
                 <div
-                    className={`${!isMenuOpen
-                        ? "md:w-1/12 lg:w-[6%] xl:w-[4%]"
-                        : "md:w-7/12 lg:w-[20%] xl:w-[23%] 2xl:w-[25%]"
-                        } transition-700-in-out xs:order-1 md:order-2`}
+                    className={`${
+                        !isMenuOpen
+                            ? "md:w-1/12 lg:w-[6%] xl:w-[4%]"
+                            : "md:w-7/12 lg:w-[20%] xl:w-[23%] 2xl:w-[25%]"
+                    } transition-700-in-out xs:order-1 md:order-2`}
                 >
                     {!isMenuOpen ? (
                         <Image
                             alt="menu open button"
-                            className='md:scale-x-[-1]'
+                            className="md:scale-x-[-1]"
                             onClick={() =>
                                 setIsMenuOpen((isMenuOpen) => !isMenuOpen)
                             }
@@ -71,7 +71,7 @@ export const Header = () => {
                         customClass={`xs:hidden md:flex gap-3 items-center font-oswald text-white-light tracking-superWide`}
                         onClick={handleAddMovie}
                     >
-                        <Image src={Plus} alt='add movie' />
+                        <Image src={Plus} alt="add movie" />
                         <span className="font-normal text-white-light">
                             AGREGAR PELÍCULA
                         </span>
@@ -79,8 +79,9 @@ export const Header = () => {
                 </div>
 
                 <div
-                    className={`xs:hidden md:order-3 md:block md:w-1/12 lg:w-[6%] xl:w-[4%] ${!isMenuOpen ? "" : "pr-4"
-                        }`}
+                    className={`xs:hidden md:order-3 md:block md:w-1/12 lg:w-[6%] xl:w-[4%] ${
+                        !isMenuOpen ? "" : "pr-4"
+                    }`}
                 >
                     <Image alt="notification" src={Notification} />
                 </div>
@@ -92,9 +93,11 @@ export const Header = () => {
 
             {/* NavMenu */}
             <div
-                className={`absolute col-span-12 xs:px-5 sm:px-9 md:px-12 lg:px-8 xl:px-10 pt-[8em] pb-[5em] font-oswald font-thin text-white-lighter xs:w-full md:right-0 md:w-2/4 lg:w-[30%] ${!isMenuOpen ? "hidden" : "grid bg-liteflixGray-normal"
-                    } transition-1000-in-out ${styles.slideMenuOpen} ${styles.animateMenu
-                    }`}
+                className={`absolute col-span-12 pt-[8em] pb-[5em] font-oswald font-thin text-white-lighter xs:w-full xs:px-5 sm:px-9 md:right-0 md:w-2/4 md:px-12 lg:w-[30%] lg:px-8 xl:px-10 ${
+                    !isMenuOpen ? "hidden" : "grid bg-liteflixGray-normal"
+                } transition-1000-in-out ${styles.slideMenuOpen} ${
+                    styles.animateMenu
+                }`}
             >
                 <NavBar
                     customClass={`h-max tracking-superWide ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
@@ -102,19 +105,19 @@ export const Header = () => {
                 />
 
                 <Button
-                    customClass={`md:flex gap-3 items-center w-full text-start tracking-superWide my-5 ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
+                    customClass={`flex gap-3 items-center w-full text-start tracking-superWide my-5 ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
                     onClick={handleAddMovie}
                 >
-                    <Image src={Plus} alt='add movie' />
-                    <span className="font-normal text-white-light">
-                        AGREGAR PELÍCULA
+                    <Image src={Plus} alt="add movie" />
+                    <span className="font-normal uppercase text-white-light">
+                        agregar película
                     </span>
                 </Button>
 
                 <Button
-                    customClass={`w-full text-start tracking-superWide ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
+                    customClass={`w-full text-start tracking-superWide uppercase ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
                 >
-                    CERRAR SESIÓN
+                    cerrar sesión
                 </Button>
             </div>
         </header>
