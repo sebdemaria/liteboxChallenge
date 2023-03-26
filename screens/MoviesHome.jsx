@@ -5,7 +5,7 @@ import { VideoPreviewer } from "@/components/UI/VideoPreviewer";
 
 import { MovieContext } from "pages";
 
-import { Play, Plus } from "@/public/assets";
+import { ArrowDown, Play, Plus } from "@/public/assets";
 
 import styles from "@/styles/screenStyles/MoviesHome.module.scss";
 
@@ -54,10 +54,11 @@ export const MoviesHome = () => {
 
             {/* popular movies column */}
             <aside className="relative grid xs:top-[27em] xs:col-span-12 xs:justify-items-center xs:gap-5 sm:top-[33em] md:top-[38em] lg:top-[-5em] lg:col-span-4 lg:mt-0 lg:h-max lg:justify-items-end lg:self-end lg:pr-[3rem] xl:mb-0 2xl:pr-[8rem] 3xl:self-center">
-                <button>
-                    <p className="text-center font-oswald font-extralight uppercase tracking-superWide text-white-lighter">
-                        original de <b className="font-extrabold">liteflix</b>
+                <button className="w-full flex items-center justify-center gap-2 mb-7">
+                    <p className="w-max text-center font-oswald font-extralight uppercase tracking-superWide text-white-lighter">
+                        Ver: <b className="font-extrabold">populares</b>
                     </p>
+                    <Image src={ArrowDown} alt='filter movies' />
                 </button>
 
                 {popularMovies.map(
