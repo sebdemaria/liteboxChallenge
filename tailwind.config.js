@@ -1,11 +1,21 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-    content: ["./pages/**/*.{js,jsx}", "./components/**/*.{js,jsx}"],
+    content: [
+        "./pages/**/*.{js,jsx}",
+        "./components/**/*.{js,jsx}",
+        "./screens/**/*.{js,jsx}",
+        "./templates/**/*.{js,jsx}",
+    ],
     theme: {
         extend: {
             colors: {
                 aqua: "#64EEBC",
-                liteflixGray: "#242424",
+                liteflixGray: {
+                    normal: "#242424",
+                    light: "#464646",
+                    transparent: "rgba(36, 36, 36, 0.5)",
+                    borderTransparent: "rgba(255, 255, 255, 0.5)",
+                },
                 white: {
                     normal: "#ffffff",
                     light: "#ffffffd1",
@@ -13,7 +23,7 @@ module.exports = {
                 },
             },
             letterSpacing: {
-                superWide: "0.2em",
+                superWide: "4px",
             },
             animation: {
                 slideOpenDown: "slideOpenDown 0.5s ease-in-out alternate both",
@@ -21,7 +31,7 @@ module.exports = {
             },
         },
         fontFamily: {
-            bebas: ['"Bebas Neue"', "cursive"],
+            bebas: ['"Bebas Neue"', "sans-serif"],
             oswald: ['"Oswald"', "sans-serif"],
         },
         screens: {
@@ -31,6 +41,7 @@ module.exports = {
             lg: "62em",
             xl: "80em",
             "2xl": "96em",
+            "3xl": "125em",
         },
     },
     plugins: [],

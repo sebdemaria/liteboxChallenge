@@ -1,7 +1,47 @@
-import { Layout } from "@/templates/base/Layout";
 import Head from "next/head";
+import { Layout } from "@/templates/base/Layout";
 
-export default function Home() {
+import { getMovies } from "httpServices/movies/getMovies";
+
+import { formatImgPath } from "utils/formatImgPath";
+import { createContext } from "react";
+import { MoviesHome } from "@/screens/MoviesHome";
+
+export const getServerSideProps = async () => {
+    // server side call for movies
+    const BASE_URL = process.env.BASE_API_URL;
+    const API_KEY = process.env.TMD_API_KEY;
+
+    const movies = await getMovies({
+        BASE_URL,
+        API_KEY,
+        ENDPOINT: "now_playing",
+    });
+
+    const popularMovies = await getMovies({
+        BASE_URL,
+        API_KEY,
+        ENDPOINT: "popular",
+    });
+
+    // format image paths and limit results amount
+    const moviesFormatted = formatImgPath(movies.movies);
+    const popularMoviesFormatted = formatImgPath(popularMovies.movies).slice(
+        0,
+        4
+    );
+
+    return {
+        props: {
+            movies: JSON.parse(JSON.stringify(moviesFormatted)),
+            popularMovies: JSON.parse(JSON.stringify(popularMoviesFormatted)),
+        },
+    };
+};
+
+export const MovieContext = createContext();
+
+export default function Home({ movies, popularMovies }) {
     return (
         <>
             <Head>
@@ -16,9 +56,11 @@ export default function Home() {
                 />
                 <link rel="shortcut icon" href="/images/favicon.ico" />
             </Head>
-            <Layout>
-                <h1 className="text-3xl">Hello World!</h1>
-            </Layout>
+            <MovieContext.Provider value={{ movies, popularMovies }}>
+                <Layout>
+                    <MoviesHome />
+                </Layout>
+            </MovieContext.Provider>
         </>
     );
 }
