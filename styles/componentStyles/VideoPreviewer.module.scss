@@ -1,0 +1,31 @@
+@keyframes rotateIn {
+    0% {
+        transform: translateY(1em);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes rotateOut {
+    0% {
+        transform: translateY(-1em);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.videoPlayerIn {
+    animation: rotateIn 0.8s;
+}
+
+.videoPlayerOut {
+    animation: rotateOut 0.8s;
+}

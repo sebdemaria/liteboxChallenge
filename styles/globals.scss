@@ -1,3 +1,59 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@200;400&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .btn-liteflix {
+        @apply flex h-[56px] w-[248px] items-center justify-center gap-[0.7em] bg-liteflixGray-normal font-oswald text-[18px] uppercase tracking-superWide text-white-lighter transition-colors duration-200 ease-in-out;
+    }
+
+    .btn-liteflix:hover {
+        @apply bg-liteflixGray-light;
+    }
+
+    .btn-liteflix-border {
+        @apply flex h-[56px] w-[248px] items-center justify-center gap-[0.7em] border border-liteflixGray-borderTransparent bg-liteflixGray-transparent font-oswald text-[18px] uppercase tracking-superWide text-white-lighter transition-colors duration-200 ease-in-out;
+    }
+
+    .btn-liteflix-border:hover {
+        @apply bg-liteflixGray-borderTransparent text-black;
+    }
+}
+
+@layer base {
+    html {
+        font-family: "Bebas Neue", system-ui, cursive;
+    }
+
+    body {
+        @apply h-screen bg-liteflixGray-normal;
+    }
+}
+
+@layer utilities {
+    .transition-500-in-out {
+        @apply transition-all duration-500 ease-in-out;
+    }
+
+    .transition-700-in-out {
+        @apply transition-all duration-700 ease-in-out;
+    }
+
+    .transition-1000-in-out {
+        @apply transition-all duration-1000 ease-in-out;
+    }
+
+    .bg-image-props {
+        @apply min-w-[100vw] bg-cover bg-no-repeat xs:min-h-[75vh] xs:bg-[center_top] md:min-h-[85vh] md:bg-[50%_10%] lg:min-h-[100vh];
+    }
+
+    .bg-video-previewer-props {
+        @apply bg-cover bg-center bg-no-repeat;
+    }
+
+    .h1-xxl-aqua {
+        @apply font-[700] not-italic text-aqua xs:h-[155px] xs:text-center xs:text-[76px] xs:leading-[78px] xs:tracking-[12px] sm:h-[100px] md:h-[100px] md:text-start md:text-[120px] md:leading-[100px] md:tracking-[16px] lg:h-[200px] xl:h-[100px];
+    }
+}

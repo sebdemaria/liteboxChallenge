@@ -1,8 +1,5 @@
 {
-    "ignorePatterns": [
-        "*.css",
-        "*.scss"
-    ],
+    "ignorePatterns": ["*.css", "*.scss"],
     "env": {
         "node": true,
         "browser": true,
@@ -17,16 +14,11 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "plugins": [
-        "react"
-    ],
+    "plugins": ["react"],
     "rules": {
         "react/prop-types": 0,
         "linebreak-style": 0,
-        "semi": [
-            "error",
-            "always"
-        ],
+        "semi": ["error", "always"],
         "no-unused-vars": 1
     }
 }
