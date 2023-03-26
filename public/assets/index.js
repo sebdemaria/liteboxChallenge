@@ -5,3 +5,4 @@ export { default as Notification } from "./header/notification.svg";
 export { default as Play } from "./UI/play.svg";
 export { default as Plus } from "./UI/plus.svg";
 export { default as PlayBtn } from "./UI/play-btn.svg";
+export { default as Star } from "./UI/score-star.svg";

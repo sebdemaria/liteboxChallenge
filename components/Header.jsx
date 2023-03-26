@@ -62,7 +62,7 @@ export const Header = () => {
 
                 <div className="flex items-center justify-start xs:order-2 md:order-1 md:ml-5 md:w-[95%] md:gap-7 lg:w-11/12 lg:gap-[6em]">
                     <p
-                        className={`text-aqua xs:text-[28px] md:text-[34px] lg:text-[40px]`}
+                        className={`cursor-pointer text-aqua xs:text-[28px] md:text-[34px] lg:text-[40px]`}
                     >
                         liteflix
                     </p>
