@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 import Image from "next/image";
 
-import { NavBar } from "@/components/NavBar";
+import { NavBar } from "@/components/UI/NavBar";
+import { CSSTransition } from "react-transition-group";
 
 import {
     MenuBtnOpen,
@@ -15,32 +16,39 @@ import {
 import { ROUTES } from "consts/Routes";
 import { Button } from "./UI/Button";
 
-import styles from "@/styles/componentStyles/Navbar.module.scss";
+import styles from "@/styles/componentStyles/Header.module.scss";
+import { AppContext } from "pages";
 
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
     const [setStorageItem] = useLocalStorage();
+
+    const { setIsModalOpen } = useContext(AppContext);
 
     const handleAddMovie = () => {
         setStorageItem("peli", JSON.stringify(ProfileImg));
     };
 
+    const nodeRef = useRef(null);
+
     return (
-        <header className={`fixed z-50 grid w-full grid-cols-12`}>
+        <header className={`fixed z-40 w-full grid-cols-12 xxs:hidden xs:grid`}>
             <div
-                className={`relative z-50 col-span-12 flex h-min items-center pt-4 xs:justify-between xs:px-5 sm:px-10 md:justify-center`}
+                className={`relative z-40 col-span-12 flex h-min items-center pt-4 xs:justify-between xs:px-5 sm:px-10 md:justify-center`}
             >
+                {/* open/close menu button */}
                 <div
                     className={`${
                         !isMenuOpen
                             ? "md:w-1/12 lg:w-[6%] xl:w-[4%]"
                             : "md:w-7/12 lg:w-[20%] xl:w-[23%] 2xl:w-[25%]"
-                    } transition-700-in-out xs:order-1 md:order-2`}
+                    } transition-1000-in-out xs:order-1 md:order-2`}
                 >
                     {!isMenuOpen ? (
                         <Image
                             alt="menu open button"
-                            className="md:scale-x-[-1]"
+                            className={`transition-700-in-out md:scale-x-[-1]`}
                             onClick={() =>
                                 setIsMenuOpen((isMenuOpen) => !isMenuOpen)
                             }
@@ -50,7 +58,7 @@ export const Header = () => {
                     ) : (
                         <Image
                             alt="menu close button"
-                            className={`h-[18px] w-[27px]`}
+                            className={`transition-700-in-out h-[18px] w-[27px]`}
                             onClick={() =>
                                 setIsMenuOpen((isMenuOpen) => !isMenuOpen)
                             }
@@ -68,12 +76,12 @@ export const Header = () => {
                     </p>
 
                     <Button
-                        customClass={`xs:hidden md:flex gap-3 items-center font-oswald text-white-light tracking-superWide`}
-                        onClick={handleAddMovie}
+                        customClass={`xs:hidden md:flex gap-3 items-center text-white-light default-text-style`}
+                        onClick={() => setIsModalOpen(true)}
                     >
                         <Image src={Plus} alt="add movie" />
                         <span className="font-normal text-white-light">
-                            AGREGAR PELÍCULA
+                            agregar película
                         </span>
                     </Button>
                 </div>
@@ -92,34 +100,43 @@ export const Header = () => {
             </div>
 
             {/* NavMenu */}
-            <div
-                className={`absolute col-span-12 pt-[8em] pb-[5em] font-oswald font-thin text-white-lighter xs:w-full xs:px-5 sm:px-9 md:right-0 md:w-2/4 md:px-12 lg:w-[30%] lg:px-8 xl:px-10 ${
-                    !isMenuOpen ? "hidden" : "grid bg-liteflixGray-normal"
-                } transition-1000-in-out ${styles.slideMenuOpen} ${
-                    styles.animateMenu
-                }`}
+            <CSSTransition
+                nodeRef={nodeRef}
+                in={isMenuOpen}
+                timeout={500}
+                unmountOnExit
+                classNames={{
+                    enter: styles.menuEnter,
+                    done: styles.menuEnterDone,
+                    exit: styles.menuExit,
+                }}
             >
-                <NavBar
-                    customClass={`h-max tracking-superWide ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
-                    ROUTES={ROUTES}
-                />
-
-                <Button
-                    customClass={`flex gap-3 items-center w-full text-start tracking-superWide my-5 ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
-                    onClick={handleAddMovie}
+                <div
+                    ref={nodeRef}
+                    className={`absolute col-span-12 grid h-screen bg-liteflixGray-normal pt-[8em] pb-[5em] font-oswald font-thin text-white-lighter xs:w-full xs:px-5 sm:px-9 md:right-0 md:w-2/4 md:px-12 lg:w-[30%] lg:px-8 xl:px-10`}
                 >
-                    <Image src={Plus} alt="add movie" />
-                    <span className="font-normal uppercase text-white-light">
-                        agregar película
-                    </span>
-                </Button>
+                    <NavBar
+                        customClass={`h-max tracking-superWide ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
+                        ROUTES={ROUTES}
+                    />
 
-                <Button
-                    customClass={`w-full text-start tracking-superWide uppercase ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
-                >
-                    cerrar sesión
-                </Button>
-            </div>
+                    <Button
+                        customClass={`flex gap-3 items-center w-full text-start tracking-superWide my-5 ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
+                        onClick={() => setIsModalOpen(true)}
+                    >
+                        <Image src={Plus} alt="add movie" />
+                        <span className="font-normal uppercase text-white-light">
+                            agregar película
+                        </span>
+                    </Button>
+
+                    <Button
+                        customClass={`w-full text-start tracking-superWide uppercase ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
+                    >
+                        cerrar sesión
+                    </Button>
+                </div>
+            </CSSTransition>
         </header>
     );
 };

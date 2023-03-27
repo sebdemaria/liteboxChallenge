@@ -1,0 +1,33 @@
+@import "../sass-utils/index";
+
+@include slideInFromTop;
+@include fadeOut;
+
+.selectOptions {
+    @include boxShadow;
+}
+
+// CSSTransition animation classes
+.enter {
+    animation: slideInFromTop 0.5s;
+}
+
+.enterDone {
+    animation: slideInFromTop 0.5s;
+}
+
+.exit {
+    animation: fadeOut 0.5s;
+}
+
+.exitActive {
+    animation: fadeOut 0.5s;
+}
+
+.arrow {
+    border-bottom: 10px solid $liteFlixGrayNormal;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    position: absolute;
+    top: -0.59em;
+}

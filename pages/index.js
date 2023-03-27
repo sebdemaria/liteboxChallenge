@@ -4,8 +4,9 @@ import { Layout } from "@/templates/base/Layout";
 import { getMovies } from "httpServices/movies/getMovies";
 
 import { formatImgPath } from "utils/formatImgPath";
-import { createContext } from "react";
+import { createContext, useState } from "react";
 import { MoviesHome } from "@/screens/MoviesHome";
+import { CustomModal } from "@/components/CustomModal";
 
 export const getServerSideProps = async () => {
     // server side call for movies
@@ -24,6 +25,12 @@ export const getServerSideProps = async () => {
         ENDPOINT: "popular",
     });
 
+    const mymovies = await getMovies({
+        BASE_URL,
+        API_KEY,
+        ENDPOINT: "popular",
+    });
+
     // format image paths and limit results amount
     const moviesFormatted = formatImgPath(movies.movies);
     const popularMoviesFormatted = formatImgPath(popularMovies.movies).slice(
@@ -31,17 +38,30 @@ export const getServerSideProps = async () => {
         4
     );
 
+    const myMovies = formatImgPath(mymovies.movies).slice(4, 8);
+
     return {
         props: {
             movies: JSON.parse(JSON.stringify(moviesFormatted)),
             popularMovies: JSON.parse(JSON.stringify(popularMoviesFormatted)),
+            myMovies: JSON.parse(JSON.stringify(myMovies)),
         },
     };
 };
 
-export const MovieContext = createContext();
+export const AppContext = createContext();
 
-export default function Home({ movies, popularMovies }) {
+export default function Home({ movies, popularMovies, myMovies }) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const contextValue = {
+        movies,
+        popularMovies,
+        myMovies,
+        setIsModalOpen,
+        isModalOpen,
+    };
+
     return (
         <>
             <Head>
@@ -56,11 +76,16 @@ export default function Home({ movies, popularMovies }) {
                 />
                 <link rel="shortcut icon" href="/images/favicon.ico" />
             </Head>
-            <MovieContext.Provider value={{ movies, popularMovies }}>
+
+            <AppContext.Provider value={contextValue}>
                 <Layout>
                     <MoviesHome />
+                    <CustomModal
+                        isModalOpen={isModalOpen}
+                        setIsModalOpen={setIsModalOpen}
+                    />
                 </Layout>
-            </MovieContext.Provider>
+            </AppContext.Provider>
         </>
     );
 }

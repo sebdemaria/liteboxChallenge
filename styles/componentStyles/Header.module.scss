@@ -1,0 +1,22 @@
+@import "../sass-utils/index";
+
+@include slideMenuIn;
+@include slideMenuOut;
+@include slideNavMenuIn;
+@include slideNavMenuOut;
+
+// CSSTransition animation classes
+.menuEnter {
+    animation: slideMenuIn 0.5s;
+}
+
+.menuExit {
+    animation: slideMenuOut 0.5s;
+}
+
+.slideNavMenuIn {
+    animation-name: slideNavMenuIn;
+    animation-duration: 1s;
+    animation-direction: alternate;
+    animation-fill-mode: both;
+}
