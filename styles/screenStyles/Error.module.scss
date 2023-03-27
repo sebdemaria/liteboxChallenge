@@ -1,0 +1,7 @@
+@import "../sass-utils/index";
+
+@include fadeIn;
+
+.fadeIn {
+    animation: fadeIn 1s;
+}

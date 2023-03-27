@@ -35,6 +35,7 @@ module.exports = {
             oswald: ['"Oswald"', "sans-serif"],
         },
         screens: {
+            xxs: "0em",
             xs: "20em",
             sm: "30em",
             md: "48em",

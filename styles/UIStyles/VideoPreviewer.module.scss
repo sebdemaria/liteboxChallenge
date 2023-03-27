@@ -1,0 +1,16 @@
+@import "../sass-utils/index";
+
+@include rotateIn;
+@include rotateOut;
+
+.videoBox {
+    @include boxShadow;
+}
+
+.videoPlayerIn {
+    animation: rotateIn 0.8s;
+}
+
+.videoPlayerOut {
+    animation: rotateOut 0.8s;
+}
