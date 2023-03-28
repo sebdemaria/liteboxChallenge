@@ -18,10 +18,10 @@ export const MoviesColumn = () => {
     );
 
     useEffect(() => {
-        const movies = localStorage.getItem("my_movies");
-        console.log(movies);
-        // setMyMovies(JSON.parse(movies));
-    }, []);
+        const movies = JSON.parse(localStorage.getItem("my_movies"));
+        addEventListener("storage", () => setMyMovies(movies));
+        // console.log('holo', myMovies);
+    }, [myMovies]);
 
     return (
         <aside className="relative grid h-max xs:top-[25em] xs:col-span-12 xs:gap-5 sm:top-[29rem] md:top-[80%] md:gap-0 lg:top-[8em] lg:col-span-4 lg:pr-[3rem] xl:mb-0 2xl:left-[30em] 2xl:col-span-3 2xl:pr-[8rem] 3xl:self-center">
@@ -35,11 +35,10 @@ export const MoviesColumn = () => {
 
             {movieFilterSelected === FILTER_VALUES.popular.value && (
                 <div
-                    className={`${
-                        movieFilterSelected === FILTER_VALUES.popular.value
-                            ? styles.fadeIn
-                            : styles.fadeOut
-                    } mb-10 flex min-h-[470px] flex-wrap justify-center gap-5 overflow-y-scroll xs:mt-3 xs:w-full md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px]`}
+                    className={`${movieFilterSelected === FILTER_VALUES.popular.value
+                        ? styles.fadeIn
+                        : styles.fadeOut
+                        } mb-10 flex min-h-[470px] flex-wrap justify-center gap-5 overflow-y-scroll xs:mt-3 xs:w-full md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px]`}
                 >
                     {popularMovies.map(
                         (
@@ -65,11 +64,10 @@ export const MoviesColumn = () => {
             )}
             {movieFilterSelected === FILTER_VALUES.my_movies.value && (
                 <div
-                    className={`${
-                        movieFilterSelected === FILTER_VALUES.my_movies.value
-                            ? styles.fadeIn
-                            : styles.fadeOut
-                    } mb-10 flex min-h-[470px] flex-wrap justify-center gap-5 overflow-y-scroll xs:mt-3 xs:w-full md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px]`}
+                    className={`${movieFilterSelected === FILTER_VALUES.my_movies.value
+                        ? styles.fadeIn
+                        : styles.fadeOut
+                        } mb-10 flex min-h-[470px] flex-wrap justify-center gap-5 overflow-y-scroll xs:mt-3 xs:w-full md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px]`}
                 >
                     {!myMovies?.length ? (
                         <p className="banner-liteflix">

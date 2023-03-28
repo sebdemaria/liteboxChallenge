@@ -6,7 +6,7 @@ import { Form, Formik } from "formik";
 
 import Image from "next/image";
 
-import { Loader, ReactModal as Modal } from "./UI/";
+import { Button, Loader, ReactModal as Modal } from "./UI/";
 
 import { FORM_ERROR_MESSAGES, IMAGE_SUPPORTED_FORMATS } from "../consts";
 import { MenuBtnClose } from "@/public/assets";
@@ -17,7 +17,7 @@ import styles from "@/styles/componentStyles/Modal.module.scss";
 
 export const CustomModal = ({
     isModalOpen = false,
-    setIsModalOpen = () => {},
+    setIsModalOpen = () => { },
 }) => {
     const MAX_FILE_SIZE = 2097152;
 
@@ -30,7 +30,7 @@ export const CustomModal = ({
 
     const handleSubmit = async ({ movie_file, movie_name }) => {
         setIsLoading((isLoading) => !isLoading);
-
+        console.log('movie', myMovies);
         myMovies.push({
             backdrop_path: { original: movie_file.path },
             title: movie_name,
@@ -44,8 +44,9 @@ export const CustomModal = ({
     };
 
     useEffect(() => {
-        console.log(myMovies);
-    }, [myMovies]);
+        const movies = JSON.parse(localStorage.getItem('my_movies'));
+        setMyMovies(movies);
+    }, []);
 
     return (
         <Modal
@@ -120,6 +121,7 @@ export const CustomModal = ({
                                 <Loader
                                     percentage={percentage}
                                     error={errors}
+                                    handleSubmit={handleSubmit}
                                 />
                             )}
 
@@ -131,19 +133,20 @@ export const CustomModal = ({
                             />
 
                             <span className="flex h-min w-full flex-wrap justify-start gap-5 xs:justify-center">
-                                <button
+                                <Button
+                                    disabled={!isLoading}
                                     className="btn-liteflix-gray md:p-9"
                                     type="submit"
                                 >
                                     subir película
-                                </button>
+                                </Button>
 
-                                <button
+                                <Button
                                     className="btn-liteflix-border md:hidden"
                                     onClick={() => setIsModalOpen(false)}
                                 >
                                     salir
-                                </button>
+                                </Button>
                             </span>
                         </Form>
                     )}

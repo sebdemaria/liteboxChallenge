@@ -8,7 +8,7 @@ export const Input = ({
     customClass = "",
     ...props
 }) => {
-    const [field, meta] = useField(name);
+    const [field] = useField(name);
 
     return (
         <span

@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { CSSTransition } from "react-transition-group";
 
+import { Button } from "./Button";
+
 import { ArrowDown, Check } from "@/public/assets";
 
 import styles from "@/styles/UIStyles/Select.module.scss";
@@ -25,7 +27,7 @@ export const Select = ({
     return (
         <div className="flexJustifyCenter relative h-min w-full">
             {/* select heading */}
-            <button
+            <Button
                 type="button"
                 id="select"
                 className={`${styles.fadeIn} default-text-style customSelect w-full`}
@@ -42,7 +44,7 @@ export const Select = ({
                     </b>
                 </p>
                 <Image src={ArrowDown} alt="filter movie list" />
-            </button>
+            </Button>
 
             {/* select options */}
             <CSSTransition
@@ -64,11 +66,10 @@ export const Select = ({
                             key={value}
                             onClick={(e) => handleOptionSelected(value, e)}
                             value={value}
-                            className={`default-text-style flex w-full items-center justify-between text-start ${
-                                valueSelected === value
-                                    ? "font-bold"
-                                    : "font-extralight"
-                            }`}
+                            className={`default-text-style flex w-full items-center justify-between text-start ${valueSelected === value
+                                ? "font-bold"
+                                : "font-extralight"
+                                }`}
                         >
                             {text}
                             {valueSelected === value && (

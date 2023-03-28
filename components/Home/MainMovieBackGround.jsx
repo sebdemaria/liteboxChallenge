@@ -3,6 +3,8 @@ import { AppContext } from "pages";
 
 import Image from "next/image";
 
+import { Button } from "../UI";
+
 import { Play, Plus } from "@/public/assets";
 
 import styles from "@/styles/screenStyles/MoviesHome.module.scss";
@@ -47,19 +49,19 @@ export const MainMovieBackGround = () => {
                 <div
                     className={`flex h-min flex-wrap xs:w-[90%] xs:justify-center xs:gap-5 md:w-full md:gap-3 lg:justify-start`}
                 >
-                    <button className={`${styles.widthIn} btn-liteflix`}>
+                    <Button className={`${styles.widthIn} btn-liteflix`}>
                         <Image
                             src={Play}
                             alt="add movie"
                             className={`${styles.widthInDelayed}`}
                         />
                         reproducir
-                    </button>
+                    </Button>
 
-                    <button className={`${styles.fadeIn} btn-liteflix-border`}>
+                    <Button className={`${styles.fadeIn} btn-liteflix-border`}>
                         <Image src={Plus} alt="show my list" />
                         mi lista
-                    </button>
+                    </Button>
                 </div>
             </div>
         </>

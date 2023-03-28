@@ -6,7 +6,11 @@
 
 @layer components {
     .btn-base {
-        @apply transition-500-in-out flex h-[56px] w-[248px] items-center justify-center gap-[0.7em] font-oswald font-light uppercase tracking-superWide;
+        @apply disabled:bg-gray-500 btn-base transition-500-in-out flex h-[56px] w-[248px] items-center justify-center gap-[0.7em] font-oswald font-light uppercase tracking-superWide;
+    }
+
+    .btn-base:hover{
+        @apply disabled:bg-gray-500 disabled:border-none disabled:text-black;
     }
 
     .btn-liteflix {
@@ -50,7 +54,7 @@
     }
 
     .banner-liteflix {
-        @apply h-min border p-7 font-oswald font-thin uppercase tracking-superWide text-white-normal;
+        @apply h-min border p-7 text-center font-oswald font-thin uppercase tracking-superWide text-white-normal;
     }
 }
 

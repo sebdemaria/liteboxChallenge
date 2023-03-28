@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
+
+import { ErrorMessage } from 'formik';
+
 import { Input } from "./Input";
 
 import { useDropzone } from "react-dropzone";
@@ -26,6 +29,7 @@ export const DragDropInput = ({ setFieldValue }) => {
             "image/webp": [".webp"],
         },
         onDrop,
+        maxFiles: 1
     });
 
     useEffect(() => {
@@ -45,7 +49,7 @@ export const DragDropInput = ({ setFieldValue }) => {
                 })}
             >
                 <label
-                    className="flexJustifyCenter btn-liteflix-border-dashed mb-1 p-12 xs:w-[90%] xs:max-w-[320px] xs:text-[16px] sm:max-w-[500px] md:w-[650px] md:max-w-[650px] md:text-[16px]"
+                    className="flexJustifyCenter cursor-pointer btn-liteflix-border-dashed mb-1 p-12 xs:w-[90%] xs:max-w-[320px] xs:text-[16px] sm:max-w-[500px] md:w-[650px] md:max-w-[650px] md:text-[16px]"
                     htmlFor="movieAdd"
                 >
                     <Image alt="attach file" src={Clip} />
@@ -55,18 +59,23 @@ export const DragDropInput = ({ setFieldValue }) => {
                         </div>
                     ) : (
                         <p className="flexJustifyCenter w-max min-w-[220px] gap-2 sm:px-1 lg:px-3">
-                            Agregar un archivo{" "}
+                            Agregar un archivo
                             <span className="w-max xs:hidden md:block">
                                 o arrastralo y soltalo aquí
                             </span>
                         </p>
                     )}
                 </label>
+                <ErrorMessage name='movie_file' component={'p'} className="errorMessage-liteflix" />
 
                 <Input
-                    {...getInputProps}
-                    name="movie_file"
-                    className="hidden w-min"
+                    {...getInputProps(
+                        
+                    )}
+                    accept="image/jpg, image/png, image/jpeg, image/webp, image/avif"
+                    customClass="hidden"
+                    id="movieAdd"
+                    type="file"
                 />
             </span>
         </div>
