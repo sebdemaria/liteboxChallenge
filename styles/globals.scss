@@ -5,8 +5,12 @@
 @tailwind utilities;
 
 @layer components {
+    .btn-base {
+        @apply transition-500-in-out flex h-[56px] w-[248px] items-center justify-center gap-[0.7em] font-oswald font-light uppercase tracking-superWide;
+    }
+
     .btn-liteflix {
-        @apply flex h-[56px] w-[248px] items-center justify-center gap-[0.7em] bg-liteflixGray-normal font-oswald text-[18px] uppercase tracking-superWide text-white-lighter transition-colors duration-200 ease-in-out;
+        @apply btn-base bg-liteflixGray-normal font-oswald text-[18px] text-white-normal;
     }
 
     .btn-liteflix:hover {
@@ -14,19 +18,39 @@
     }
 
     .btn-liteflix-gray {
-        @apply flex h-[56px] w-[248px] items-center justify-center gap-[0.7em] bg-liteflixGray-light font-oswald text-[18px] uppercase tracking-superWide text-black transition-colors duration-200 ease-in-out;
+        @apply btn-base bg-liteflixGray-lighter text-[18px] text-black;
     }
 
-    .btn-liteflix:hover {
-        @apply bg-liteflixGray-light;
+    .btn-liteflix-gray:hover {
+        @apply border border-liteflixGray-borderTransparent bg-liteflixGray-transparent text-white-normal;
     }
 
     .btn-liteflix-border {
-        @apply flex h-[56px] w-[248px] items-center justify-center gap-[0.7em] border border-liteflixGray-borderTransparent bg-liteflixGray-transparent font-oswald text-[18px] uppercase tracking-superWide text-white-lighter transition-colors duration-200 ease-in-out;
+        @apply btn-base border border-liteflixGray-borderTransparent bg-liteflixGray-transparent text-[18px] text-white-normal;
     }
 
     .btn-liteflix-border:hover {
         @apply bg-liteflixGray-borderTransparent text-black;
+    }
+
+    .btn-liteflix-border-dashed {
+        @apply btn-base border border-dashed border-liteflixGray-borderTransparent bg-liteflixGray-transparent text-[18px] text-white-normal;
+    }
+
+    .btn-liteflix-border-dotted:hover {
+        @apply border-solid bg-liteflixGray-light text-black;
+    }
+
+    .input-liteflix {
+        @apply border-b-2 bg-transparent pb-1 text-center font-oswald text-[16px] font-light uppercase tracking-superWide text-white-normal outline-none placeholder:text-white-normal;
+    }
+
+    .errorMessage-liteflix {
+        @apply w-full text-center text-sm tracking-superWide text-red-500;
+    }
+
+    .banner-liteflix {
+        @apply h-min border p-7 font-oswald font-thin uppercase tracking-superWide text-white-normal;
     }
 }
 
@@ -71,6 +95,10 @@
 
     .flexJustifyCenter {
         @apply flex justify-center;
+    }
+
+    .flexAlignCenter {
+        @apply flex items-center;
     }
 
     .flexJustifyCenterWrap {

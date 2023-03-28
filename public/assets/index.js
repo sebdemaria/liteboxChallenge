@@ -8,3 +8,4 @@ export { default as PlayBtn } from "./UI/play-btn.svg";
 export { default as Star } from "./UI/score-star.svg";
 export { default as ArrowDown } from "./UI/arrow-down.svg";
 export { default as Check } from "./UI/check.svg";
+export { default as Clip } from "./UI/clip.svg";

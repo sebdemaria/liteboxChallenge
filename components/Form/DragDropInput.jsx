@@ -1,0 +1,74 @@
+import { useCallback, useEffect, useState } from "react";
+import Image from "next/image";
+import { Input } from "./Input";
+
+import { useDropzone } from "react-dropzone";
+
+import { Clip } from "@/public/assets";
+
+export const DragDropInput = ({ setFieldValue }) => {
+    const [imagePath, setImagePath] = useState("");
+
+    const onDrop = useCallback(
+        (acceptedFiles) => {
+            setImagePath(
+                acceptedFiles.map((file) => URL.createObjectURL(file))
+            );
+        },
+        [setImagePath]
+    );
+
+    const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+        accept: {
+            "image/png": [".png"],
+            "image/jpg": [".jpg"],
+            "image/jpeg": [".jpeg"],
+            "image/webp": [".webp"],
+        },
+        onDrop,
+    });
+
+    useEffect(() => {
+        const fileObject = {
+            type: acceptedFiles[0]?.type,
+            size: acceptedFiles[0]?.size,
+            path: imagePath[0],
+        };
+        setFieldValue("movie_file", fileObject);
+    }, [setFieldValue, acceptedFiles, imagePath]);
+
+    return (
+        <div>
+            <span
+                {...getRootProps({
+                    className: "dropzone flexJustifyCenterWrap",
+                })}
+            >
+                <label
+                    className="flexJustifyCenter btn-liteflix-border-dashed mb-1 p-12 xs:w-[90%] xs:max-w-[320px] xs:text-[16px] sm:max-w-[500px] md:w-[650px] md:max-w-[650px] md:text-[16px]"
+                    htmlFor="movieAdd"
+                >
+                    <Image alt="attach file" src={Clip} />
+                    {acceptedFiles[0] ? (
+                        <div className="flexJustifyCenter min-w-[220px]">
+                            {acceptedFiles[0].name}
+                        </div>
+                    ) : (
+                        <p className="flexJustifyCenter w-max min-w-[220px] gap-2 sm:px-1 lg:px-3">
+                            Agregar un archivo{" "}
+                            <span className="w-max xs:hidden md:block">
+                                o arrastralo y soltalo aquí
+                            </span>
+                        </p>
+                    )}
+                </label>
+
+                <Input
+                    {...getInputProps}
+                    name="movie_file"
+                    className="hidden w-min"
+                />
+            </span>
+        </div>
+    );
+};

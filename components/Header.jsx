@@ -1,9 +1,9 @@
 import { useContext, useRef, useState } from "react";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { AppContext } from "pages";
 
 import Image from "next/image";
 
-import { NavBar } from "@/components/UI/NavBar";
+import { NavBar, Button } from "@/components/UI/";
 import { CSSTransition } from "react-transition-group";
 
 import {
@@ -13,29 +13,22 @@ import {
     Notification,
     Plus,
 } from "@/public/assets";
-import { ROUTES } from "consts/Routes";
-import { Button } from "./UI/Button";
+
+import { ROUTES } from "../consts";
 
 import styles from "@/styles/componentStyles/Header.module.scss";
-import { AppContext } from "pages";
 
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const [setStorageItem] = useLocalStorage();
-
     const { setIsModalOpen } = useContext(AppContext);
-
-    const handleAddMovie = () => {
-        setStorageItem("peli", JSON.stringify(ProfileImg));
-    };
 
     const nodeRef = useRef(null);
 
     return (
-        <header className={`fixed z-40 w-full grid-cols-12 xxs:hidden xs:grid`}>
+        <header className={`fixed z-50 w-full grid-cols-12 xxs:hidden xs:grid`}>
             <div
-                className={`relative z-40 col-span-12 flex h-min items-center pt-4 xs:justify-between xs:px-5 sm:px-10 md:justify-center`}
+                className={`relative z-50 col-span-12 flex h-min items-center pt-4 xs:justify-between xs:px-5 sm:px-10 md:justify-center`}
             >
                 {/* open/close menu button */}
                 <div
@@ -77,7 +70,10 @@ export const Header = () => {
 
                     <Button
                         customClass={`xs:hidden md:flex gap-3 items-center text-white-light default-text-style`}
-                        onClick={() => setIsModalOpen(true)}
+                        onClick={() => {
+                            setIsMenuOpen(false);
+                            setIsModalOpen(true);
+                        }}
                     >
                         <Image src={Plus} alt="add movie" />
                         <span className="font-normal text-white-light">
@@ -122,7 +118,10 @@ export const Header = () => {
 
                     <Button
                         customClass={`flex gap-3 items-center w-full text-start tracking-superWide my-5 ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
-                        onClick={() => setIsModalOpen(true)}
+                        onClick={() => {
+                            setIsMenuOpen(false);
+                            setIsModalOpen(true);
+                        }}
                     >
                         <Image src={Plus} alt="add movie" />
                         <span className="font-normal uppercase text-white-light">

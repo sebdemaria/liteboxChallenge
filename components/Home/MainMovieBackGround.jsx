@@ -33,12 +33,13 @@ export const MainMovieBackGround = () => {
                 className={`relative grid h-min gap-5 xs:top-[20em] xs:col-span-12 xs:justify-items-center sm:top-[25em] md:top-[30em] lg:top-[-8em] lg:col-span-8 lg:justify-items-start lg:self-end lg:pl-[6em] 2xl:top-[-10em] 2xl:col-span-6`}
             >
                 <p
-                    className={`${styles.slideLeftIn} default-text-style h-min font-extralight text-white-lighter`}
+                    className={`${styles.slideIn} default-text-style h-min font-extralight text-white-lighter`}
                 >
                     original de <b className="font-extrabold">liteflix</b>
                 </p>
+
                 <h1
-                    className={`${styles.slideLeftIn} h1-xxl-aqua font-bebas uppercase xs:w-[95%] xs:text-center md:mb-4 lg:w-[80%] lg:text-start xl:w-full`}
+                    className={`${styles.slideIn} h1-xxl-aqua font-bebas uppercase xs:w-[95%] xs:text-center sm:w-full md:mb-4 lg:w-[80%] lg:text-start xl:w-full`}
                 >
                     {original_title}
                 </h1>

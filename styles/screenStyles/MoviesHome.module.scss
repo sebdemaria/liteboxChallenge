@@ -6,8 +6,12 @@
 @include translateXRightOpacityIn;
 @include fadeIn;
 
-.slideLeftIn {
+.slideIn {
     animation: translateXLeftOpacityIn 3s;
+
+    @media (max-width: $lg) {
+        animation: fadeIn 3s;
+    }
 }
 
 .widthIn {

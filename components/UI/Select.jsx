@@ -28,14 +28,18 @@ export const Select = ({
             <button
                 type="button"
                 id="select"
-                className="default-text-style customSelect w-full"
+                className={`${styles.fadeIn} default-text-style customSelect w-full`}
                 onClick={() => {
                     setIsSelectOpen((isSelectOpen) => !isSelectOpen);
                 }}
             >
-                <p className="w-max text-center font-extralight text-white-lighter">
-                    {headingText}{" "}
-                    <b className="font-extrabold">{headingTextBold}</b>
+                <p
+                    className={`w-max text-center font-extralight text-white-lighter`}
+                >
+                    {headingText}
+                    <b className={`transition-1000-in-out ml-2 font-extrabold`}>
+                        {headingTextBold}
+                    </b>
                 </p>
                 <Image src={ArrowDown} alt="filter movie list" />
             </button>

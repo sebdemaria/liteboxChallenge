@@ -1,14 +1,14 @@
 export const useLocalStorage = () => {
     const setStorageItem = (key, value) => {
-        window.localStorage.setItem(key, value);
+        localStorage.setItem(key, value);
     };
 
     const getStorageItem = (key) => {
-        window.localStorage.getItem(key);
+        localStorage.getItem(key);
     };
 
     const deleteStorageItem = (key) => {
-        window.localStorage.removeItem(key);
+        localStorage.removeItem(key);
     };
 
     return [setStorageItem, getStorageItem, deleteStorageItem];

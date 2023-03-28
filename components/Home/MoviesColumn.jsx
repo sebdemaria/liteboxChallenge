@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import { AppContext } from "pages";
 
@@ -9,11 +9,19 @@ import { FILTER_VALUES } from "consts/FilterValues";
 import styles from "@/styles/componentStyles/Home/MoviesColumn.module.scss";
 
 export const MoviesColumn = () => {
-    const { popularMovies, myMovies } = useContext(AppContext);
+    const [myMovies, setMyMovies] = useState([]);
+
+    const { popularMovies } = useContext(AppContext);
 
     const [movieFilterSelected, setMovieFilterSelected] = useState(
         FILTER_VALUES.popular.value
     );
+
+    useEffect(() => {
+        const movies = localStorage.getItem("my_movies");
+        console.log(movies);
+        // setMyMovies(JSON.parse(movies));
+    }, []);
 
     return (
         <aside className="relative grid h-max xs:top-[25em] xs:col-span-12 xs:gap-5 sm:top-[29rem] md:top-[80%] md:gap-0 lg:top-[8em] lg:col-span-4 lg:pr-[3rem] xl:mb-0 2xl:left-[30em] 2xl:col-span-3 2xl:pr-[8rem] 3xl:self-center">
@@ -63,24 +71,30 @@ export const MoviesColumn = () => {
                             : styles.fadeOut
                     } mb-10 flex min-h-[470px] flex-wrap justify-center gap-5 overflow-y-scroll xs:mt-3 xs:w-full md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px]`}
                 >
-                    {myMovies.map(
-                        (
-                            {
-                                title,
-                                backdrop_path,
-                                vote_average,
-                                release_date,
-                            },
-                            index
-                        ) => (
-                            <VideoPreviewer
-                                key={index}
-                                index={index}
-                                title={title}
-                                imgPath={backdrop_path.original}
-                                score={vote_average}
-                                release_date={release_date}
-                            />
+                    {!myMovies?.length ? (
+                        <p className="banner-liteflix">
+                            No tenés películas guardadas
+                        </p>
+                    ) : (
+                        myMovies.map(
+                            (
+                                {
+                                    title,
+                                    backdrop_path,
+                                    vote_average,
+                                    release_date,
+                                },
+                                index
+                            ) => (
+                                <VideoPreviewer
+                                    key={index}
+                                    index={index}
+                                    title={title}
+                                    imgPath={backdrop_path.original}
+                                    score={vote_average}
+                                    release_date={release_date}
+                                />
+                            )
                         )
                     )}
                 </div>
