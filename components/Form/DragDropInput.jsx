@@ -1,4 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
+import { base64Convert } from "utils/base64Convert";
+
 import Image from "next/image";
 
 import { ErrorMessage } from 'formik';
@@ -12,14 +14,11 @@ import { Clip } from "@/public/assets";
 export const DragDropInput = ({ setFieldValue }) => {
     const [imagePath, setImagePath] = useState("");
 
-    const onDrop = useCallback(
-        (acceptedFiles) => {
-            setImagePath(
-                acceptedFiles.map((file) => URL.createObjectURL(file))
-            );
-        },
-        [setImagePath]
-    );
+    const onDrop = useCallback((acceptedFiles) => {
+        const ImgUrl = acceptedFiles.map((file) => URL.createObjectURL(file));
+
+        base64Convert(ImgUrl, setImagePath);
+    }, []);
 
     const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
         accept: {
@@ -36,7 +35,7 @@ export const DragDropInput = ({ setFieldValue }) => {
         const fileObject = {
             type: acceptedFiles[0]?.type,
             size: acceptedFiles[0]?.size,
-            path: imagePath[0],
+            path: imagePath,
         };
         setFieldValue("movie_file", fileObject);
     }, [setFieldValue, acceptedFiles, imagePath]);
@@ -70,7 +69,7 @@ export const DragDropInput = ({ setFieldValue }) => {
 
                 <Input
                     {...getInputProps(
-                        
+
                     )}
                     accept="image/jpg, image/png, image/jpeg, image/webp, image/avif"
                     customClass="hidden"

@@ -6,11 +6,7 @@
 
 @layer components {
     .btn-base {
-        @apply disabled:bg-gray-500 btn-base transition-500-in-out flex h-[56px] w-[248px] items-center justify-center gap-[0.7em] font-oswald font-light uppercase tracking-superWide;
-    }
-
-    .btn-base:hover{
-        @apply disabled:bg-gray-500 disabled:border-none disabled:text-black;
+        @apply transition-500-in-out flex h-[56px] w-[248px] items-center justify-center gap-[0.7em] bg-gray-500 font-oswald font-light uppercase tracking-superWide;
     }
 
     .btn-liteflix {
@@ -54,13 +50,13 @@
     }
 
     .banner-liteflix {
-        @apply h-min border p-7 text-center font-oswald font-thin uppercase tracking-superWide text-white-normal;
+        @apply h-min mx-5 border p-7 text-center font-oswald font-thin uppercase tracking-superWide text-white-normal;
     }
 }
 
 @layer base {
     html {
-        font-family: "Bebas Neue", system-ui, cursive;
+        font-family: "Bebas Neue", cursive;
     }
 
     body {

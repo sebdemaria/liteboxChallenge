@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 
 import * as Yup from "yup";
@@ -14,6 +14,7 @@ import { MenuBtnClose } from "@/public/assets";
 import { Input, DragDropInput } from "./Form/";
 
 import styles from "@/styles/componentStyles/Modal.module.scss";
+import { AppContext } from "pages";
 
 export const CustomModal = ({
     isModalOpen = false,
@@ -21,20 +22,23 @@ export const CustomModal = ({
 }) => {
     const MAX_FILE_SIZE = 2097152;
 
+    const { myMovies: savedMovies, setMyMovies } = useContext(AppContext);
+    const myMovies = JSON.parse(savedMovies);
+
     const [isLoading, setIsLoading] = useState(false);
     const [percentage, setPercentage] = useState(20);
-    const [myMovies, setMyMovies] = useState([]);
     const [errors, setErrors] = useState("");
 
     const [setStorageItem] = useLocalStorage();
 
     const handleSubmit = async ({ movie_file, movie_name }) => {
         setIsLoading((isLoading) => !isLoading);
-        console.log('movie', myMovies);
-        myMovies.push({
+        console.log('submit', myMovies);
+        myMovies?.push({
             backdrop_path: { original: movie_file.path },
             title: movie_name,
         });
+
         setTimeout(() => {
             setStorageItem("my_movies", JSON.stringify(myMovies));
             setMyMovies(localStorage.getItem("my_movies"));
@@ -42,11 +46,6 @@ export const CustomModal = ({
 
         setIsLoading((isLoading) => !isLoading);
     };
-
-    useEffect(() => {
-        const movies = JSON.parse(localStorage.getItem('my_movies'));
-        setMyMovies(movies);
-    }, []);
 
     return (
         <Modal
@@ -134,7 +133,7 @@ export const CustomModal = ({
 
                             <span className="flex h-min w-full flex-wrap justify-start gap-5 xs:justify-center">
                                 <Button
-                                    disabled={!isLoading}
+                                    disabled={isLoading}
                                     className="btn-liteflix-gray md:p-9"
                                     type="submit"
                                 >

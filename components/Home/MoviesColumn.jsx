@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 
 import { AppContext } from "pages";
 
@@ -9,19 +9,17 @@ import { FILTER_VALUES } from "consts/FilterValues";
 import styles from "@/styles/componentStyles/Home/MoviesColumn.module.scss";
 
 export const MoviesColumn = () => {
-    const [myMovies, setMyMovies] = useState([]);
+    const { myMovies: savedMovies } = useContext(AppContext);
 
     const { popularMovies } = useContext(AppContext);
+    const myMovies = JSON.parse(savedMovies);
 
     const [movieFilterSelected, setMovieFilterSelected] = useState(
         FILTER_VALUES.popular.value
     );
 
-    useEffect(() => {
-        const movies = JSON.parse(localStorage.getItem("my_movies"));
-        addEventListener("storage", () => setMyMovies(movies));
-        // console.log('holo', myMovies);
-    }, [myMovies]);
+
+    console.log('column', myMovies, savedMovies);
 
     return (
         <aside className="relative grid h-max xs:top-[25em] xs:col-span-12 xs:gap-5 sm:top-[29rem] md:top-[80%] md:gap-0 lg:top-[8em] lg:col-span-4 lg:pr-[3rem] xl:mb-0 2xl:left-[30em] 2xl:col-span-3 2xl:pr-[8rem] 3xl:self-center">
@@ -38,7 +36,7 @@ export const MoviesColumn = () => {
                     className={`${movieFilterSelected === FILTER_VALUES.popular.value
                         ? styles.fadeIn
                         : styles.fadeOut
-                        } mb-10 flex min-h-[470px] flex-wrap justify-center gap-5 overflow-y-scroll xs:mt-3 xs:w-full md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px]`}
+                        } mb-10 flex min-h-max flex-wrap justify-center gap-5 overflow-y-scroll xs:mt-3 xs:w-full md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px]`}
                 >
                     {popularMovies.map(
                         (
@@ -67,14 +65,14 @@ export const MoviesColumn = () => {
                     className={`${movieFilterSelected === FILTER_VALUES.my_movies.value
                         ? styles.fadeIn
                         : styles.fadeOut
-                        } mb-10 flex min-h-[470px] flex-wrap justify-center gap-5 overflow-y-scroll xs:mt-3 xs:w-full md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px]`}
+                        } mb-10 flex xs:min-h-[470px] lg:min-h-max flex-wrap justify-center gap-5 overflow-y-scroll xs:mt-3 xs:w-full md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px]`}
                 >
                     {!myMovies?.length ? (
-                        <p className="banner-liteflix">
+                        <p className="banner-liteflix h-min">
                             No tenés películas guardadas
                         </p>
                     ) : (
-                        myMovies.map(
+                        myMovies?.map(
                             (
                                 {
                                     title,

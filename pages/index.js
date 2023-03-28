@@ -4,7 +4,7 @@ import { Layout } from "@/templates/base/Layout";
 import { getMovies } from "httpServices/movies/getMovies";
 
 import { formatImgPath } from "utils/formatImgPath";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { MoviesHome } from "@/screens/MoviesHome";
 import { CustomModal } from "@/components/CustomModal";
 
@@ -38,29 +38,33 @@ export const getServerSideProps = async () => {
         4
     );
 
-    const myMovies = formatImgPath(mymovies.movies).slice(4, 8);
-
     return {
         props: {
             movies: JSON.parse(JSON.stringify(moviesFormatted)),
             popularMovies: JSON.parse(JSON.stringify(popularMoviesFormatted)),
-            myMovies: JSON.parse(JSON.stringify(myMovies)),
         },
     };
 };
 
 export const AppContext = createContext();
 
-export default function Home({ movies, popularMovies, myMovies }) {
+export default function Home({ movies, popularMovies }) {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [myMovies, setMyMovies] = useState(JSON.stringify([]));
 
     const contextValue = {
         movies,
         popularMovies,
+        setMyMovies,
         myMovies,
         setIsModalOpen,
         isModalOpen,
     };
+
+    useEffect(() => {
+        const movies = localStorage.getItem("my_movies");
+        if (movies?.length) setMyMovies(movies);
+    }, []);
 
     return (
         <>
