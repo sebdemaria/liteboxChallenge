@@ -5,6 +5,8 @@
 @include slideNavMenuIn;
 @include slideNavMenuOut;
 @include ringBell;
+@include filterBlurIn;
+@include filterBlurOut;
 
 // CSSTransition animation classes
 .menuEnter {
@@ -27,4 +29,21 @@
     animation-duration: 1s;
     animation-direction: alternate;
     animation-fill-mode: both;
+}
+
+.bgAnimateIn {
+    @media (max-width: $lg) {
+        animation: filterBlurIn 0.5s;
+        backdrop-filter: blur(8px);
+        background-color: rgb(0 0 0 / 16%);
+        -webkit-backdrop-filter: blur(8px);
+        padding-bottom: 15px;
+    }
+}
+
+.bgAnimateOut {
+    @media (max-width: $lg) {
+        animation: filterBlurOut 0.5s;
+        padding-bottom: 15px;
+    }
 }

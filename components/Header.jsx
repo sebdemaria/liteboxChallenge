@@ -2,6 +2,7 @@ import { useContext, useRef, useState } from "react";
 import { AppContext } from "pages";
 
 import Image from "next/image";
+import Link from "next/link";
 
 import { NavBar, Button } from "@/components/UI/";
 import { CSSTransition } from "react-transition-group";
@@ -17,19 +18,24 @@ import {
 import { ROUTES } from "../consts";
 
 import styles from "@/styles/componentStyles/Header.module.scss";
-import Link from "next/link";
+import { useScroll } from "@/hooks/useScroll";
 
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
     const { setIsModalOpen } = useContext(AppContext);
 
-    const nodeRef = useRef(null);
+    const [headerBlur] = useScroll();
 
+    const nodeRef = useRef(null);
     const bellRef = useRef(null);
 
     return (
-        <header className={`fixed z-50 w-full grid-cols-12 xxs:hidden xs:grid`}>
+        <header
+            className={`${
+                headerBlur ? styles.bgAnimateIn : styles.bgAnimateOut
+            } fixed z-50 w-full grid-cols-12 xxs:hidden xs:grid`}
+        >
             <div
                 className={`relative z-50 col-span-12 flex h-min items-center pt-4 xs:justify-between xs:px-5 sm:px-10 md:justify-center`}
             >

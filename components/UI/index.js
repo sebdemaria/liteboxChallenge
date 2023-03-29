@@ -5,3 +5,4 @@ export { Loader } from "./Loader";
 export { NavBar } from "./NavBar";
 export { ReactModal } from "./Modal";
 export { ErrorMessage } from "./ErrorMessage";
+export { MovieAddedDone } from "./MovieModal/MovieAddedDone";

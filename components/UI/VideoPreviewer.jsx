@@ -14,7 +14,6 @@ export const VideoPreviewer = ({
     customClass,
     score,
     release_date,
-    handleDelete,
     deleteAvailable,
 }) => {
     const nodeRef = useRef(null);
@@ -43,7 +42,7 @@ export const VideoPreviewer = ({
                     id={`backgroundVideo${index}`}
                     className={`${customClass} ${
                         styles.videoBox
-                    } bg-video-previewer-props relative z-10 flex flex-wrap content-center overflow-hidden ${
+                    } bg-video-previewer-props flexFlexWrap relative z-10 h-min overflow-hidden ${
                         isClicked
                             ? "items-center justify-start"
                             : "justify-center"
@@ -52,22 +51,9 @@ export const VideoPreviewer = ({
                 >
                     <style>{css}</style>
 
-                    {deleteAvailable && (
-                        <button
-                            className="absolute top-3 left-3 z-30 w-3 cursor-pointer"
-                            onClick={handleDelete}
-                        >
-                            <Image
-                                src={MenuBtnClose}
-                                data-title={title}
-                                alt="play button"
-                            />
-                        </button>
-                    )}
-
                     {!isClicked ? (
                         <div
-                            className={`flexJustifyCenterWrap h-full w-full  gap-1 px-3 xs:pt-7 ${
+                            className={`flexJustifyAlignCenterWrap h-full w-full px-3 pt-2 ${
                                 isClicked
                                     ? styles.videoPlayerIn
                                     : styles.videoPlayerOut
@@ -77,26 +63,27 @@ export const VideoPreviewer = ({
                                 src={PlayBtn}
                                 role="button"
                                 alt="remove movie button"
+                                className="h-min xs:mb-[-5em] md:mb-[-2em]"
                                 width={"auto"}
                                 height={"auto"}
                             />
                             <h2
                                 className={`${
                                     isClicked ? "w-auto pt-0" : "w-full"
-                                } text-center font-oswald font-extralight uppercase tracking-superWide text-white-normal xs:text-[0.8rem]`}
+                                } default-text-style-white-extralight text-center text-white-normal xs:text-[0.8rem]`}
                             >
                                 {title}
                             </h2>
                         </div>
                     ) : (
                         <div
-                            className={`relative flex h-full w-full flex-wrap items-center bg-liteflixGray-transparent px-5 py-7 text-center font-oswald font-extralight uppercase tracking-superWide text-white-normal xs:text-[0.8rem] ${
+                            className={`flexAlignCenterWrap default-text-style-white-extralight relative h-full w-full bg-liteflixGray-transparent px-5 py-7 text-center text-white-normal xs:text-[0.8rem] ${
                                 isClicked
                                     ? styles.videoPlayerIn
                                     : styles.videoPlayerOut
                             }`}
                         >
-                            <div className="absolute flex items-center xs:top-[38%] xs:gap-2 xs:pl-2 lg:top-[30%] lg:pl-5 2xl:top-[35%]">
+                            <div className="flexAlignCenter absolute xs:top-[38%] xs:gap-2 xs:pl-2 lg:top-[30%] lg:pl-5 2xl:top-[35%]">
                                 <Image
                                     src={PlayBtn}
                                     alt="play button"
@@ -105,7 +92,7 @@ export const VideoPreviewer = ({
                                 <h2 className="w-[70%]">{title}</h2>
                             </div>
 
-                            <div className="absolute right-0 flex w-full items-center justify-around xs:bottom-4 xs:gap-[45%] lg:bottom-3 lg:gap-[40%]">
+                            <div className="flexAlignCenter absolute right-0 w-full justify-around xs:bottom-4 xs:gap-[45%] lg:bottom-3 lg:gap-[40%]">
                                 <span className="flex gap-2">
                                     <Image src={Star} alt="score" />
                                     <p>{score ? score : "N/A"}</p>

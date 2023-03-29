@@ -4,9 +4,14 @@
 @tailwind components;
 @tailwind utilities;
 
+button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 @layer components {
     .btn-base {
-        @apply transition-500-in-out flex h-[56px] w-[248px] items-center justify-center gap-[0.7em] bg-gray-500 font-oswald font-light uppercase tracking-superWide;
+        @apply transition-500-in-out flexJustifyAlignCenter default-text-style-white-light h-[56px] w-[248px] gap-[0.7em] bg-gray-500;
     }
 
     .btn-liteflix {
@@ -42,7 +47,7 @@
     }
 
     .input-liteflix {
-        @apply border-b-[0.5px] bg-transparent pb-1 text-center font-oswald text-[16px] font-light uppercase tracking-superWide text-white-normal outline-none placeholder:text-white-normal;
+        @apply default-text-style-white-light border-b-[0.5px] bg-transparent pb-1 text-center text-[16px] text-white-normal outline-none placeholder:text-white-normal;
     }
 
     .errorMessage-liteflix {
@@ -50,7 +55,7 @@
     }
 
     .banner-liteflix {
-        @apply mx-5 h-min border p-7 text-center font-oswald font-thin uppercase tracking-superWide text-white-normal;
+        @apply default-text-style-white-light mx-5 h-min border p-7 text-center text-white-normal;
     }
 }
 
@@ -85,10 +90,6 @@
         @apply bg-cover bg-center bg-no-repeat;
     }
 
-    .default-text-style {
-        @apply font-oswald uppercase tracking-superWide text-white-light;
-    }
-
     .h1-xxl-aqua {
         @apply font-[700] not-italic text-aqua xs:h-max xs:text-center xs:text-[4em] xs:leading-[1em] xs:tracking-[12px] sm:text-[5em] md:text-start md:text-[5.5rem] md:leading-[1em] md:tracking-[16px] 2xl:text-[7rem];
     }
@@ -97,23 +98,55 @@
         @apply flex justify-center;
     }
 
+    .flexFlexWrap {
+        @apply flex flex-wrap;
+    }
+
     .flexAlignCenter {
         @apply flex items-center;
     }
 
+    .flexJustifyAlign {
+        @apply flexJustifyCenter items-center;
+    }
+
     .flexJustifyCenterWrap {
-        @apply flex flex-wrap justify-center;
+        @apply flexFlexWrap justify-center;
+    }
+
+    .flexAlignCenterWrap {
+        @apply flexFlexWrap items-center;
     }
 
     .flexJustifyAlignCenter {
-        @apply flex items-center justify-center;
+        @apply flexAlignCenter justify-center;
     }
 
     .flexJustifyAlignCenterWrap {
-        @apply flex flex-wrap items-center justify-center;
+        @apply flexJustifyCenterWrap items-center;
     }
 
     .customSelect {
         @apply flexJustifyAlignCenter gap-2;
+    }
+
+    .default-text-style {
+        @apply font-oswald uppercase tracking-superWide;
+    }
+
+    .default-text-style-white-normal {
+        @apply default-text-style font-normal;
+    }
+
+    .default-text-style-white-light {
+        @apply default-text-style font-light;
+    }
+
+    .default-text-style-white-extralight {
+        @apply default-text-style font-extralight;
+    }
+
+    .default-text-style-white-bold {
+        @apply default-text-style font-bold;
     }
 }
