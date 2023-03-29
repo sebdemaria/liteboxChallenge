@@ -43,7 +43,7 @@ export const CustomModal = ({
     ] = useAddMovieActions();
 
     const handleRestart = () => {
-      g  setErrors("");
+        setErrors("");
         handleRestartState();
         setIsLoading(false);
     };
