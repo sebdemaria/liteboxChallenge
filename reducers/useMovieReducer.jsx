@@ -3,8 +3,7 @@ import { useReducer } from "react";
 
 export const useMovieReducer = () => {
     const initialState = {
-        status: null,
-        isLoading: false,
+        status: actions.RESTART,
     };
 
     const reducer = (state, action) => {

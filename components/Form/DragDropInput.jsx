@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from "react";
+import { forwardRef, useCallback, useEffect, useState } from "react";
 import { base64Convert } from "utils/base64Convert";
 import PropTypes from "prop-types";
 
@@ -12,7 +12,7 @@ import { useDropzone } from "react-dropzone";
 
 import { Clip } from "@/public/assets";
 
-export const DragDropInput = ({ setFieldValue, fieldName }) => {
+export const DragDropInput = forwardRef(({ setFieldValue, fieldName }, ref) => {
     const [imagePath, setImagePath] = useState("");
 
     const onDrop = useCallback((acceptedFiles) => {
@@ -74,6 +74,7 @@ export const DragDropInput = ({ setFieldValue, fieldName }) => {
 
                 <Input
                     {...getInputProps()}
+                    ref={ref}
                     accept="image/jpg, image/png, image/jpeg, image/webp, image/avif"
                     customClass="hidden"
                     id={fieldName}
@@ -82,7 +83,9 @@ export const DragDropInput = ({ setFieldValue, fieldName }) => {
             </span>
         </div>
     );
-};
+});
+
+DragDropInput.displayName = "DragDropInput";
 
 DragDropInput.propTypes = {
     setFieldValue: PropTypes.func.isRequired,
