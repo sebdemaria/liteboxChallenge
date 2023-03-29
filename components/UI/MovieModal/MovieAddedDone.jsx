@@ -4,11 +4,13 @@ import { Button } from "../Button";
 
 export const MovieAddedDone = ({ values, onModalClose }) => {
     return (
-        <div className="flexJustifyCenterWrap default-text-style mb-5 w-full gap-[10em] text-center">
-            <p className="xs:hidden md:block w-full text-[2em] font-bold text-aqua">liteflix</p>
-            <p className="w-full xs:text-[1.2rem] md:text-[1.5rem] text-white-normal">
+        <div className="flexJustifyCenterWrap default-text-style h-full w-full items-center gap-10 text-center xs:pb-0 md:pb-[7em]">
+            <p className="w-full text-[2em] font-bold text-aqua xs:hidden md:block">
+                lite<span className="font-thin">flix</span>
+            </p>
+            <p className="w-full text-white-normal xs:text-[1.2rem] md:text-[1.5rem]">
                 ¡Felicitaciones!
-                <span className="mt-5 block w-[85%] m-auto font-light text-white-normal">
+                <span className="m-auto block w-[85%] font-light text-white-normal xs:mt-5">
                     {`'${values.movie_name}' fue correctamente subida.`}
                 </span>
             </p>

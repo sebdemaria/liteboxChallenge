@@ -7,7 +7,7 @@ export const NavBar = ({
 }) => {
     return (
         <nav className={`${customClass}`}>
-            <ul className="flexFlexWrap gap-9">
+            <ul className="flexFlexWrap gap-9 hXs:gap-7">
                 {ROUTES.map(({ wordKey, route }) => (
                     <li
                         key={wordKey}
@@ -23,5 +23,5 @@ export const NavBar = ({
 
 NavBar.propTypes = {
     customClass: PropTypes.string,
-    ROUTES: PropTypes.array.isRequired
+    ROUTES: PropTypes.array.isRequired,
 };

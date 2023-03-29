@@ -17,18 +17,13 @@ import {
 
 import { useAddMovieActions } from "actions/useAddMovieActions";
 
-import {
-    actions,
-} from "../../consts";
+import { actions } from "../../consts";
 
 import { MenuBtnClose } from "@/public/assets";
 
 import styles from "@/styles/componentStyles/Modal.module.scss";
 
-export const CustomModal = ({
-    isModalOpen,
-    setIsModalOpen = () => { },
-}) => {
+export const CustomModal = ({ isModalOpen, setIsModalOpen = () => {} }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState([]);
 
@@ -63,7 +58,7 @@ export const CustomModal = ({
                 handleSuccessState();
             }, 2000);
         } catch (e) {
-            setIsLoading(isLoading => !isLoading);
+            setIsLoading((isLoading) => !isLoading);
             setErrors(e.message);
             handleErrorState();
         } finally {
@@ -134,14 +129,13 @@ export const CustomModal = ({
                                     {isLoading &&
                                         state.status === actions.SUBMIT && (
                                             <Loader />
-                                        )
-                                    }
+                                        )}
 
                                     {/* drag drop input type file */}
-                                    {(state.status === actions.RESTART) && (
+                                    {state.status === actions.RESTART && (
                                         <DragDropInput
                                             setFieldValue={setFieldValue}
-                                            fieldName={'movie_file'}
+                                            fieldName={"movie_file"}
                                         />
                                     )}
 
@@ -160,7 +154,7 @@ export const CustomModal = ({
                                         placeholder="título"
                                     />
 
-                                    <span className="flex h-min w-full flex-wrap justify-start gap-5 mt-5 xs:justify-center">
+                                    <span className="mt-5 flex h-min w-full flex-wrap justify-start gap-5 xs:justify-center">
                                         <Button
                                             disabled={isLoading}
                                             className="btn-liteflix-gray md:p-9"
@@ -188,5 +182,5 @@ export const CustomModal = ({
 
 CustomModal.propTypes = {
     isModalOpen: PropTypes.bool.isRequired,
-    setIsModalOpen: PropTypes.func.isRequired
+    setIsModalOpen: PropTypes.func.isRequired,
 };
