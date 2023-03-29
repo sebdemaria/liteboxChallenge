@@ -142,7 +142,7 @@ export const CustomModal = ({
                             {/* successfully added movie modal */}
                             {state.status === actions.SUCCESS ? (
                                 <MovieAddedDone
-                                    value={values}
+                                    values={values}
                                     onModalClose={onModalClose}
                                 />
                             ) : (
