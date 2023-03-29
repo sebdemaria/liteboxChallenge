@@ -6,7 +6,7 @@ export const NavBar = ({
 }) => {
     return (
         <nav className={`${customClass}`}>
-            <ul className="flex flex-wrap gap-9">
+            <ul className="flexFlexWrap gap-9">
                 {ROUTES.map(({ wordKey, route }) => (
                     <li
                         key={wordKey}

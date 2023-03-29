@@ -4,27 +4,64 @@
 @tailwind components;
 @tailwind utilities;
 
+button:focus {
+    outline: none;
+    box-shadow: none;
+}
+
 @layer components {
+    .btn-base {
+        @apply transition-500-in-out flexJustifyAlignCenter default-text-style-white-light h-[56px] w-[248px] gap-[0.7em] bg-gray-500;
+    }
+
     .btn-liteflix {
-        @apply flex h-[56px] w-[248px] items-center justify-center gap-[0.7em] bg-liteflixGray-normal font-oswald text-[18px] uppercase tracking-superWide text-white-lighter transition-colors duration-200 ease-in-out;
+        @apply btn-base bg-liteflixGray-normal font-oswald text-[18px] text-white-normal;
     }
 
     .btn-liteflix:hover {
         @apply bg-liteflixGray-light;
     }
 
+    .btn-liteflix-gray {
+        @apply btn-base bg-liteflixGray-lighter text-[18px] text-black;
+    }
+
+    .btn-liteflix-gray:hover {
+        @apply border border-liteflixGray-borderTransparent bg-liteflixGray-transparent text-white-normal;
+    }
+
     .btn-liteflix-border {
-        @apply flex h-[56px] w-[248px] items-center justify-center gap-[0.7em] border border-liteflixGray-borderTransparent bg-liteflixGray-transparent font-oswald text-[18px] uppercase tracking-superWide text-white-lighter transition-colors duration-200 ease-in-out;
+        @apply btn-base border border-liteflixGray-borderTransparent bg-liteflixGray-transparent text-[18px] text-white-normal;
     }
 
     .btn-liteflix-border:hover {
         @apply bg-liteflixGray-borderTransparent text-black;
     }
+
+    .btn-liteflix-border-dashed {
+        @apply btn-base border border-dashed border-liteflixGray-borderTransparent bg-liteflixGray-transparent text-[18px] text-white-normal;
+    }
+
+    .btn-liteflix-border-dotted:hover {
+        @apply border-solid bg-liteflixGray-light text-black;
+    }
+
+    .input-liteflix {
+        @apply default-text-style-white-light border-b-[0.5px] bg-transparent pb-1 text-center text-[16px] text-white-normal outline-none placeholder:text-white-normal;
+    }
+
+    .errorMessage-liteflix {
+        @apply w-full text-center text-sm tracking-superWide text-red-500;
+    }
+
+    .banner-liteflix {
+        @apply default-text-style-white-light mx-5 h-min border p-7 text-center text-white-normal;
+    }
 }
 
 @layer base {
     html {
-        font-family: "Bebas Neue", system-ui, cursive;
+        font-family: "Bebas Neue", cursive;
     }
 
     body {
@@ -54,6 +91,62 @@
     }
 
     .h1-xxl-aqua {
-        @apply font-[700] not-italic text-aqua xs:h-[155px] xs:text-center xs:text-[76px] xs:leading-[78px] xs:tracking-[12px] sm:h-[100px] md:h-[100px] md:text-start md:text-[120px] md:leading-[100px] md:tracking-[16px] lg:h-[200px] xl:h-[100px];
+        @apply font-[700] not-italic text-aqua xs:h-max xs:text-center xs:text-[4em] xs:leading-[1em] xs:tracking-[12px] sm:text-[5em] md:text-start md:text-[5.5rem] md:leading-[1em] md:tracking-[16px] 2xl:text-[7rem];
+    }
+
+    .flexJustifyCenter {
+        @apply flex justify-center;
+    }
+
+    .flexFlexWrap {
+        @apply flex flex-wrap;
+    }
+
+    .flexAlignCenter {
+        @apply flex items-center;
+    }
+
+    .flexJustifyAlign {
+        @apply flexJustifyCenter items-center;
+    }
+
+    .flexJustifyCenterWrap {
+        @apply flexFlexWrap justify-center;
+    }
+
+    .flexAlignCenterWrap {
+        @apply flexFlexWrap items-center;
+    }
+
+    .flexJustifyAlignCenter {
+        @apply flexAlignCenter justify-center;
+    }
+
+    .flexJustifyAlignCenterWrap {
+        @apply flexJustifyCenterWrap items-center;
+    }
+
+    .customSelect {
+        @apply flexJustifyAlignCenter gap-2;
+    }
+
+    .default-text-style {
+        @apply font-oswald uppercase tracking-superWide;
+    }
+
+    .default-text-style-white-normal {
+        @apply default-text-style font-normal;
+    }
+
+    .default-text-style-white-light {
+        @apply default-text-style font-light;
+    }
+
+    .default-text-style-white-extralight {
+        @apply default-text-style font-extralight;
+    }
+
+    .default-text-style-white-bold {
+        @apply default-text-style font-bold;
     }
 }

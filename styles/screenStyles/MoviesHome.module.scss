@@ -1,22 +1,36 @@
 @import "../sass-utils/index";
 
-@keyframes shrinkIn {
-    from {
-        background-size: 110%;
-        background-position: 55% 15%;
-    }
+@include shrinkIn;
+@include translateXLeftOpacityIn;
+@include widthIn;
+@include translateXRightOpacityIn;
+@include fadeIn;
 
-    to {
-        background-size: 100%;
-        background-position: 50% 10%;
+.slideIn {
+    animation: translateXLeftOpacityIn 2s;
+
+    @media (max-width: $lg) {
+        animation: fadeIn 2s;
     }
+}
+
+.widthIn {
+    @media (min-width: $md) {
+        animation: widthIn 2s;
+    }
+}
+
+.widthInDelayed {
+    animation: translateXRightOpacityIn 2s;
+}
+
+.fadeIn {
+    animation: fadeIn 1s;
 }
 
 @media (min-width: $md) {
     .background {
-        animation-name: shrinkIn;
-        animation-duration: 6s;
-        animation-direction: alternate;
+        animation: shrinkIn 6s;
     }
 }
 

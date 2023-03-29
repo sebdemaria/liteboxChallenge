@@ -1,8 +1,11 @@
-import { PlayBtn, Star } from "@/public/assets";
+import { useRef, useState } from "react";
 import Image from "next/image";
-import { useState } from "react";
 
-import styles from "@/styles/componentStyles/VideoPreviewer.module.scss";
+import { CSSTransition } from "react-transition-group";
+
+import { PlayBtn, Star, MenuBtnClose } from "@/public/assets";
+
+import styles from "@/styles/UIStyles/VideoPreviewer.module.scss";
 
 export const VideoPreviewer = ({
     title,
@@ -11,10 +14,13 @@ export const VideoPreviewer = ({
     customClass,
     score,
     release_date,
+    deleteAvailable,
 }) => {
+    const nodeRef = useRef(null);
+
     const [isClicked, setIsClicked] = useState(false);
 
-    const release_year = release_date.split("-")[0];
+    const release_year = release_date?.split("-")[0];
 
     // set dynamic background image path
     const css = `
@@ -24,51 +30,80 @@ export const VideoPreviewer = ({
     `;
 
     return (
-        <div
-            id={`backgroundVideo${index}`}
-            className={`${customClass} bg-video-previewer-props flex flex-wrap content-center overflow-hidden ${
-                isClicked ? "items-center justify-start" : "justify-center"
-            } rounded-md xs:h-[186px] xs:w-[90%] sm:w-[336px] lg:h-[146px] lg:w-[240px] xl:w-[280px] 2xl:h-[166px] 2xl:w-[336px]`}
-            onClick={() => setIsClicked((isClicked) => !isClicked)}
+        <CSSTransition
+            nodeRef={nodeRef}
+            in={true}
+            timeout={500}
+            unmountOnExit
+            classNames={{ ...styles }}
         >
-            <style>{css}</style>
-
-            {!isClicked ? (
+            <>
                 <div
-                    className={`flex flex-wrap justify-center gap-4 px-3 pt-4 ${
-                        isClicked ? styles.videoPlayerIn : styles.videoPlayerOut
-                    }`}
+                    id={`backgroundVideo${index}`}
+                    className={`${customClass} ${
+                        styles.videoBox
+                    } bg-video-previewer-props flexFlexWrap relative z-10 h-min overflow-hidden ${
+                        isClicked
+                            ? "items-center justify-start"
+                            : "justify-center"
+                    } rounded-md xs:h-[186px] xs:w-[90%] sm:w-[336px] lg:h-[146px] lg:w-[240px] xl:w-[280px]`}
+                    onClick={() => setIsClicked((isClicked) => !isClicked)}
                 >
-                    <Image src={PlayBtn} alt="play button" />
-                    <h2
-                        className={`${
-                            isClicked ? "w-auto pt-0" : "w-full"
-                        } text-center font-oswald font-extralight uppercase tracking-superWide text-white-normal xs:text-[0.8rem]`}
-                    >
-                        {title}
-                    </h2>
-                </div>
-            ) : (
-                <div
-                    className={`flex h-full w-full flex-wrap items-baseline bg-liteflixGray-transparent px-5 py-7 text-center font-oswald font-extralight uppercase tracking-superWide text-white-normal xs:text-[0.8rem] ${
-                        isClicked ? styles.videoPlayerIn : styles.videoPlayerOut
-                    }`}
-                >
-                    <div className="flex w-full items-center gap-4 xs:mt-12 lg:mt-6 2xl:mt-9">
-                        <Image src={PlayBtn} alt="play button" />
-                        <h2 className="w-auto">{title}</h2>
-                    </div>
+                    <style>{css}</style>
 
-                    <div className="flex w-full items-center justify-between pt-5">
-                        <span className="flex gap-2">
-                            <Image src={Star} alt="score" />
-                            <p> {score}</p>
-                        </span>
+                    {!isClicked ? (
+                        <div
+                            className={`flexJustifyAlignCenterWrap h-full w-full px-3 pt-2 ${
+                                isClicked
+                                    ? styles.videoPlayerIn
+                                    : styles.videoPlayerOut
+                            }`}
+                        >
+                            <Image
+                                src={PlayBtn}
+                                role="button"
+                                alt="remove movie button"
+                                className="h-min xs:mb-[-5em] md:mb-[-2em]"
+                                width={"auto"}
+                                height={"auto"}
+                            />
+                            <h2
+                                className={`${
+                                    isClicked ? "w-auto pt-0" : "w-full"
+                                } default-text-style-white-extralight text-center text-white-normal xs:text-[0.8rem]`}
+                            >
+                                {title}
+                            </h2>
+                        </div>
+                    ) : (
+                        <div
+                            className={`flexAlignCenterWrap default-text-style-white-extralight relative h-full w-full bg-liteflixGray-transparent px-5 py-7 text-center text-white-normal xs:text-[0.8rem] ${
+                                isClicked
+                                    ? styles.videoPlayerIn
+                                    : styles.videoPlayerOut
+                            }`}
+                        >
+                            <div className="flexAlignCenter absolute xs:top-[38%] xs:gap-2 xs:pl-2 lg:top-[30%] lg:pl-5 2xl:top-[35%]">
+                                <Image
+                                    src={PlayBtn}
+                                    alt="play button"
+                                    className="w-10"
+                                />
+                                <h2 className="w-[70%]">{title}</h2>
+                            </div>
 
-                        <p>{release_year}</p>
-                    </div>
+                            <div className="flexAlignCenter absolute right-0 w-full justify-around xs:bottom-4 xs:gap-[45%] lg:bottom-3 lg:gap-[40%]">
+                                <span className="flex gap-2">
+                                    <Image src={Star} alt="score" />
+                                    <p>{score ? score : "N/A"}</p>
+                                </span>
+
+                                <p>{release_year}</p>
+                            </div>
+                        </div>
+                    )}
                 </div>
-            )}
-        </div>
+            </>
+        </CSSTransition>
     );
 };

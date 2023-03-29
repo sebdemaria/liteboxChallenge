@@ -4,8 +4,9 @@ import { Layout } from "@/templates/base/Layout";
 import { getMovies } from "httpServices/movies/getMovies";
 
 import { formatImgPath } from "utils/formatImgPath";
-import { createContext } from "react";
+import { createContext, useEffect, useState } from "react";
 import { MoviesHome } from "@/screens/MoviesHome";
+import { CustomModal } from "@/components/CustomModal";
 
 export const getServerSideProps = async () => {
     // server side call for movies
@@ -19,6 +20,12 @@ export const getServerSideProps = async () => {
     });
 
     const popularMovies = await getMovies({
+        BASE_URL,
+        API_KEY,
+        ENDPOINT: "popular",
+    });
+
+    const mymovies = await getMovies({
         BASE_URL,
         API_KEY,
         ENDPOINT: "popular",
@@ -39,9 +46,26 @@ export const getServerSideProps = async () => {
     };
 };
 
-export const MovieContext = createContext();
+export const AppContext = createContext();
 
 export default function Home({ movies, popularMovies }) {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [myMovies, setMyMovies] = useState(JSON.stringify([]));
+
+    const contextValue = {
+        movies,
+        popularMovies,
+        setMyMovies,
+        myMovies,
+        setIsModalOpen,
+        isModalOpen,
+    };
+
+    useEffect(() => {
+        const movies = localStorage.getItem("my_movies");
+        if (movies?.length) setMyMovies(movies);
+    }, []);
+
     return (
         <>
             <Head>
@@ -56,11 +80,16 @@ export default function Home({ movies, popularMovies }) {
                 />
                 <link rel="shortcut icon" href="/images/favicon.ico" />
             </Head>
-            <MovieContext.Provider value={{ movies, popularMovies }}>
+
+            <AppContext.Provider value={contextValue}>
                 <Layout>
                     <MoviesHome />
+                    <CustomModal
+                        isModalOpen={isModalOpen}
+                        setIsModalOpen={setIsModalOpen}
+                    />
                 </Layout>
-            </MovieContext.Provider>
+            </AppContext.Provider>
         </>
     );
 }

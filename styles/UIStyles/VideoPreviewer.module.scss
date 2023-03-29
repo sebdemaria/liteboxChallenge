@@ -1,0 +1,39 @@
+@import "../sass-utils/index";
+
+@include translateXRightOpacityIn;
+@include translateXRightOpacityOut;
+@include rotateIn;
+@include rotateOut;
+
+// CSSTransition animation classes
+.enter {
+    animation: translateXRightOpacityIn 0.5s;
+}
+
+.enterDone {
+    animation: translateXRightOpacityIn 0.5s;
+}
+
+.exit {
+    animation: translateXRightOpacityOut 0.5s;
+}
+
+.exitActive {
+    animation: translateXRightOpacityOut 0.5s;
+}
+
+.videoBox {
+    @include boxShadow;
+
+    @media (min-width: $md) {
+        animation: translateXRightOpacityIn 0.5s;
+    }
+}
+
+.videoPlayerIn {
+    animation: rotateIn 0.8s;
+}
+
+.videoPlayerOut {
+    animation: rotateOut 0.8s;
+}
