@@ -7,7 +7,7 @@ import styles from "@/styles/UIStyles/Loader.module.scss";
 export const ErrorMessage = ({ errorMessage = "", handleRestart }) => {
     return (
         <div
-            className={`${styles.slideIn} flexAlignCenter h-max xs:mt-2 md:mt-0 mb-10 w-[80%] flex-wrap gap-3 font-oswald font-light uppercase tracking-superWide text-white-normal transition-all ease-in-out xs:text-[14px] md:h-min md:text-[16px]`}
+            className={`${styles.slideIn} flexAlignCenter mb-10 h-max w-[80%] flex-wrap gap-3 font-oswald font-light uppercase tracking-superWide text-white-normal transition-all ease-in-out xs:mt-2 xs:text-[14px] md:mt-0 md:h-min md:text-[16px]`}
         >
             <>
                 ¡ERROR! no se pudo cargar la película

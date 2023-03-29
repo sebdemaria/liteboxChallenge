@@ -13,10 +13,11 @@ export const Input = ({
 
     return (
         <span
-            className={`${customClass === "hidden"
-                ? "hidden"
-                : "flexJustifyCenterWrap h-[40px] w-full gap-1"
-                }`}
+            className={`${
+                customClass === "hidden"
+                    ? "hidden"
+                    : "flexJustifyCenterWrap h-[40px] w-full gap-1"
+            }`}
         >
             <input
                 className={`${customClass} h-min`}

@@ -15,7 +15,7 @@ export const Select = ({
     headingTextBold,
     setOptionSelected,
     options,
-    valueSelected
+    valueSelected,
 }) => {
     const [isSelectOpen, setIsSelectOpen] = useState(false);
 
@@ -68,10 +68,11 @@ export const Select = ({
                             key={value}
                             onClick={(e) => handleOptionSelected(value, e)}
                             value={value}
-                            className={`default-text-style flexAlignCenter w-full justify-between text-start text-white-light ${valueSelected === value
-                                ? "font-bold"
-                                : "font-extralight"
-                                }`}
+                            className={`default-text-style flexAlignCenter w-full justify-between text-start text-white-light ${
+                                valueSelected === value
+                                    ? "font-bold"
+                                    : "font-extralight"
+                            }`}
                         >
                             {text}
                             {valueSelected === value && (

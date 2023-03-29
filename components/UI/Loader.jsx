@@ -10,7 +10,8 @@ export const Loader = () => {
 
         const interval = setInterval(() => {
             percentage += 10;
-            if (loaderRef.current) loaderRef.current.style.width = `${percentage}%`;
+            if (loaderRef.current)
+                loaderRef.current.style.width = `${percentage}%`;
 
             setPercentage(percentage);
 

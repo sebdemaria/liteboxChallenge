@@ -3,7 +3,6 @@ import Modal from "react-modal";
 
 import PropTypes from "prop-types";
 
-
 export const ReactModal = ({
     isModalOpen,
     setIsModalOpen,
@@ -36,4 +35,3 @@ ReactModal.propTypes = {
     children: PropTypes.node.isRequired,
     props: PropTypes.string,
 };
-

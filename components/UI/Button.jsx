@@ -8,7 +8,12 @@ export const Button = ({
     ...props
 }) => {
     return (
-        <button className={`${customClass}`} type={type} {...props} disabled={disabled}>
+        <button
+            className={`${customClass}`}
+            type={type}
+            {...props}
+            disabled={disabled}
+        >
             {children}
         </button>
     );
