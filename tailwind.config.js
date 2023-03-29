@@ -13,6 +13,7 @@ module.exports = {
                 liteflixGray: {
                     normal: "#242424",
                     light: "#464646",
+                    lighter: "#959595",
                     transparent: "rgba(36, 36, 36, 0.5)",
                     borderTransparent: "rgba(255, 255, 255, 0.5)",
                 },

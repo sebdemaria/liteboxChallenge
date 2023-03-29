@@ -1,6 +1,7 @@
 @import "../sass-utils/index";
 
 @include slideInFromTop;
+@include fadeIn;
 @include fadeOut;
 
 .selectOptions {
@@ -22,6 +23,10 @@
 
 .exitActive {
     animation: fadeOut 0.5s;
+}
+
+.fadeIn {
+    animation: fadeIn 0.5s;
 }
 
 .arrow {
