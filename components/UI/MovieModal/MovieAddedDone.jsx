@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import { Button } from "../Button";
 
 export const MovieAddedDone = ({ values, onModalClose }) => {
@@ -18,4 +20,9 @@ export const MovieAddedDone = ({ values, onModalClose }) => {
             </Button>
         </div>
     );
+};
+
+MovieAddedDone.propTypes = {
+    values: PropTypes.object.isRequired,
+    onModalClose: PropTypes.func.isRequired,
 };

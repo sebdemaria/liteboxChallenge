@@ -1,6 +1,9 @@
 import { useEffect } from "react";
 import Modal from "react-modal";
 
+import PropTypes from "prop-types";
+
+
 export const ReactModal = ({
     isModalOpen,
     setIsModalOpen,
@@ -26,3 +29,11 @@ export const ReactModal = ({
         </Modal>
     );
 };
+
+ReactModal.propTypes = {
+    isModalOpen: PropTypes.bool.isRequired,
+    setIsModalOpen: PropTypes.func.isRequired,
+    children: PropTypes.node.isRequired,
+    props: PropTypes.string,
+};
+

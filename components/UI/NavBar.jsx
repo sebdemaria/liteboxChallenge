@@ -1,7 +1,8 @@
 import Link from "next/link";
+import PropTypes from "prop-types";
 
 export const NavBar = ({
-    customClass,
+    customClass = "",
     ROUTES = [{ wordKey: "Send me a routes array", route: "/" }],
 }) => {
     return (
@@ -18,4 +19,9 @@ export const NavBar = ({
             </ul>
         </nav>
     );
+};
+
+NavBar.propTypes = {
+    customClass: PropTypes.string,
+    ROUTES: PropTypes.array.isRequired
 };

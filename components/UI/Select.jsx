@@ -1,5 +1,7 @@
 import { useRef, useState } from "react";
 import Image from "next/image";
+import PropTypes from "prop-types";
+
 import { CSSTransition } from "react-transition-group";
 
 import { Button } from "./Button";
@@ -12,8 +14,8 @@ export const Select = ({
     headingText,
     headingTextBold,
     setOptionSelected,
-    options = [],
-    valueSelected,
+    options,
+    valueSelected
 }) => {
     const [isSelectOpen, setIsSelectOpen] = useState(false);
 
@@ -66,11 +68,10 @@ export const Select = ({
                             key={value}
                             onClick={(e) => handleOptionSelected(value, e)}
                             value={value}
-                            className={`default-text-style flexAlignCenter w-full justify-between text-start text-white-light ${
-                                valueSelected === value
-                                    ? "font-bold"
-                                    : "font-extralight"
-                            }`}
+                            className={`default-text-style flexAlignCenter w-full justify-between text-start text-white-light ${valueSelected === value
+                                ? "font-bold"
+                                : "font-extralight"
+                                }`}
                         >
                             {text}
                             {valueSelected === value && (
@@ -82,4 +83,12 @@ export const Select = ({
             </CSSTransition>
         </div>
     );
+};
+
+Select.propTypes = {
+    headingText: PropTypes.string.isRequired,
+    headingTextBold: PropTypes.string.isRequired,
+    setOptionSelected: PropTypes.func.isRequired,
+    options: PropTypes.array.isRequired,
+    valueSelected: PropTypes.string.isRequired,
 };
