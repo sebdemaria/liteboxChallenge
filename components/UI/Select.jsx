@@ -66,10 +66,11 @@ export const Select = ({
                             key={value}
                             onClick={(e) => handleOptionSelected(value, e)}
                             value={value}
-                            className={`default-text-style flex w-full items-center justify-between text-start ${valueSelected === value
-                                ? "font-bold"
-                                : "font-extralight"
-                                }`}
+                            className={`default-text-style flex w-full items-center justify-between text-start ${
+                                valueSelected === value
+                                    ? "font-bold"
+                                    : "font-extralight"
+                            }`}
                         >
                             {text}
                             {valueSelected === value && (

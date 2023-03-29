@@ -3,7 +3,7 @@ import { base64Convert } from "utils/base64Convert";
 
 import Image from "next/image";
 
-import { ErrorMessage } from 'formik';
+import { ErrorMessage } from "formik";
 
 import { Input } from "./Input";
 
@@ -28,7 +28,7 @@ export const DragDropInput = ({ setFieldValue }) => {
             "image/webp": [".webp"],
         },
         onDrop,
-        maxFiles: 1
+        maxFiles: 1,
     });
 
     useEffect(() => {
@@ -48,7 +48,7 @@ export const DragDropInput = ({ setFieldValue }) => {
                 })}
             >
                 <label
-                    className="flexJustifyCenter cursor-pointer btn-liteflix-border-dashed mb-1 p-12 xs:w-[90%] xs:max-w-[320px] xs:text-[16px] sm:max-w-[500px] md:w-[650px] md:max-w-[650px] md:text-[16px]"
+                    className="flexJustifyCenter btn-liteflix-border-dashed mb-1 cursor-pointer p-12 xs:w-[90%] xs:max-w-[320px] xs:text-[16px] sm:max-w-[500px] md:w-[650px] md:max-w-[650px] md:text-[16px]"
                     htmlFor="movieAdd"
                 >
                     <Image alt="attach file" src={Clip} />
@@ -65,12 +65,14 @@ export const DragDropInput = ({ setFieldValue }) => {
                         </p>
                     )}
                 </label>
-                <ErrorMessage name='movie_file' component={'p'} className="errorMessage-liteflix" />
+                <ErrorMessage
+                    name="movie_file"
+                    component={"p"}
+                    className="errorMessage-liteflix"
+                />
 
                 <Input
-                    {...getInputProps(
-
-                    )}
+                    {...getInputProps()}
                     accept="image/jpg, image/png, image/jpeg, image/webp, image/avif"
                     customClass="hidden"
                     id="movieAdd"
