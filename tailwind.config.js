@@ -46,6 +46,5 @@ module.exports = {
             "2xl": "96em",
             "3xl": "125em",
         },
-    },
-    plugins: [],
+    }
 };
