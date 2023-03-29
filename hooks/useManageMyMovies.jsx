@@ -11,7 +11,8 @@ export const useManageMyMovies = () => {
     const addMovie = (movie_file, movie_name) => {
         if (!movie_file) return;
 
-        if (myMovies.length === 4) throw Error('Llegaste a tu máximo de películas guardadas.');
+        if (myMovies.length === 4)
+            throw Error("Llegaste a tu máximo de películas guardadas.");
 
         myMovies?.push({
             backdrop_path: { original: movie_file?.path },
@@ -22,7 +23,6 @@ export const useManageMyMovies = () => {
             setStorageItem("my_movies", JSON.stringify(myMovies));
             setMyMovies(getStorageItem("my_movies"));
         }, 2000);
-
     };
 
     const getMovies = () => {
@@ -31,9 +31,9 @@ export const useManageMyMovies = () => {
     };
 
     const removeMovie = (title) => {
-        const updatedMovies = myMovies.filter(movie => movie.title !== title);
+        const updatedMovies = myMovies.filter((movie) => movie.title !== title);
 
-        return setStorageItem('my_movies', JSON.stringify(updatedMovies));
+        return setStorageItem("my_movies", JSON.stringify(updatedMovies));
     };
 
     return [addMovie, getMovies, removeMovie];

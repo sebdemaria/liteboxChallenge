@@ -15,13 +15,9 @@ export const MoviesColumn = () => {
     const { myMovies: savedMovies } = useContext(AppContext);
     const myMovies = JSON.parse(savedMovies);
 
-    const getMyMovies = useCallback(
-        () => {
-            getMovies();
-        },
-        [getMovies],
-    );
-
+    const getMyMovies = useCallback(() => {
+        getMovies();
+    }, [getMovies]);
 
     const { popularMovies } = useContext(AppContext);
 
@@ -30,7 +26,7 @@ export const MoviesColumn = () => {
     );
 
     const handleRemoveMovieFromMyMovies = (e) => {
-        const title = e.target.getAttribute('data-title');
+        const title = e.target.getAttribute("data-title");
 
         removeMovie(title);
     };
@@ -41,9 +37,8 @@ export const MoviesColumn = () => {
         }
     }, [movieFilterSelected, getMyMovies]);
 
-
     return (
-        <aside className="relative grid h-max justify-items-center overflow-hidden xs:top-[25em] xs:col-span-12 xs:gap-5 sm:top-[29rem] md:top-[35em] md:gap-0 lg:top-[6em] lg:col-span-3 lg:left-[20%] xl:left-[25%] 2xl:left-[15em] 3xl:left-[20em] 3xl:self-center">
+        <aside className="relative grid h-max justify-items-center overflow-hidden xs:top-[25em] xs:col-span-12 xs:gap-5 sm:top-[29rem] md:top-[35em] md:gap-0 lg:top-[6em] lg:left-[20%] lg:col-span-3 xl:left-[25%] 2xl:left-[15em] 3xl:left-[20em] 3xl:self-center">
             <Select
                 setOptionSelected={setMovieFilterSelected}
                 valueSelected={movieFilterSelected}
@@ -54,10 +49,11 @@ export const MoviesColumn = () => {
 
             {movieFilterSelected === FILTER_VALUES.popular.value && (
                 <div
-                    className={`${movieFilterSelected === FILTER_VALUES.popular.value
-                        ? styles.fadeIn
-                        : styles.fadeOut
-                        } mb-10 flex min-h-max flex-wrap justify-center gap-5 xs:mt-3 xs:w-full 2xl:w-min md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px]`}
+                    className={`${
+                        movieFilterSelected === FILTER_VALUES.popular.value
+                            ? styles.fadeIn
+                            : styles.fadeOut
+                    } mb-10 flex min-h-max flex-wrap justify-center gap-5 xs:mt-3 xs:w-full md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px] 2xl:w-min`}
                 >
                     {popularMovies.map(
                         (
@@ -83,10 +79,11 @@ export const MoviesColumn = () => {
             )}
             {movieFilterSelected === FILTER_VALUES.my_movies.value && (
                 <div
-                    className={`${movieFilterSelected === FILTER_VALUES.my_movies.value
-                        ? styles.fadeIn
-                        : styles.fadeOut
-                        } mb-10 flex xs:min-h-[470px] lg:min-h-max flex-wrap justify-center gap-5 xs:mt-3 xs:w-full md:mt-6 lg:max-h-[650px] 3xl:min-h-[640px] 2xl:max-h-[730px]`}
+                    className={`${
+                        movieFilterSelected === FILTER_VALUES.my_movies.value
+                            ? styles.fadeIn
+                            : styles.fadeOut
+                    } mb-10 flex flex-wrap justify-center gap-5 xs:mt-3 xs:min-h-[470px] xs:w-full md:mt-6 lg:max-h-[650px] lg:min-h-max 2xl:max-h-[730px] 3xl:min-h-[640px]`}
                 >
                     {!myMovies?.length ? (
                         <p className="banner-liteflix h-min">

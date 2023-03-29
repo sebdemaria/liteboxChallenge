@@ -7,7 +7,6 @@ export const useMovieReducer = () => {
         isLoading: false,
     };
 
-
     const reducer = (state, action) => {
         switch (action.type) {
             case actions.SUBMIT:

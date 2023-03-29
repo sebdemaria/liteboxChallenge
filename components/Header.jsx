@@ -35,10 +35,11 @@ export const Header = () => {
             >
                 {/* open/close menu button */}
                 <div
-                    className={`${!isMenuOpen
-                        ? "md:w-1/12 lg:w-[6%] xl:w-[4%]"
-                        : "md:w-7/12 lg:w-[20%] xl:w-[23%] 2xl:w-[25%]"
-                        } transition-1000-in-out xs:order-1 md:order-2`}
+                    className={`${
+                        !isMenuOpen
+                            ? "md:w-1/12 lg:w-[6%] xl:w-[4%]"
+                            : "md:w-7/12 lg:w-[20%] xl:w-[23%] 2xl:w-[25%]"
+                    } transition-1000-in-out xs:order-1 md:order-2`}
                 >
                     {!isMenuOpen ? (
                         <Image
@@ -86,8 +87,10 @@ export const Header = () => {
 
                 <div
                     ref={bellRef}
-                    className={`cursor-pointer xs:hidden md:order-3 md:block md:w-1/12 lg:w-[6%] xl:w-[4%] ${!isMenuOpen ? "" : "pr-4"}`}
-                    onClick={bellRef => {
+                    className={`cursor-pointer xs:hidden md:order-3 md:block md:w-1/12 lg:w-[6%] xl:w-[4%] ${
+                        !isMenuOpen ? "" : "pr-4"
+                    }`}
+                    onClick={(bellRef) => {
                         bellRef.target.classList.add(styles.ringBell);
                         setTimeout(() => {
                             bellRef.target.classList.remove(styles.ringBell);
@@ -97,9 +100,17 @@ export const Header = () => {
                     <Image alt="notification" src={Notification} />
                 </div>
 
-                <div className="xs:order-3 cursor-pointer md:order-4 md:w-1/12 lg:w-[6%]">
-                    <Link href={'https://www.linkedin.com/in/sebastian-demaria1996/'}>
-                        <Image alt="profile image" className="rounded-[100%] w-[40px]" src={ProfileImg} />
+                <div className="cursor-pointer xs:order-3 md:order-4 md:w-1/12 lg:w-[6%]">
+                    <Link
+                        href={
+                            "https://www.linkedin.com/in/sebastian-demaria1996/"
+                        }
+                    >
+                        <Image
+                            alt="profile image"
+                            className="w-[40px] rounded-[100%]"
+                            src={ProfileImg}
+                        />
                     </Link>
                 </div>
             </div>
