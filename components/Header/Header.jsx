@@ -1,4 +1,6 @@
 import { useContext, useRef, useState } from "react";
+import { useScroll } from "@/hooks/useScroll";
+
 import { AppContext } from "pages";
 
 import Image from "next/image";
@@ -18,7 +20,6 @@ import {
 import { ROUTES } from "../../consts";
 
 import styles from "@/styles/componentStyles/Header.module.scss";
-import { useScroll } from "@/hooks/useScroll";
 
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -41,8 +42,8 @@ export const Header = () => {
                 {/* open/close menu button */}
                 <div
                     className={`${!isMenuOpen
-                            ? "md:w-1/12 lg:w-[6%] xl:w-[4%]"
-                            : "md:w-7/12 lg:w-[20%] xl:w-[23%] 2xl:w-[25%]"
+                        ? "md:w-1/12 lg:w-[6%] xl:w-[4%]"
+                        : "md:w-7/12 lg:w-[20%] xl:w-[23%] 2xl:w-[25%]"
                         } transition-1000-in-out xs:order-1 md:order-2`}
                 >
                     {!isMenuOpen ? (

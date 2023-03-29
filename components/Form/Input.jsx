@@ -1,4 +1,5 @@
 import { useField, ErrorMessage } from "formik";
+import PropTypes from "prop-types";
 
 import styles from "@/styles/componentStyles/Form/Input.module.scss";
 
@@ -12,11 +13,10 @@ export const Input = ({
 
     return (
         <span
-            className={`${
-                customClass === "hidden"
-                    ? "hidden"
-                    : "flexJustifyCenterWrap h-[40px] w-full gap-1"
-            }`}
+            className={`${customClass === "hidden"
+                ? "hidden"
+                : "flexJustifyCenterWrap h-[40px] w-full gap-1"
+                }`}
         >
             <input
                 className={`${customClass} h-min`}
@@ -32,4 +32,11 @@ export const Input = ({
             />
         </span>
     );
+};
+
+Input.propTypes = {
+    type: PropTypes.string,
+    name: PropTypes.string,
+    customClass: PropTypes.string,
+    props: PropTypes.string,
 };

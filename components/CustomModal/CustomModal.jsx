@@ -1,5 +1,6 @@
-import { useManageMyMovies } from "@/hooks/useManageMyMovies";
 import { useState } from "react";
+import { useManageMyMovies } from "@/hooks/useManageMyMovies";
+import PropTypes from "prop-types";
 import Image from "next/image";
 
 import { Form, Formik } from "formik";
@@ -25,7 +26,7 @@ import { MenuBtnClose } from "@/public/assets";
 import styles from "@/styles/componentStyles/Modal.module.scss";
 
 export const CustomModal = ({
-    isModalOpen = false,
+    isModalOpen,
     setIsModalOpen = () => { },
 }) => {
     const [isLoading, setIsLoading] = useState(false);
@@ -61,7 +62,7 @@ export const CustomModal = ({
                 handleSuccessState();
             }, 2000);
         } catch (e) {
-            setErrors([e.message]);
+            setErrors(e.message);
             handleErrorState();
         } finally {
             setSubmitting(false);
@@ -82,7 +83,7 @@ export const CustomModal = ({
     return (
         <Modal
             bodyOpenClassName={styles.body}
-            isOpen={isModalOpen}
+            isModalOpen={isModalOpen}
             className={styles.modal}
             setIsModalOpen={onModalClose}
             handleRestart={handleRestart}
@@ -132,12 +133,14 @@ export const CustomModal = ({
                                     {isLoading &&
                                         state.status === actions.SUBMIT && (
                                             <Loader />
-                                        )}
+                                        )
+                                    }
 
                                     {/* drag drop input type file */}
                                     {!isLoading && (
                                         <DragDropInput
                                             setFieldValue={setFieldValue}
+                                            fieldName={'movie_file'}
                                         />
                                     )}
 
@@ -180,4 +183,9 @@ export const CustomModal = ({
             </div>
         </Modal>
     );
+};
+
+CustomModal.propTypes = {
+    isModalOpen: PropTypes.bool.isRequired,
+    setIsModalOpen: PropTypes.func.isRequired
 };

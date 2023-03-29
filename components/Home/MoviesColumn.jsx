@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useManageMyMovies } from "@/hooks/useManageMyMovies";
 
 import { AppContext } from "pages";
@@ -14,10 +14,6 @@ export const MoviesColumn = () => {
 
     const { myMovies: savedMovies } = useContext(AppContext);
     const myMovies = JSON.parse(savedMovies);
-
-    const getMyMovies = useCallback(() => {
-        getMovies();
-    }, [getMovies]);
 
     const { popularMovies } = useContext(AppContext);
 
