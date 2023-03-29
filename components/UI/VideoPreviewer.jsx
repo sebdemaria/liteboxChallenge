@@ -90,7 +90,7 @@ export const VideoPreviewer = ({
                             <div className="flexAlignCenter absolute right-0 w-full justify-around xs:bottom-4 xs:gap-[45%] lg:bottom-3 lg:gap-[40%]">
                                 <span className="flex gap-2">
                                     <Image src={Star} alt="score" />
-                                    <p>{score ? score : "N/A"}</p>
+                                    <p>{score}</p>
                                 </span>
 
                                 <p>{release_year}</p>
@@ -108,6 +108,9 @@ VideoPreviewer.propTypes = {
     imgPath: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     customClass: PropTypes.string,
-    score: PropTypes.number.isRequired,
-    release_date: PropTypes.string.isRequired,
+    score: PropTypes.oneOfType([
+        PropTypes.number,
+        PropTypes.string
+    ]).isRequired,
+    release_date: PropTypes.string,
 };

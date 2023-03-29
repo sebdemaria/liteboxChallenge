@@ -94,7 +94,7 @@ export const MoviesColumn = () => {
                                     index={index}
                                     title={title}
                                     imgPath={backdrop_path.original}
-                                    score={vote_average}
+                                    score={vote_average ? vote_average : 'N/A'}
                                     release_date={release_date}
                                 />
                             )

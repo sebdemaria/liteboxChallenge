@@ -43,14 +43,15 @@ export const CustomModal = ({
     ] = useAddMovieActions();
 
     const handleRestart = () => {
+        setErrors("");
         handleRestartState();
         setIsLoading(false);
-        setErrors("");
     };
 
     const handleSubmit = async ({ movie_file, movie_name }, setSubmitting) => {
         try {
             setIsLoading((isLoading) => !isLoading);
+            setErrors("");
 
             await addMovie(movie_file, movie_name, handleSuccessState);
             handleSubmitState();
@@ -62,6 +63,7 @@ export const CustomModal = ({
                 handleSuccessState();
             }, 2000);
         } catch (e) {
+            setIsLoading(isLoading => !isLoading);
             setErrors(e.message);
             handleErrorState();
         } finally {
@@ -82,11 +84,10 @@ export const CustomModal = ({
 
     return (
         <Modal
-            bodyOpenClassName={styles.body}
             isModalOpen={isModalOpen}
-            className={styles.modal}
             setIsModalOpen={onModalClose}
-            handleRestart={handleRestart}
+            bodyOpenClassName={styles.body}
+            className={styles.modal}
             overlayClassName={{
                 base: styles.overlay,
                 afterOpen: styles.overlayAfterOpen,
@@ -169,7 +170,7 @@ export const CustomModal = ({
                                         </Button>
 
                                         <Button
-                                            className="btn-liteflix-border mt-5 md:hidden"
+                                            className="btn-liteflix-border md:hidden"
                                             onClick={onModalClose}
                                         >
                                             salir
