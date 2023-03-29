@@ -11,7 +11,7 @@ export const ErrorMessage = ({ errorMessage = "", handleRestart }) => {
         >
             <>
                 ¡ERROR! no se pudo cargar la película
-                <span className="w-full">- {errorMessage[0]}</span>
+                <span className="w-full">- {errorMessage}</span>
                 <div className="flexAlignCenter relative h-[5px] w-full">
                     <span className="absolute h-[5px] w-full bg-red-600"></span>
                     <Button
