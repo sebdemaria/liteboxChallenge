@@ -10,7 +10,7 @@ import { FILTER_VALUES } from "consts/FilterValues";
 import styles from "@/styles/componentStyles/Home/MoviesColumn.module.scss";
 
 export const MoviesColumn = () => {
-    const [getMovies, removeMovie] = useManageMyMovies();
+    const [getMovies] = useManageMyMovies();
 
     const { myMovies: savedMovies } = useContext(AppContext);
     const myMovies = JSON.parse(savedMovies);
@@ -27,9 +27,9 @@ export const MoviesColumn = () => {
 
     useEffect(() => {
         if (movieFilterSelected === FILTER_VALUES.my_movies.value) {
-            getMyMovies();
+            getMovies();
         }
-    }, [movieFilterSelected, getMyMovies]);
+    }, [movieFilterSelected, getMovies]);
 
     return (
         <aside className="relative grid h-max justify-items-center overflow-hidden xs:top-[25em] xs:col-span-12 xs:gap-5 sm:top-[29rem] md:top-[35em] md:gap-0 lg:top-[6em] lg:left-[20%] lg:col-span-3 xl:left-[25%] 2xl:left-[15em] 3xl:left-[20em] 3xl:self-center">
@@ -43,11 +43,10 @@ export const MoviesColumn = () => {
 
             {movieFilterSelected === FILTER_VALUES.popular.value && (
                 <div
-                    className={`${
-                        movieFilterSelected === FILTER_VALUES.popular.value
-                            ? styles.fadeIn
-                            : styles.fadeOut
-                    } flexJustifyCenterWrap mb-10 min-h-max gap-5 xs:mt-3 xs:w-full sm:min-h-[470px] md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px] 2xl:w-min`}
+                    className={`${movieFilterSelected === FILTER_VALUES.popular.value
+                        ? styles.fadeIn
+                        : styles.fadeOut
+                        } flexJustifyCenterWrap mb-10 min-h-max gap-5 xs:mt-3 xs:w-full sm:min-h-[470px] md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px] 2xl:w-min`}
                 >
                     {popularMovies.map(
                         (
@@ -73,11 +72,10 @@ export const MoviesColumn = () => {
             )}
             {movieFilterSelected === FILTER_VALUES.my_movies.value && (
                 <div
-                    className={`${
-                        movieFilterSelected === FILTER_VALUES.my_movies.value
-                            ? styles.fadeIn
-                            : styles.fadeOut
-                    } flexJustifyCenterWrap mb-10 gap-5 xs:mt-3 xs:min-h-[470px] xs:w-full md:mt-6 lg:max-h-[650px] lg:min-h-max 2xl:max-h-[730px] 3xl:min-h-[640px]`}
+                    className={`${movieFilterSelected === FILTER_VALUES.my_movies.value
+                        ? styles.fadeIn
+                        : styles.fadeOut
+                        } flexJustifyCenterWrap mb-10 gap-5 xs:mt-3 xs:min-h-[470px] xs:w-full md:mt-6 lg:max-h-[650px] lg:min-h-max 2xl:max-h-[730px] 3xl:min-h-[640px]`}
                 >
                     {!myMovies?.length ? (
                         <p className="banner-liteflix h-min">

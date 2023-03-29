@@ -1,12 +1,17 @@
+import { createContext, useEffect, useState } from "react";
 import Head from "next/head";
+
 import { Layout } from "@/templates/base/Layout";
 
 import { getMovies } from "httpServices/movies/getMovies";
 
 import { formatImgPath } from "utils/formatImgPath";
-import { createContext, useEffect, useState } from "react";
+
 import { MoviesHome } from "@/screens/MoviesHome";
-import { CustomModal } from "@/components/CustomModal";
+
+import { CustomModal } from "@/components/CustomModal/CustomModal";
+
+import { ENDPOINTS } from "@/consts/Endpoints";
 
 export const getServerSideProps = async () => {
     // server side call for movies
@@ -16,19 +21,13 @@ export const getServerSideProps = async () => {
     const movies = await getMovies({
         BASE_URL,
         API_KEY,
-        ENDPOINT: "now_playing",
+        ENDPOINT: ENDPOINTS.NOW_PLAYING,
     });
 
     const popularMovies = await getMovies({
         BASE_URL,
         API_KEY,
-        ENDPOINT: "popular",
-    });
-
-    const mymovies = await getMovies({
-        BASE_URL,
-        API_KEY,
-        ENDPOINT: "popular",
+        ENDPOINT: ENDPOINTS.POPULAR,
     });
 
     // format image paths and limit results amount
@@ -62,6 +61,7 @@ export default function Home({ movies, popularMovies }) {
     };
 
     useEffect(() => {
+        // set app context value
         const movies = localStorage.getItem("my_movies");
         if (movies?.length) setMyMovies(movies);
     }, []);

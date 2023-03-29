@@ -15,7 +15,7 @@ export const Input = ({
             className={`${
                 customClass === "hidden"
                     ? "hidden"
-                    : "flexJustifyCenterWrap h-[40px] w-full gap-2"
+                    : "flexJustifyCenterWrap h-[40px] w-full gap-1"
             }`}
         >
             <input
