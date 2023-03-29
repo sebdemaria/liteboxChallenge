@@ -1,4 +1,4 @@
-export function base64Convert(src, callback, outputFormat) {
+export function base64Convert(src, callback) {
     let img = new Image();
     img.crossOrigin = "anonymous";
     img.onload = function () {
