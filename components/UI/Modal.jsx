@@ -16,7 +16,7 @@ export const ReactModal = ({
         <Modal
             closeTimeoutMS={300}
             isOpen={isModalOpen}
-            onRequestClose={() => setIsModalOpen(false)}
+            onRequestClose={setIsModalOpen}
             preventScroll
             shouldCloseOnEsc
             shouldCloseOnOverlayClick

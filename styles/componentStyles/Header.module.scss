@@ -4,6 +4,7 @@
 @include slideMenuOut;
 @include slideNavMenuIn;
 @include slideNavMenuOut;
+@include ringBell;
 
 // CSSTransition animation classes
 .menuEnter {
@@ -12,6 +13,13 @@
 
 .menuExit {
     animation: slideMenuOut 0.5s;
+}
+
+.ringBell {
+    animation-name: ringBell;
+    animation-timing-function: ease-in-out;
+    animation-duration: .5s;
+    animation-iteration-count: 2;
 }
 
 .slideNavMenuIn {

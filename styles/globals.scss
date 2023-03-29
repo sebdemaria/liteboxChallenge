@@ -42,7 +42,7 @@
     }
 
     .input-liteflix {
-        @apply border-b-2 bg-transparent pb-1 text-center font-oswald text-[16px] font-light uppercase tracking-superWide text-white-normal outline-none placeholder:text-white-normal;
+        @apply border-b-[0.5px] bg-transparent pb-1 text-center font-oswald text-[16px] font-light uppercase tracking-superWide text-white-normal outline-none placeholder:text-white-normal;
     }
 
     .errorMessage-liteflix {
@@ -50,7 +50,7 @@
     }
 
     .banner-liteflix {
-        @apply h-min mx-5 border p-7 text-center font-oswald font-thin uppercase tracking-superWide text-white-normal;
+        @apply mx-5 h-min border p-7 text-center font-oswald font-thin uppercase tracking-superWide text-white-normal;
     }
 }
 
@@ -90,7 +90,7 @@
     }
 
     .h1-xxl-aqua {
-        @apply font-[700] not-italic text-aqua xs:h-[155px] xs:text-center xs:text-[76px] xs:leading-[78px] xs:tracking-[12px] sm:h-[100px] md:h-[100px] md:text-start md:text-[120px] md:leading-[100px] md:tracking-[16px] lg:h-[200px] xl:h-[100px];
+        @apply font-[700] not-italic text-aqua xs:h-max xs:text-center xs:text-[4em] xs:leading-[1em] xs:tracking-[12px] sm:text-[5em] md:text-start md:text-[5.5rem] md:leading-[1em] md:tracking-[16px] 2xl:text-[7rem];
     }
 
     .flexJustifyCenter {

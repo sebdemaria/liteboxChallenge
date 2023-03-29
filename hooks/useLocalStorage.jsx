@@ -4,7 +4,7 @@ export const useLocalStorage = () => {
     };
 
     const getStorageItem = (key) => {
-        localStorage.getItem(key);
+        return localStorage.getItem(key);
     };
 
     const deleteStorageItem = (key) => {
