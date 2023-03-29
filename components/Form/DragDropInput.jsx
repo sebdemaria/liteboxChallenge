@@ -1,5 +1,6 @@
-import { useCallback, useEffect, useState } from "react";
+import { forwardRef, useCallback, useEffect, useState } from "react";
 import { base64Convert } from "utils/base64Convert";
+import PropTypes from "prop-types";
 
 import Image from "next/image";
 
@@ -11,7 +12,7 @@ import { useDropzone } from "react-dropzone";
 
 import { Clip } from "@/public/assets";
 
-export const DragDropInput = ({ setFieldValue }) => {
+export const DragDropInput = forwardRef(({ setFieldValue, fieldName }, ref) => {
     const [imagePath, setImagePath] = useState("");
 
     const onDrop = useCallback((acceptedFiles) => {
@@ -37,8 +38,8 @@ export const DragDropInput = ({ setFieldValue }) => {
             size: acceptedFiles[0]?.size,
             path: imagePath,
         };
-        setFieldValue("movie_file", fileObject);
-    }, [setFieldValue, acceptedFiles, imagePath]);
+        setFieldValue(fieldName, fileObject);
+    }, [setFieldValue, acceptedFiles, imagePath, fieldName]);
 
     return (
         <div>
@@ -49,7 +50,7 @@ export const DragDropInput = ({ setFieldValue }) => {
             >
                 <label
                     className="flexJustifyCenter btn-liteflix-border-dashed mb-1 cursor-pointer p-12 xs:w-[90%] xs:max-w-[320px] xs:text-[16px] sm:max-w-[500px] md:w-[650px] md:max-w-[650px] md:text-[16px]"
-                    htmlFor="movieAdd"
+                    htmlFor={fieldName}
                 >
                     <Image alt="attach file" src={Clip} />
                     {acceptedFiles[0] ? (
@@ -66,19 +67,27 @@ export const DragDropInput = ({ setFieldValue }) => {
                     )}
                 </label>
                 <ErrorMessage
-                    name="movie_file"
+                    name={fieldName}
                     component={"p"}
                     className="errorMessage-liteflix"
                 />
 
                 <Input
                     {...getInputProps()}
+                    ref={ref}
                     accept="image/jpg, image/png, image/jpeg, image/webp, image/avif"
                     customClass="hidden"
-                    id="movieAdd"
+                    id={fieldName}
                     type="file"
                 />
             </span>
         </div>
     );
+});
+
+DragDropInput.displayName = "DragDropInput";
+
+DragDropInput.propTypes = {
+    setFieldValue: PropTypes.func.isRequired,
+    fieldName: PropTypes.string.isRequired,
 };

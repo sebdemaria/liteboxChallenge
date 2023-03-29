@@ -1,37 +1,34 @@
-import { useManageMyMovies } from "@/hooks/useManageMyMovies";
 import { useState } from "react";
+import { useManageMyMovies } from "@/hooks/useManageMyMovies";
+import PropTypes from "prop-types";
 import Image from "next/image";
 
-import * as Yup from "yup";
 import { Form, Formik } from "formik";
+import { ValidationSchema } from "./CustomModalValidationSchema";
 
-import { Input, DragDropInput } from "./Form/";
+import { Input, DragDropInput } from "../Form";
 import {
     Button,
     ErrorMessage,
     Loader,
     MovieAddedDone,
     ReactModal as Modal,
-} from "./UI/";
+} from "../UI";
 
 import { useAddMovieActions } from "actions/useAddMovieActions";
 
 import {
-    FORM_ERROR_MESSAGES,
-    IMAGE_SUPPORTED_FORMATS,
     actions,
-} from "../consts";
+} from "../../consts";
 
 import { MenuBtnClose } from "@/public/assets";
 
 import styles from "@/styles/componentStyles/Modal.module.scss";
 
 export const CustomModal = ({
-    isModalOpen = false,
-    setIsModalOpen = () => {},
+    isModalOpen,
+    setIsModalOpen = () => { },
 }) => {
-    const MAX_FILE_SIZE = 2097152;
-
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState([]);
 
@@ -46,43 +43,51 @@ export const CustomModal = ({
     ] = useAddMovieActions();
 
     const handleRestart = () => {
+        setErrors("");
         handleRestartState();
         setIsLoading(false);
-        setErrors("");
     };
 
-    const handleSubmit = async ({ movie_file, movie_name }) => {
-        setIsLoading((isLoading) => !isLoading);
-
-        await addMovie(movie_file, movie_name, handleSuccessState);
-        handleSubmitState();
-
-        // timeout applied to allow isLoading var to take effect on animations
-        // due to localstorage saving being so fast
-        setTimeout(() => {
+    const handleSubmit = async ({ movie_file, movie_name }, setSubmitting) => {
+        try {
             setIsLoading((isLoading) => !isLoading);
-            handleSuccessState();
-        }, 2000);
+            setErrors("");
+
+            await addMovie(movie_file, movie_name, handleSuccessState);
+            handleSubmitState();
+
+            // timeout applied to show loader for 2 seconds
+            // due to localstorage saving being so fast
+            setTimeout(() => {
+                setIsLoading((isLoading) => !isLoading);
+                handleSuccessState();
+            }, 2000);
+        } catch (e) {
+            setIsLoading(isLoading => !isLoading);
+            setErrors(e.message);
+            handleErrorState();
+        } finally {
+            setSubmitting(false);
+        }
     };
 
     const onModalClose = () => {
         setIsModalOpen(false);
         setIsLoading(false);
-        setErrors("");
 
         // avoid modal going back to initial state before hiding
         setTimeout(() => {
+            setErrors("");
             handleRestartState();
         }, 1000);
     };
 
     return (
         <Modal
-            bodyOpenClassName={styles.body}
-            isOpen={isModalOpen}
-            className={styles.modal}
+            isModalOpen={isModalOpen}
             setIsModalOpen={onModalClose}
-            handleRestart={handleRestart}
+            bodyOpenClassName={styles.body}
+            className={styles.modal}
             overlayClassName={{
                 base: styles.overlay,
                 afterOpen: styles.overlayAfterOpen,
@@ -103,41 +108,15 @@ export const CustomModal = ({
                         movie_file: "",
                         movie_name: "",
                     }}
-                    validationSchema={Yup.object({
-                        movie_file: Yup.mixed()
-                            .test(
-                                "fileSize",
-                                FORM_ERROR_MESSAGES.fileSize,
-                                (value) => value?.size <= MAX_FILE_SIZE
-                            )
-                            .test(
-                                "fileType",
-                                FORM_ERROR_MESSAGES.fileFormat,
-                                (value) =>
-                                    IMAGE_SUPPORTED_FORMATS.includes(
-                                        value?.type
-                                    )
-                            )
-                            .required(FORM_ERROR_MESSAGES.required),
-                        movie_name: Yup.string(FORM_ERROR_MESSAGES.text)
-                            .required(FORM_ERROR_MESSAGES.required)
-                            .max(45, "Máximo 45 caracteres"),
-                    })}
+                    validationSchema={ValidationSchema}
                     onSubmit={async (values, { setSubmitting }) => {
-                        try {
-                            await handleSubmit(values);
-                        } catch (e) {
-                            setErrors([e.message]);
-                            handleErrorState();
-                        } finally {
-                            setSubmitting(false);
-                        }
+                        handleSubmit(values, setSubmitting);
                     }}
                 >
                     {({ values, setFieldValue }) => (
                         <Form
                             noValidate
-                            className="flexJustifyAlignCenterWrap gap-5 xs:h-[80%] md:h-full md:gap-8 md:py-5"
+                            className="flexJustifyAlignCenterWrap gap-5 xs:h-[80%] md:h-full md:gap-9 md:py-5"
                         >
                             {/* successfully added movie modal */}
                             {state.status === actions.SUCCESS ? (
@@ -155,12 +134,14 @@ export const CustomModal = ({
                                     {isLoading &&
                                         state.status === actions.SUBMIT && (
                                             <Loader />
-                                        )}
+                                        )
+                                    }
 
                                     {/* drag drop input type file */}
-                                    {!isLoading && (
+                                    {(state.status === actions.RESTART) && (
                                         <DragDropInput
                                             setFieldValue={setFieldValue}
+                                            fieldName={'movie_file'}
                                         />
                                     )}
 
@@ -173,13 +154,13 @@ export const CustomModal = ({
                                     )}
 
                                     <Input
-                                        customClass="input-liteflix xs:w-[70%] md:w-full max-w-[350px] my-5"
+                                        customClass="input-liteflix xs:w-[70%] h-min md:w-full max-w-[350px]"
                                         type="text"
                                         name="movie_name"
                                         placeholder="título"
                                     />
 
-                                    <span className="flex h-min w-full flex-wrap justify-start gap-5 xs:justify-center">
+                                    <span className="flex h-min w-full flex-wrap justify-start gap-5 mt-5 xs:justify-center">
                                         <Button
                                             disabled={isLoading}
                                             className="btn-liteflix-gray md:p-9"
@@ -189,7 +170,7 @@ export const CustomModal = ({
                                         </Button>
 
                                         <Button
-                                            className="btn-liteflix-border mt-5 md:hidden"
+                                            className="btn-liteflix-border md:hidden"
                                             onClick={onModalClose}
                                         >
                                             salir
@@ -203,4 +184,9 @@ export const CustomModal = ({
             </div>
         </Modal>
     );
+};
+
+CustomModal.propTypes = {
+    isModalOpen: PropTypes.bool.isRequired,
+    setIsModalOpen: PropTypes.func.isRequired
 };

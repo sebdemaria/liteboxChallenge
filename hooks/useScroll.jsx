@@ -7,7 +7,6 @@ export const useScroll = () => {
         // calculate scroll percentage
         let scrollTop = window.scrollY;
 
-        console.log(scrollTop);
         if (scrollTop === 0) {
             setHeaderBlur(false);
         } else if (scrollTop > 40) {
