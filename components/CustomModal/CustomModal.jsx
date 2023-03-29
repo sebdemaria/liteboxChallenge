@@ -71,11 +71,11 @@ export const CustomModal = ({
 
     const onModalClose = () => {
         setIsModalOpen(false);
-        setErrors("");
         setIsLoading(false);
 
         // avoid modal going back to initial state before hiding
         setTimeout(() => {
+            setErrors("");
             handleRestartState();
         }, 1000);
     };
@@ -137,7 +137,7 @@ export const CustomModal = ({
                                     }
 
                                     {/* drag drop input type file */}
-                                    {!isLoading && (
+                                    {(state.status === actions.RESTART) && (
                                         <DragDropInput
                                             setFieldValue={setFieldValue}
                                             fieldName={'movie_file'}
