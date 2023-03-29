@@ -30,7 +30,7 @@ export const Select = ({
             <Button
                 type="button"
                 id="select"
-                className={`${styles.fadeIn} default-text-style customSelect w-full`}
+                className={`${styles.fadeIn} default-text-style-white-light customSelect w-full`}
                 onClick={() => {
                     setIsSelectOpen((isSelectOpen) => !isSelectOpen);
                 }}
@@ -56,7 +56,7 @@ export const Select = ({
             >
                 <ul
                     ref={nodeRef}
-                    className={`${styles.selectOptions} absolute top-[3em] z-30 flex flex-wrap gap-4 bg-liteflixGray-normal py-5 xs:w-screen xs:px-[10%] sm:px-[20%] md:w-[350px] md:px-12 lg:w-[250px] lg:px-5 xl:w-[300px]`}
+                    className={`${styles.selectOptions} flexFlexWrap absolute top-[3em] z-30 gap-4 bg-liteflixGray-normal py-5 xs:w-screen xs:px-[10%] sm:px-[20%] md:w-[350px] md:px-12 lg:w-[250px] lg:px-5 xl:w-[300px]`}
                 >
                     <span
                         className={`${styles.arrow} xs:hidden lg:left-[10em] lg:block 2xl:left-[12em]`}
@@ -66,7 +66,7 @@ export const Select = ({
                             key={value}
                             onClick={(e) => handleOptionSelected(value, e)}
                             value={value}
-                            className={`default-text-style flex w-full items-center justify-between text-start ${
+                            className={`default-text-style flexAlignCenter w-full justify-between text-start text-white-light ${
                                 valueSelected === value
                                     ? "font-bold"
                                     : "font-extralight"

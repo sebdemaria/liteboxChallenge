@@ -7,10 +7,10 @@
 @include fadeIn;
 
 .slideIn {
-    animation: translateXLeftOpacityIn 3s;
+    animation: translateXLeftOpacityIn 2s;
 
     @media (max-width: $lg) {
-        animation: fadeIn 3s;
+        animation: fadeIn 2s;
     }
 }
 

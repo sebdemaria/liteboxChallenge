@@ -5,11 +5,11 @@ export const Error = ({ children }) => {
         <section
             className={`${styles.fadeIn} transition-1000-in-out flexJustifyAlignCenterWrap h-screen w-full`}
         >
-            <span className="flex flex-wrap justify-center gap-4">
+            <span className="flexJustifyCenterWrap gap-4">
                 <h1 className={`w-full text-center text-[5rem] text-aqua`}>
                     liteflix
                 </h1>
-                <p className="text-center font-oswald text-3xl font-light uppercase tracking-superWide text-white-light">
+                <p className="default-text-style-white-light text-center text-3xl text-white-normal">
                     {children}
                 </p>
             </span>

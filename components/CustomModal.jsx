@@ -6,7 +6,13 @@ import * as Yup from "yup";
 import { Form, Formik } from "formik";
 
 import { Input, DragDropInput } from "./Form/";
-import { Button, ErrorMessage, Loader, ReactModal as Modal } from "./UI/";
+import {
+    Button,
+    ErrorMessage,
+    Loader,
+    MovieAddedDone,
+    ReactModal as Modal,
+} from "./UI/";
 
 import { useAddMovieActions } from "actions/useAddMovieActions";
 
@@ -26,7 +32,11 @@ export const CustomModal = ({
 }) => {
     const MAX_FILE_SIZE = 2097152;
 
+    const [isLoading, setIsLoading] = useState(false);
+    const [errors, setErrors] = useState([]);
+
     const [addMovie] = useManageMyMovies();
+
     const [
         state,
         handleSubmitState,
@@ -34,9 +44,6 @@ export const CustomModal = ({
         handleSuccessState,
         handleRestartState,
     ] = useAddMovieActions();
-
-    const [isLoading, setIsLoading] = useState(false);
-    const [errors, setErrors] = useState([]);
 
     const handleRestart = () => {
         handleRestartState();
@@ -132,36 +139,32 @@ export const CustomModal = ({
                             noValidate
                             className="flexJustifyAlignCenterWrap gap-5 xs:h-[80%] md:h-full md:gap-8 md:py-5"
                         >
+                            {/* successfully added movie modal */}
                             {state.status === actions.SUCCESS ? (
-                                <div className="mb-5 flex w-full flex-wrap gap-12 text-center font-oswald uppercase tracking-superWide">
-                                    <p className="w-full text-[2em] font-bold text-aqua">
-                                        liteflix
-                                    </p>
-                                    <p className="w-full text-[1.5rem] text-white-normal">
-                                        ¡Felicitaciones!
-                                        <span className="mt-5 block w-full font-light text-white-normal">
-                                            {values.movie_name} fue
-                                            correctamente subida.
-                                        </span>
-                                    </p>
-                                </div>
+                                <MovieAddedDone
+                                    value={values}
+                                    onModalClose={onModalClose}
+                                />
                             ) : (
                                 <>
-                                    <p className="w-full text-center font-oswald text-[22px] font-bold uppercase tracking-superWide text-aqua">
+                                    <p className="default-text-style-white-bold w-full text-center text-[22px] text-aqua">
                                         Agregar película
                                     </p>
-                                    {/* drag drop input type file */}
+
+                                    {/* loader */}
                                     {isLoading &&
                                         state.status === actions.SUBMIT && (
                                             <Loader />
                                         )}
 
+                                    {/* drag drop input type file */}
                                     {!isLoading && (
                                         <DragDropInput
                                             setFieldValue={setFieldValue}
                                         />
                                     )}
 
+                                    {/* error message */}
                                     {state.status === actions.ERROR && (
                                         <ErrorMessage
                                             errorMessage={errors}
