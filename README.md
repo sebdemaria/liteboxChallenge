@@ -18,8 +18,12 @@ Se aplicó lo mejor posible los principios SOLID y Clean Code en el proyecto y s
 ## Paso a paso
 
 ```bash
-ATENCIÓN: Para evitar errores de compatibilidad el proyecto fue restringido, estableciendo los engines en package.json y con un .npmrc, por lo que las únicas versiones de node y npm permitidas para instalar las dependencias de este proyecto y levantarlo, son las posteriores a la 16 y 8 respectivamente.
-En caso de no tener las mismas instaladas, recomiendo la utilización de NVM, un manejador de versiones de node y npm que nos permitirá switchear facilmente entre las mismas.
+ATENCIÓN: Para evitar errores de compatibilidad el proyecto fue restringido, estableciendo los engines en package.json y con un .npmrc, 
+por lo que las únicas versiones de node y npm permitidas para instalar las dependencias de este proyecto y levantarlo, 
+son las posteriores a la 16 y 8 respectivamente.
+En caso de no tener las mismas instaladas, recomiendo la utilización de NVM, un manejador de versiones de node y npm que nos permitirá 
+switchear facilmente entre las mismas.
+
 https://github.com/nvm-sh/nvm
 ```
 
