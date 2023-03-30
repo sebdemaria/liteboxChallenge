@@ -28,6 +28,7 @@ https://github.com/nvm-sh/nvm
 ```
 
 1- Clonar el proyecto
+<br/>
 2- Procederemos a crear un archivo .env en el root del repositorio clonado con el siguiente contenido:
 (es sabido que no se deben publicar de esta manera variables de entorno de un proyecto, pero para facilitar la tarea del reviewer del mismo las dejaré acontinuación para que puedan levantar todo sin problemas):
 
