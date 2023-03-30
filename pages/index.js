@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useModalActions } from "actions";
 
-import { AppContext } from "contexts/AppContext/AppContextProvider";
+import AppProvider from "@/hooks/useAppContext";
 
 import Head from "next/head";
 
@@ -103,12 +103,12 @@ export default function Home({ movies, popularMovies }) {
                 <link rel="shortcut icon" href="/images/favicon.ico" />
             </Head>
 
-            <AppContext.Provider value={contextDefaultValue}>
+            <AppProvider value={contextDefaultValue}>
                 <Layout>
                     <MoviesHome />
                     <CustomModal />
                 </Layout>
-            </AppContext.Provider>
+            </AppProvider>
         </>
     );
 }
