@@ -1,9 +1,8 @@
 import { useAppContext } from "./useAppContext";
 import { useLocalStorage } from "./useLocalStorage";
-import { AppContext } from "contexts/AppContext/AppContextProvider";
 
 export const useManageMyMovies = () => {
-    const { myMovies, setMyMovies } = useAppContext(AppContext);
+    const { myMovies, setMyMovies } = useAppContext();
 
     const [setStorageItem, getStorageItem] = useLocalStorage();
 
