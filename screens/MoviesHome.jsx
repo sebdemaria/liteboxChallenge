@@ -1,12 +1,12 @@
-import { useContext } from "react";
+import { useAppContext } from "@/hooks/useAppContext";
 
-import { AppContext } from "contexts/AppContext/AppContext";
+import { AppContext } from "contexts/AppContext/AppContextProvider";
 
 import { MoviesColumn, MainMovieBackGround } from "@/components/Home";
 import { ResolutionError } from "./ResolutionError";
 
 export const MoviesHome = () => {
-    const { modalState } = useContext(AppContext);
+    const { modalState } = useAppContext(AppContext);
 
     return (
         <>
