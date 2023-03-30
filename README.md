@@ -15,7 +15,7 @@
 # About
 
 Se optó por la utilización de Next.js como framework para este proyecto.
-El mismo nos proporciona amplias ventajas en performance por su capacidad de serverside rendering, optimización de imagenes, prefetch de las diferentes paginas de nuestro sitio, entre otros. También tenemos muchas ventajas en SEO que nos otorga.
+El mismo nos proporciona amplias ventajas en performance por su capacidad de Server Side Rendering, optimización de imagenes, prefetch de las diferentes paginas de nuestro sitio, entre otros. También tenemos muchas ventajas en SEO que nos otorga.
 Para la interacción con la API elegí axios.
 
 En el styling, elegí Tailwindd CSS como framework de CSS. La razón fue la ventaja que este nos ofrece para otorgar al sitio un bundle sumamente reducido por minimizar el css y limpiando el contenido no utilizado de CSS. 
