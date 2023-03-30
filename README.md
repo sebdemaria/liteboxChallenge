@@ -18,14 +18,15 @@ Se optó por la utilización de Next.js como framework para este proyecto.
 El mismo nos proporciona amplias ventajas en performance por su capacidad de Server Side Rendering, optimización de imagenes, prefetch de las diferentes paginas de nuestro sitio, entre otros. También tenemos muchas ventajas en SEO que nos otorga.
 Para la interacción con la API elegí axios.
 
-En el styling, elegí Tailwindd CSS como framework de CSS. La razón fue la ventaja que este nos ofrece para otorgar al sitio un bundle sumamente reducido por minimizar el css y limpiando el contenido no utilizado de CSS. 
-También se hizo una gran utilización de sus funcionalidades de creación de design system, lo que nos permite estilar los componentes muy fácilmente sin necesidad de mucho CSS custom. Algo que me gusta mucho de Tailwind es su facilidad para el manejo del responsive, utilizando los breakpoints que hayamos establecido en su config.
-Para la aplicación de animaciones y de algunos estilos, se optó por usar CSS modules junto con SASS. Esto nos permitió realizar mixins de las animaciones creadas con keyframes para poder reutilizarlas fácilmente a lo largo del proyecto y crear variables para evitar la reutilización de parámetros muy repetidos.
+En el styling, elegí Tailwindd CSS como framework de CSS. La razón fue la ventaja que este nos ofrece para otorgar al sitio un bundle sumamente reducido por minimizar el CSS y limpiando el CSS no utilizado. 
+También se hizo una gran utilización de sus funcionalidades de creación de design system, lo que nos permite estilar los componentes muy fácilmente sin necesidad de mucho CSS custom y utilizando solo clases pre-establecidas para tener un estilado default de los componentes. 
+Algo que me gusta mucho de Tailwind es su facilidad para el manejo del responsive, utilizando los breakpoints que hayamos establecido en su config.
+Para la aplicación de animaciones y de algunos estilos, se optó por usar CSS modules junto con SASS. Esto nos permitió realizar mixins de las animaciones creadas con keyframes para poder reutilizarlas fácilmente a lo largo del proyecto y crear variables para evitar la reutilización de parámetros muy repetidos, CSS modules nos permite evitar el colisionamiento de clases.
 
-Restricciones de tipos fueron aplicadas en las props de todos los componentes para mayor seguridad.
+Restricciones de tipos fueron aplicadas en las props de todos los componentes para mayor seguridad (PropTypes).
 
-Orienté el desarrollo de componentes a una arquitectura mas de Compound Components también conocida como Composite.
-Se aplicó lo mejor posible los principios SOLID y Clean Code en el proyecto y se tuvo en cuentra la semántica del html para el SEO y la accesibilidad del sitio.
+Orienté el desarrollo de componentes a una arquitectura más de Compound Components también conocida como Composite.
+Se aplicó lo mejor posible los principios SOLID y Clean Code en el proyecto y se tuvo en cuenta la semántica del HTML para el SEO y la accesibilidad del sitio.
 
 ## Paso a paso
 
