@@ -1,6 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useManageMyMovies } from "@/hooks/useManageMyMovies";
-import PropTypes from "prop-types";
+import { useAddMovieActions } from "actions";
+
+import { AppContext } from "contexts/AppContext/AppContext";
+
 import Image from "next/image";
 
 import { Form, Formik } from "formik";
@@ -15,27 +18,28 @@ import {
     ReactModal as Modal,
 } from "../UI";
 
-import { useAddMovieActions } from "actions/useAddMovieActions";
-
-import { actions } from "../../consts";
+import { addMovieActions } from "../../consts";
 
 import { MenuBtnClose } from "@/public/assets";
 
 import styles from "@/styles/componentStyles/Modal.module.scss";
 
-export const CustomModal = ({ isModalOpen, setIsModalOpen = () => {} }) => {
+
+export const CustomModal = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState([]);
 
     const [addMovie] = useManageMyMovies();
 
     const [
-        state,
+        movieActionsState,
         handleSubmitState,
         handleErrorState,
         handleSuccessState,
         handleRestartState,
     ] = useAddMovieActions();
+
+    const { modalState, handleCloseModal } = useContext(AppContext);
 
     const handleRestart = () => {
         setErrors("");
@@ -67,7 +71,7 @@ export const CustomModal = ({ isModalOpen, setIsModalOpen = () => {} }) => {
     };
 
     const onModalClose = () => {
-        setIsModalOpen(false);
+        handleCloseModal();
         setIsLoading(false);
 
         // avoid modal going back to initial state before hiding
@@ -79,7 +83,7 @@ export const CustomModal = ({ isModalOpen, setIsModalOpen = () => {} }) => {
 
     return (
         <Modal
-            isModalOpen={isModalOpen}
+            isModalOpen={modalState.isOpen}
             setIsModalOpen={onModalClose}
             bodyOpenClassName={styles.body}
             className={styles.modal}
@@ -114,7 +118,7 @@ export const CustomModal = ({ isModalOpen, setIsModalOpen = () => {} }) => {
                             className="flexJustifyAlignCenterWrap gap-5 xs:h-[80%] md:h-full md:gap-9 md:py-5"
                         >
                             {/* successfully added movie modal */}
-                            {state.status === actions.SUCCESS ? (
+                            {movieActionsState.status === addMovieActions.SUCCESS ? (
                                 <MovieAddedDone
                                     values={values}
                                     onModalClose={onModalClose}
@@ -127,12 +131,12 @@ export const CustomModal = ({ isModalOpen, setIsModalOpen = () => {} }) => {
 
                                     {/* loader */}
                                     {isLoading &&
-                                        state.status === actions.SUBMIT && (
+                                        movieActionsState.status === addMovieActions.SUBMIT && (
                                             <Loader />
                                         )}
 
                                     {/* drag drop input type file */}
-                                    {state.status === actions.RESTART && (
+                                    {movieActionsState.status === addMovieActions.RESTART && (
                                         <DragDropInput
                                             setFieldValue={setFieldValue}
                                             fieldName={"movie_file"}
@@ -140,7 +144,7 @@ export const CustomModal = ({ isModalOpen, setIsModalOpen = () => {} }) => {
                                     )}
 
                                     {/* error message */}
-                                    {state.status === actions.ERROR && (
+                                    {movieActionsState.status === addMovieActions.ERROR && (
                                         <ErrorMessage
                                             errorMessage={errors}
                                             handleRestart={handleRestart}
@@ -178,9 +182,4 @@ export const CustomModal = ({ isModalOpen, setIsModalOpen = () => {} }) => {
             </div>
         </Modal>
     );
-};
-
-CustomModal.propTypes = {
-    isModalOpen: PropTypes.bool.isRequired,
-    setIsModalOpen: PropTypes.func.isRequired,
 };

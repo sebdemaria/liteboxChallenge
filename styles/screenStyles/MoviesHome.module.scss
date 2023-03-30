@@ -7,10 +7,10 @@
 @include fadeIn;
 
 .slideIn {
-    animation: translateXLeftOpacityIn 2s;
+    animation: translateXLeftOpacityIn 1.8s;
 
     @media (max-width: $lg) {
-        animation: fadeIn 2s;
+        animation: fadeIn 1.8s;
     }
 }
 
@@ -21,7 +21,7 @@
 }
 
 .widthInDelayed {
-    animation: translateXRightOpacityIn 2s;
+    animation: translateXRightOpacityIn 1.7s;
 }
 
 .fadeIn {
@@ -30,7 +30,7 @@
 
 @media (min-width: $md) {
     .background {
-        animation: shrinkIn 6s;
+        animation: shrinkIn 5s;
     }
 }
 

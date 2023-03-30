@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Head from "next/head";
 
 import { Layout } from "@/templates/base/Layout";
@@ -12,6 +12,9 @@ import { MoviesHome } from "@/screens/MoviesHome";
 import { CustomModal } from "@/components/CustomModal/CustomModal";
 
 import { ENDPOINTS } from "@/consts/Endpoints";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { AppContext } from "contexts/AppContext/AppContext";
+import { useModalActions } from "actions";
 
 export const getServerSideProps = async () => {
     // server side call for movies
@@ -39,32 +42,49 @@ export const getServerSideProps = async () => {
 
     return {
         props: {
-            movies: JSON.parse(JSON.stringify(moviesFormatted)),
-            popularMovies: JSON.parse(JSON.stringify(popularMoviesFormatted)),
+            movies: moviesFormatted,
+            popularMovies: popularMoviesFormatted,
         },
     };
 };
 
-export const AppContext = createContext();
-
 export default function Home({ movies, popularMovies }) {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [myMovies, setMyMovies] = useState(JSON.stringify([]));
+    const [myMovies, setMyMovies] = useState([]);
 
-    const contextValue = {
-        movies,
-        popularMovies,
-        setMyMovies,
-        myMovies,
-        setIsModalOpen,
-        isModalOpen,
-    };
+    const [modalState, handleOpenModal, handleCloseModal] = useModalActions();
+
+    const [, getStorageItem] = useLocalStorage();
+
+    const contextDefaultValue = useMemo(
+        () => ({
+            movies,
+            popularMovies,
+            setMyMovies,
+            myMovies,
+            modalState,
+            handleOpenModal,
+            handleCloseModal,
+        }),
+        [
+            handleCloseModal,
+            handleOpenModal,
+            modalState,
+            myMovies,
+            setMyMovies,
+            popularMovies,
+            movies,
+        ]
+    );
 
     useEffect(() => {
         // set app context value
-        const movies = localStorage.getItem("my_movies");
-        if (movies?.length) setMyMovies(movies);
-    }, []);
+        const movies = getStorageItem("my_movies");
+        if (movies) {
+            setMyMovies(movies);
+        } else {
+            setMyMovies([]);
+        }
+    }, [getStorageItem]);
 
     return (
         <>
@@ -81,13 +101,10 @@ export default function Home({ movies, popularMovies }) {
                 <link rel="shortcut icon" href="/images/favicon.ico" />
             </Head>
 
-            <AppContext.Provider value={contextValue}>
+            <AppContext.Provider value={contextDefaultValue}>
                 <Layout>
                     <MoviesHome />
-                    <CustomModal
-                        isModalOpen={isModalOpen}
-                        setIsModalOpen={setIsModalOpen}
-                    />
+                    <CustomModal />
                 </Layout>
             </AppContext.Provider>
         </>

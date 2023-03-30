@@ -1,28 +1,28 @@
-import { actions } from "@/consts/actions";
+import { addMovieActions } from "@/consts/actions";
 import { useReducer } from "react";
 
 export const useMovieReducer = () => {
     const initialState = {
-        status: actions.RESTART,
+        status: addMovieActions.RESTART,
     };
 
     const reducer = (state, action) => {
         switch (action.type) {
-            case actions.SUBMIT:
+            case addMovieActions.SUBMIT:
                 return {
-                    status: actions.SUBMIT,
+                    status: addMovieActions.SUBMIT,
                 };
-            case actions.SUCCESS:
+            case addMovieActions.SUCCESS:
                 return {
-                    status: actions.SUCCESS,
+                    status: addMovieActions.SUCCESS,
                 };
-            case actions.ERROR:
+            case addMovieActions.ERROR:
                 return {
-                    status: actions.ERROR,
+                    status: addMovieActions.ERROR,
                 };
-            case actions.RESTART:
+            case addMovieActions.RESTART:
                 return {
-                    status: actions.RESTART,
+                    status: addMovieActions.RESTART,
                 };
             default:
                 return state;

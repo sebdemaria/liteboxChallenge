@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { AppContext } from "pages";
+import { AppContext } from "contexts/AppContext/AppContext";
 
 import Image from "next/image";
 
