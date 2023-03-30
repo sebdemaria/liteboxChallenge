@@ -1,21 +1,17 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useAppContext } from "@/hooks/useAppContext";
 import { useManageMyMovies } from "@/hooks/useManageMyMovies";
-
-import { AppContext } from "pages";
 
 import { Select, VideoPreviewer } from "@/components/UI";
 
-import { FILTER_VALUES } from "consts/FilterValues";
+import { FILTER_VALUES } from "@/consts/FilterValues";
 
 import styles from "@/styles/componentStyles/Home/MoviesColumn.module.scss";
 
 export const MoviesColumn = () => {
     const [getMovies] = useManageMyMovies();
 
-    const { myMovies: savedMovies } = useContext(AppContext);
-    const myMovies = JSON.parse(savedMovies);
-
-    const { popularMovies } = useContext(AppContext);
+    const { popularMovies, myMovies } = useAppContext();
 
     const [movieFilterSelected, setMovieFilterSelected] = useState(
         FILTER_VALUES.popular.value
@@ -94,7 +90,7 @@ export const MoviesColumn = () => {
                                     index={index}
                                     title={title}
                                     imgPath={backdrop_path.original}
-                                    score={vote_average ? vote_average : 'N/A'}
+                                    score={vote_average ? vote_average : "N/A"}
                                     release_date={release_date}
                                 />
                             )

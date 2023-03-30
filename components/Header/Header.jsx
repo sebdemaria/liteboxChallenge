@@ -1,7 +1,6 @@
-import { useContext, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useScroll } from "@/hooks/useScroll";
-
-import { AppContext } from "pages";
+import { useAppContext } from "@/hooks/useAppContext";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -24,12 +23,13 @@ import styles from "@/styles/componentStyles/Header.module.scss";
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const { setIsModalOpen } = useContext(AppContext);
+    const { handleOpenModal } = useAppContext();
 
     const [headerBlur] = useScroll();
 
-    const nodeRef = useRef(null);
     const bellRef = useRef(null);
+    // required by CSS Transition component to avoid screen reader error
+    const nodeRef = useRef(null);
 
     return (
         <header
@@ -80,7 +80,7 @@ export const Header = () => {
                         customClass={`xs:hidden md:flex gap-3 items-center text-white-light default-text-style`}
                         onClick={() => {
                             setIsMenuOpen(false);
-                            setIsModalOpen(true);
+                            handleOpenModal();
                         }}
                     >
                         <Image src={Plus} alt="add movie" />
@@ -133,7 +133,7 @@ export const Header = () => {
             >
                 <div
                     ref={nodeRef}
-                    className={`absolute col-span-12 grid h-screen bg-liteflixGray-normal pt-[8em] pb-[5em] font-oswald font-thin text-white-lighter xs:w-full xs:px-5 sm:px-9 md:right-0 md:w-2/4 md:px-12 lg:w-[30%] lg:px-8 xl:px-10`}
+                    className={`absolute col-span-12 grid h-screen bg-liteflixGray-normal pt-[8em] pb-[5em] font-oswald font-light text-white-lighter hXs:gap-2 hXs:pt-[6em] xs:w-full xs:px-5 sm:px-9 md:right-0 md:w-2/4 md:px-12 lg:w-[30%] lg:px-8 xl:px-10`}
                 >
                     <NavBar
                         customClass={`h-max tracking-superWide ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
@@ -141,10 +141,10 @@ export const Header = () => {
                     />
 
                     <Button
-                        customClass={`flex gap-3 items-center w-full text-start tracking-superWide my-5 ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
+                        customClass={`flex gap-3 items-center w-full text-start tracking-superWide hXs:mt-7 my-7 ${styles.slideNavMenuIn} ${styles.animateNavMenu}`}
                         onClick={() => {
                             setIsMenuOpen(false);
-                            setIsModalOpen(true);
+                            handleOpenModal();
                         }}
                     >
                         <Image src={Plus} alt="add movie" />

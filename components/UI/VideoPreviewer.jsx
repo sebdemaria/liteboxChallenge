@@ -14,8 +14,9 @@ export const VideoPreviewer = ({
     index,
     customClass,
     score,
-    release_date
+    release_date,
 }) => {
+    // required by CSS Transition component to avoid screen reader error
     const nodeRef = useRef(null);
 
     const [isClicked, setIsClicked] = useState(false);
@@ -52,8 +53,8 @@ export const VideoPreviewer = ({
                     {!isClicked ? (
                         <div
                             className={`flexJustifyAlignCenterWrap h-full w-full px-3 pt-2 ${isClicked
-                                ? styles.videoPlayerIn
-                                : styles.videoPlayerOut
+                                    ? styles.videoPlayerIn
+                                    : styles.videoPlayerOut
                                 }`}
                         >
                             <Image
@@ -74,8 +75,8 @@ export const VideoPreviewer = ({
                     ) : (
                         <div
                             className={`flexAlignCenterWrap default-text-style-white-extralight relative h-full w-full bg-liteflixGray-transparent px-5 py-7 text-center text-white-normal xs:text-[0.8rem] ${isClicked
-                                ? styles.videoPlayerIn
-                                : styles.videoPlayerOut
+                                    ? styles.videoPlayerIn
+                                    : styles.videoPlayerOut
                                 }`}
                         >
                             <div className="flexAlignCenter absolute xs:top-[38%] xs:gap-2 xs:pl-2 lg:top-[30%] lg:pl-5 2xl:top-[35%]">
@@ -108,9 +109,6 @@ VideoPreviewer.propTypes = {
     imgPath: PropTypes.string.isRequired,
     index: PropTypes.number.isRequired,
     customClass: PropTypes.string,
-    score: PropTypes.oneOfType([
-        PropTypes.number,
-        PropTypes.string
-    ]).isRequired,
+    score: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     release_date: PropTypes.string,
 };

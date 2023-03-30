@@ -15,7 +15,7 @@ export const Select = ({
     headingTextBold,
     setOptionSelected,
     options,
-    valueSelected
+    valueSelected,
 }) => {
     const [isSelectOpen, setIsSelectOpen] = useState(false);
 
@@ -24,6 +24,7 @@ export const Select = ({
         setIsSelectOpen(false);
     };
 
+    // required by CSS Transition component to avoid screen reader error
     const nodeRef = useRef(null);
 
     return (
@@ -69,8 +70,8 @@ export const Select = ({
                             onClick={(e) => handleOptionSelected(value, e)}
                             value={value}
                             className={`default-text-style flexAlignCenter w-full justify-between text-start text-white-light ${valueSelected === value
-                                ? "font-bold"
-                                : "font-extralight"
+                                    ? "font-bold"
+                                    : "font-extralight"
                                 }`}
                         >
                             {text}

@@ -6,19 +6,19 @@
 @include translateYTopOpacityOut;
 
 .fadeIn {
-    animation: translateXRightOpacityIn 0.6s;
+    animation: translateXRightOpacityIn 1.3s;
 }
 
 .fadeOut {
-    animation: translateXRightOpacityOut 0.6s;
+    animation: translateXRightOpacityOut 1.3s;
 }
 
 @media (max-width: $md) {
     .fadeIn {
-        animation: translateYTopOpacityIn 0.6s;
+        animation: translateYTopOpacityIn 1.3s;
     }
 
     .fadeOut {
-        animation: translateYTopOpacityOut 0.6s;
+        animation: translateYTopOpacityOut 1.3s;
     }
 }

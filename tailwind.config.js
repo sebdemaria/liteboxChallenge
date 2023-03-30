@@ -37,6 +37,7 @@ module.exports = {
         },
         screens: {
             xxs: "0em",
+            hXs: { raw: "(max-height: 650px)" },
             xs: "20em",
             sm: "30em",
             md: "48em",
@@ -45,6 +46,5 @@ module.exports = {
             "2xl": "96em",
             "3xl": "125em",
         },
-    },
-    plugins: [],
+    }
 };

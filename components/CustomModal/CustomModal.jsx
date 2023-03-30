@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useManageMyMovies } from "@/hooks/useManageMyMovies";
-import PropTypes from "prop-types";
+import { useAppContext } from "@/hooks/useAppContext";
+import { useAddMovieActions } from "actions";
+
 import Image from "next/image";
 
 import { Form, Formik } from "formik";
@@ -15,32 +17,27 @@ import {
     ReactModal as Modal,
 } from "../UI";
 
-import { useAddMovieActions } from "actions/useAddMovieActions";
-
-import {
-    actions,
-} from "../../consts";
+import { addMovieActions } from "../../consts";
 
 import { MenuBtnClose } from "@/public/assets";
 
 import styles from "@/styles/componentStyles/Modal.module.scss";
 
-export const CustomModal = ({
-    isModalOpen,
-    setIsModalOpen = () => { },
-}) => {
+export const CustomModal = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState([]);
 
     const [addMovie] = useManageMyMovies();
 
     const [
-        state,
+        movieActionsState,
         handleSubmitState,
         handleErrorState,
         handleSuccessState,
         handleRestartState,
     ] = useAddMovieActions();
+
+    const { modalState, handleCloseModal } = useAppContext();
 
     const handleRestart = () => {
         setErrors("");
@@ -63,7 +60,7 @@ export const CustomModal = ({
                 handleSuccessState();
             }, 2000);
         } catch (e) {
-            setIsLoading(isLoading => !isLoading);
+            setIsLoading((isLoading) => !isLoading);
             setErrors(e.message);
             handleErrorState();
         } finally {
@@ -72,7 +69,7 @@ export const CustomModal = ({
     };
 
     const onModalClose = () => {
-        setIsModalOpen(false);
+        handleCloseModal();
         setIsLoading(false);
 
         // avoid modal going back to initial state before hiding
@@ -84,7 +81,7 @@ export const CustomModal = ({
 
     return (
         <Modal
-            isModalOpen={isModalOpen}
+            isModalOpen={modalState.isOpen}
             setIsModalOpen={onModalClose}
             bodyOpenClassName={styles.body}
             className={styles.modal}
@@ -119,7 +116,7 @@ export const CustomModal = ({
                             className="flexJustifyAlignCenterWrap gap-5 xs:h-[80%] md:h-full md:gap-9 md:py-5"
                         >
                             {/* successfully added movie modal */}
-                            {state.status === actions.SUCCESS ? (
+                            {movieActionsState.status === addMovieActions.SUCCESS ? (
                                 <MovieAddedDone
                                     values={values}
                                     onModalClose={onModalClose}
@@ -132,21 +129,20 @@ export const CustomModal = ({
 
                                     {/* loader */}
                                     {isLoading &&
-                                        state.status === actions.SUBMIT && (
+                                        movieActionsState.status === addMovieActions.SUBMIT && (
                                             <Loader />
-                                        )
-                                    }
+                                        )}
 
                                     {/* drag drop input type file */}
-                                    {(state.status === actions.RESTART) && (
+                                    {movieActionsState.status === addMovieActions.RESTART && (
                                         <DragDropInput
                                             setFieldValue={setFieldValue}
-                                            fieldName={'movie_file'}
+                                            fieldName={"movie_file"}
                                         />
                                     )}
 
                                     {/* error message */}
-                                    {state.status === actions.ERROR && (
+                                    {movieActionsState.status === addMovieActions.ERROR && (
                                         <ErrorMessage
                                             errorMessage={errors}
                                             handleRestart={handleRestart}
@@ -160,7 +156,7 @@ export const CustomModal = ({
                                         placeholder="título"
                                     />
 
-                                    <span className="flex h-min w-full flex-wrap justify-start gap-5 mt-5 xs:justify-center">
+                                    <span className="mt-5 flex h-min w-full flex-wrap justify-start gap-5 xs:justify-center">
                                         <Button
                                             disabled={isLoading}
                                             className="btn-liteflix-gray md:p-9"
@@ -184,9 +180,4 @@ export const CustomModal = ({
             </div>
         </Modal>
     );
-};
-
-CustomModal.propTypes = {
-    isModalOpen: PropTypes.bool.isRequired,
-    setIsModalOpen: PropTypes.func.isRequired
 };

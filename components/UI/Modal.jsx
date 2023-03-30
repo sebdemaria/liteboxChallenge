@@ -3,13 +3,13 @@ import Modal from "react-modal";
 
 import PropTypes from "prop-types";
 
-
 export const ReactModal = ({
     isModalOpen,
     setIsModalOpen,
     children,
     ...props
 }) => {
+
     useEffect(() => {
         // prevent screen reader warning
         Modal.setAppElement(document.body);
@@ -36,4 +36,3 @@ ReactModal.propTypes = {
     children: PropTypes.node.isRequired,
     props: PropTypes.string,
 };
-

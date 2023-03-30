@@ -161,10 +161,6 @@
             opacity: 0;
         }
 
-        50% {
-            opacity: 0.5;
-        }
-
         100% {
             transform: translateX(0rem);
             opacity: 1;
@@ -177,12 +173,6 @@
         0% {
             transform: translateX(0rem);
             opacity: 1;
-            visibility: hidden;
-        }
-
-        50% {
-            opacity: 0.5;
-            visibility: visible;
         }
 
         100% {
@@ -290,6 +280,7 @@
 
 @mixin ringBell {
     @keyframes ringBell {
+
         0%,
         100% {
             transform: rotate(0deg);
