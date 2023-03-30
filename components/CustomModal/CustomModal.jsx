@@ -3,8 +3,6 @@ import { useManageMyMovies } from "@/hooks/useManageMyMovies";
 import { useAppContext } from "@/hooks/useAppContext";
 import { useAddMovieActions } from "actions";
 
-import { AppContext } from "contexts/AppContext/AppContextProvider";
-
 import Image from "next/image";
 
 import { Form, Formik } from "formik";
@@ -39,7 +37,7 @@ export const CustomModal = () => {
         handleRestartState,
     ] = useAddMovieActions();
 
-    const { modalState, handleCloseModal } = useAppContext(AppContext);
+    const { modalState, handleCloseModal } = useAppContext();
 
     const handleRestart = () => {
         setErrors("");

@@ -2,18 +2,16 @@ import { useEffect, useState } from "react";
 import { useAppContext } from "@/hooks/useAppContext";
 import { useManageMyMovies } from "@/hooks/useManageMyMovies";
 
-import { AppContext } from "contexts/AppContext/AppContextProvider";
-
 import { Select, VideoPreviewer } from "@/components/UI";
 
-import { FILTER_VALUES } from "consts/FilterValues";
+import { FILTER_VALUES } from "@/consts/FilterValues";
 
 import styles from "@/styles/componentStyles/Home/MoviesColumn.module.scss";
 
 export const MoviesColumn = () => {
     const [getMovies] = useManageMyMovies();
 
-    const { popularMovies, myMovies } = useAppContext(AppContext);
+    const { popularMovies, myMovies } = useAppContext();
 
     const [movieFilterSelected, setMovieFilterSelected] = useState(
         FILTER_VALUES.popular.value

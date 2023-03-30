@@ -1,12 +1,12 @@
 import { useAppContext } from "@/hooks/useAppContext";
 
-import { AppContext } from "contexts/AppContext/AppContextProvider";
+// import { AppContext } from "contexts/AppContext/AppContextProvider";
 
 import { MoviesColumn, MainMovieBackGround } from "@/components/Home";
 import { ResolutionError } from "./ResolutionError";
 
 export const MoviesHome = () => {
-    const { modalState } = useAppContext(AppContext);
+    const { modalState } = useAppContext();
 
     return (
         <>

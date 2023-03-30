@@ -1,5 +1,4 @@
 import { useAppContext } from "@/hooks/useAppContext";
-import { AppContext } from "contexts/AppContext/AppContextProvider";
 
 import Image from "next/image";
 
@@ -10,7 +9,7 @@ import { Play, Plus } from "@/public/assets";
 import styles from "@/styles/screenStyles/MoviesHome.module.scss";
 
 export const MainMovieBackGround = () => {
-    const { movies } = useAppContext(AppContext);
+    const { movies } = useAppContext();
 
     // movie background
     const { original_title } = movies[0];

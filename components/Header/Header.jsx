@@ -8,8 +8,6 @@ import Link from "next/link";
 import { NavBar, Button } from "@/components/UI/";
 import { CSSTransition } from "react-transition-group";
 
-import { AppContext } from "contexts/AppContext/AppContextProvider";
-
 import {
     MenuBtnOpen,
     MenuBtnClose,
@@ -25,7 +23,7 @@ import styles from "@/styles/componentStyles/Header.module.scss";
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const { handleOpenModal } = useAppContext(AppContext);
+    const { handleOpenModal } = useAppContext();
 
     const [headerBlur] = useScroll();
 
