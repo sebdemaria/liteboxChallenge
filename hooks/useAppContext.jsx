@@ -12,3 +12,5 @@ export const useAppContext = () => {
 
     return context;
 };
+
+export default AppContext.Provider;
