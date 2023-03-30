@@ -1,8 +1,9 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useManageMyMovies } from "@/hooks/useManageMyMovies";
+import { useAppContext } from "@/hooks/useAppContext";
 import { useAddMovieActions } from "actions";
 
-import { AppContext } from "contexts/AppContext/AppContext";
+import { AppContext } from "contexts/AppContext/AppContextProvider";
 
 import Image from "next/image";
 
@@ -24,7 +25,6 @@ import { MenuBtnClose } from "@/public/assets";
 
 import styles from "@/styles/componentStyles/Modal.module.scss";
 
-
 export const CustomModal = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState([]);
@@ -39,7 +39,7 @@ export const CustomModal = () => {
         handleRestartState,
     ] = useAddMovieActions();
 
-    const { modalState, handleCloseModal } = useContext(AppContext);
+    const { modalState, handleCloseModal } = useAppContext(AppContext);
 
     const handleRestart = () => {
         setErrors("");

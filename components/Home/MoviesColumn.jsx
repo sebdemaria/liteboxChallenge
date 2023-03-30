@@ -1,7 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useAppContext } from "@/hooks/useAppContext";
 import { useManageMyMovies } from "@/hooks/useManageMyMovies";
 
-import { AppContext } from "contexts/AppContext/AppContext";
+import { AppContext } from "contexts/AppContext/AppContextProvider";
 
 import { Select, VideoPreviewer } from "@/components/UI";
 
@@ -12,7 +13,7 @@ import styles from "@/styles/componentStyles/Home/MoviesColumn.module.scss";
 export const MoviesColumn = () => {
     const [getMovies] = useManageMyMovies();
 
-    const { popularMovies, myMovies } = useContext(AppContext);
+    const { popularMovies, myMovies } = useAppContext(AppContext);
 
     const [movieFilterSelected, setMovieFilterSelected] = useState(
         FILTER_VALUES.popular.value

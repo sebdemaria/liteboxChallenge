@@ -1,5 +1,6 @@
-import { useContext, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useScroll } from "@/hooks/useScroll";
+import { useAppContext } from "@/hooks/useAppContext";
 
 import Image from "next/image";
 import Link from "next/link";
@@ -7,7 +8,7 @@ import Link from "next/link";
 import { NavBar, Button } from "@/components/UI/";
 import { CSSTransition } from "react-transition-group";
 
-import { AppContext } from "contexts/AppContext/AppContext";
+import { AppContext } from "contexts/AppContext/AppContextProvider";
 
 import {
     MenuBtnOpen,
@@ -24,7 +25,7 @@ import styles from "@/styles/componentStyles/Header.module.scss";
 export const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-    const { handleOpenModal } = useContext(AppContext);
+    const { handleOpenModal } = useAppContext(AppContext);
 
     const [headerBlur] = useScroll();
 

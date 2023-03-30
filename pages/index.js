@@ -1,4 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
+import { useModalActions } from "actions";
+
+import { AppContext } from "contexts/AppContext/AppContextProvider";
+
 import Head from "next/head";
 
 import { Layout } from "@/templates/base/Layout";
@@ -12,9 +17,6 @@ import { MoviesHome } from "@/screens/MoviesHome";
 import { CustomModal } from "@/components/CustomModal/CustomModal";
 
 import { ENDPOINTS } from "@/consts/Endpoints";
-import { useLocalStorage } from "@/hooks/useLocalStorage";
-import { AppContext } from "contexts/AppContext/AppContext";
-import { useModalActions } from "actions";
 
 export const getServerSideProps = async () => {
     // server side call for movies
