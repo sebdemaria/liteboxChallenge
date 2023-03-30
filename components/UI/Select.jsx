@@ -24,6 +24,7 @@ export const Select = ({
         setIsSelectOpen(false);
     };
 
+    // required by CSS Transition component to avoid screen reader error
     const nodeRef = useRef(null);
 
     return (
@@ -68,11 +69,10 @@ export const Select = ({
                             key={value}
                             onClick={(e) => handleOptionSelected(value, e)}
                             value={value}
-                            className={`default-text-style flexAlignCenter w-full justify-between text-start text-white-light ${
-                                valueSelected === value
+                            className={`default-text-style flexAlignCenter w-full justify-between text-start text-white-light ${valueSelected === value
                                     ? "font-bold"
                                     : "font-extralight"
-                            }`}
+                                }`}
                         >
                             {text}
                             {valueSelected === value && (

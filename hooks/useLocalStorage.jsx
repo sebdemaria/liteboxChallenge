@@ -1,14 +1,18 @@
+import { useCallback } from "react";
+
 export const useLocalStorage = () => {
+
     const setStorageItem = (key, value) => {
-        localStorage.setItem(key, value);
+        window.localStorage.setItem(key, JSON.stringify(value));
     };
 
-    const getStorageItem = (key) => {
-        return localStorage.getItem(key);
-    };
+    const getStorageItem = useCallback((key) => {
+        const item = window.localStorage.getItem(key);
+        if (item !== 'undefined' || item !== null) return JSON.parse(item);
+    }, []);
 
     const deleteStorageItem = (key) => {
-        localStorage.removeItem(key);
+        window.localStorage.removeItem(key);
     };
 
     return [setStorageItem, getStorageItem, deleteStorageItem];

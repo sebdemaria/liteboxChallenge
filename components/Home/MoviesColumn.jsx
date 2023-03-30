@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { useManageMyMovies } from "@/hooks/useManageMyMovies";
 
-import { AppContext } from "pages";
+import { AppContext } from "contexts/AppContext/AppContext";
 
 import { Select, VideoPreviewer } from "@/components/UI";
 
@@ -12,10 +12,7 @@ import styles from "@/styles/componentStyles/Home/MoviesColumn.module.scss";
 export const MoviesColumn = () => {
     const [getMovies] = useManageMyMovies();
 
-    const { myMovies: savedMovies } = useContext(AppContext);
-    const myMovies = JSON.parse(savedMovies);
-
-    const { popularMovies } = useContext(AppContext);
+    const { popularMovies, myMovies } = useContext(AppContext);
 
     const [movieFilterSelected, setMovieFilterSelected] = useState(
         FILTER_VALUES.popular.value
@@ -39,11 +36,10 @@ export const MoviesColumn = () => {
 
             {movieFilterSelected === FILTER_VALUES.popular.value && (
                 <div
-                    className={`${
-                        movieFilterSelected === FILTER_VALUES.popular.value
-                            ? styles.fadeIn
-                            : styles.fadeOut
-                    } flexJustifyCenterWrap mb-10 min-h-max gap-5 xs:mt-3 xs:w-full sm:min-h-[470px] md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px] 2xl:w-min`}
+                    className={`${movieFilterSelected === FILTER_VALUES.popular.value
+                        ? styles.fadeIn
+                        : styles.fadeOut
+                        } flexJustifyCenterWrap mb-10 min-h-max gap-5 xs:mt-3 xs:w-full sm:min-h-[470px] md:mt-6 lg:max-h-[650px] 2xl:max-h-[730px] 2xl:w-min`}
                 >
                     {popularMovies.map(
                         (
@@ -69,11 +65,10 @@ export const MoviesColumn = () => {
             )}
             {movieFilterSelected === FILTER_VALUES.my_movies.value && (
                 <div
-                    className={`${
-                        movieFilterSelected === FILTER_VALUES.my_movies.value
-                            ? styles.fadeIn
-                            : styles.fadeOut
-                    } flexJustifyCenterWrap mb-10 gap-5 xs:mt-3 xs:min-h-[470px] xs:w-full md:mt-6 lg:max-h-[650px] lg:min-h-max 2xl:max-h-[730px] 3xl:min-h-[640px]`}
+                    className={`${movieFilterSelected === FILTER_VALUES.my_movies.value
+                        ? styles.fadeIn
+                        : styles.fadeOut
+                        } flexJustifyCenterWrap mb-10 gap-5 xs:mt-3 xs:min-h-[470px] xs:w-full md:mt-6 lg:max-h-[650px] lg:min-h-max 2xl:max-h-[730px] 3xl:min-h-[640px]`}
                 >
                     {!myMovies?.length ? (
                         <p className="banner-liteflix h-min">

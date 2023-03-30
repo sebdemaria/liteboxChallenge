@@ -1,27 +1,27 @@
 import { useMovieReducer } from "reducers/useMovieReducer";
-import { actions } from "@/consts/actions";
+import { addMovieActions } from "@/consts/actions";
 
 export const useAddMovieActions = () => {
     const [state, dispatch] = useMovieReducer();
 
     function handleSubmitState() {
         dispatch({
-            type: actions.SUBMIT,
+            type: addMovieActions.SUBMIT,
         });
     }
     function handleSuccessState() {
         dispatch({
-            type: actions.SUCCESS,
+            type: addMovieActions.SUCCESS,
         });
     }
     function handleErrorState() {
         dispatch({
-            type: actions.ERROR,
+            type: addMovieActions.ERROR,
         });
     }
     function handleRestartState() {
         dispatch({
-            type: actions.RESTART,
+            type: addMovieActions.RESTART,
         });
     }
 
