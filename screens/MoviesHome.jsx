@@ -11,8 +11,9 @@ export const MoviesHome = () => {
     return (
         <>
             <section
-                className={`${modalState.isOpen ? "overflow-hidden" : ""
-                    } transition-700-in-out h-screen grid-cols-12 xxs:hidden xs:grid`}
+                className={`${
+                    modalState.isOpen ? "overflow-hidden" : ""
+                } transition-700-in-out h-screen grid-cols-12 xxs:hidden xs:grid`}
             >
                 {/* style for dynamic background image url */}
                 <MainMovieBackGround />
