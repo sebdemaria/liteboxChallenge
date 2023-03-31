@@ -28,7 +28,7 @@ export const Select = ({
     const nodeRef = useRef(null);
 
     return (
-        <div className="flexJustifyCenter relative h-min w-full">
+        <div className="flexJustifyCenter relative h-min w-max">
             {/* select heading */}
             <Button
                 type="button"
