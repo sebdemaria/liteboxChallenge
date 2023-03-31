@@ -116,7 +116,8 @@ export const CustomModal = () => {
                             className="flexJustifyAlignCenterWrap gap-5 xs:h-[80%] md:h-full md:gap-9 md:py-5"
                         >
                             {/* successfully added movie modal */}
-                            {movieActionsState.status === addMovieActions.SUCCESS ? (
+                            {movieActionsState.status ===
+                            addMovieActions.SUCCESS ? (
                                 <MovieAddedDone
                                     values={values}
                                     onModalClose={onModalClose}
@@ -129,12 +130,14 @@ export const CustomModal = () => {
 
                                     {/* loader */}
                                     {isLoading &&
-                                        movieActionsState.status === addMovieActions.SUBMIT && (
+                                        movieActionsState.status ===
+                                            addMovieActions.SUBMIT && (
                                             <Loader />
                                         )}
 
                                     {/* drag drop input type file */}
-                                    {movieActionsState.status === addMovieActions.RESTART && (
+                                    {movieActionsState.status ===
+                                        addMovieActions.RESTART && (
                                         <DragDropInput
                                             setFieldValue={setFieldValue}
                                             fieldName={"movie_file"}
@@ -142,7 +145,8 @@ export const CustomModal = () => {
                                     )}
 
                                     {/* error message */}
-                                    {movieActionsState.status === addMovieActions.ERROR && (
+                                    {movieActionsState.status ===
+                                        addMovieActions.ERROR && (
                                         <ErrorMessage
                                             errorMessage={errors}
                                             handleRestart={handleRestart}

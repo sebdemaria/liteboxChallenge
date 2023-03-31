@@ -33,18 +33,20 @@ export const Header = () => {
 
     return (
         <header
-            className={`${headerBlur ? styles.bgAnimateIn : styles.bgAnimateOut
-                } fixed z-50 w-full grid-cols-12 xxs:hidden xs:grid`}
+            className={`${
+                headerBlur ? styles.bgAnimateIn : styles.bgAnimateOut
+            } fixed z-50 w-full grid-cols-12 xxs:hidden xs:grid`}
         >
             <div
                 className={`relative z-50 col-span-12 flex h-min items-center pt-4 xs:justify-between xs:px-5 sm:px-10 md:justify-center`}
             >
                 {/* open/close menu button */}
                 <div
-                    className={`${!isMenuOpen
-                        ? "md:w-1/12 lg:w-[6%] xl:w-[4%]"
-                        : "md:w-7/12 lg:w-[20%] xl:w-[23%] 2xl:w-[25%]"
-                        } transition-1000-in-out xs:order-1 md:order-2`}
+                    className={`${
+                        !isMenuOpen
+                            ? "md:w-1/12 lg:w-[6%] xl:w-[4%]"
+                            : "md:w-7/12 lg:w-[20%] xl:w-[23%] 2xl:w-[25%]"
+                    } transition-1000-in-out xs:order-1 md:order-2`}
                 >
                     {!isMenuOpen ? (
                         <Image
@@ -92,8 +94,9 @@ export const Header = () => {
 
                 <div
                     ref={bellRef}
-                    className={`cursor-pointer xs:hidden md:order-3 md:block md:w-1/12 lg:w-[6%] xl:w-[4%] ${!isMenuOpen ? "" : "pr-4"
-                        }`}
+                    className={`cursor-pointer xs:hidden md:order-3 md:block md:w-1/12 lg:w-[6%] xl:w-[4%] ${
+                        !isMenuOpen ? "" : "pr-4"
+                    }`}
                     onClick={(bellRef) => {
                         bellRef.target.classList.add(styles.ringBell);
                         setTimeout(() => {

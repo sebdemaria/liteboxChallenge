@@ -18,8 +18,8 @@ Se optó por la utilización de Next.js como framework para este proyecto.
 El mismo nos proporciona amplias ventajas en performance por su capacidad de Server Side Rendering, optimización de imagenes, prefetch de las diferentes paginas de nuestro sitio, entre otros. También tenemos muchas ventajas en SEO que nos otorga.
 Para la interacción con la API elegí axios.
 
-En el styling, elegí Tailwindd CSS como framework de CSS. La razón fue la ventaja que este nos ofrece para otorgar al sitio un bundle sumamente reducido por minimizar el CSS y limpiando el CSS no utilizado. 
-También se hizo una gran utilización de sus funcionalidades de creación de design system, lo que nos permite estilar los componentes muy fácilmente sin necesidad de mucho CSS custom y utilizando solo clases pre-establecidas para tener un estilado default de los componentes. 
+En el styling, elegí Tailwindd CSS como framework de CSS. La razón fue la ventaja que este nos ofrece para otorgar al sitio un bundle sumamente reducido por minimizar el CSS y limpiando el CSS no utilizado.
+También se hizo una gran utilización de sus funcionalidades de creación de design system, lo que nos permite estilar los componentes muy fácilmente sin necesidad de mucho CSS custom y utilizando solo clases pre-establecidas para tener un estilado default de los componentes.
 Algo que me gusta mucho de Tailwind es su facilidad para el manejo del responsive, utilizando los breakpoints que hayamos establecido en su config.
 Para la aplicación de animaciones y de algunos estilos, se optó por usar CSS modules junto con SASS. Esto nos permitió realizar mixins de las animaciones creadas con keyframes para poder reutilizarlas fácilmente a lo largo del proyecto y crear variables para evitar la reutilización de parámetros muy repetidos, CSS modules nos permite evitar el colisionamiento de clases.
 
@@ -31,10 +31,10 @@ Se aplicó lo mejor posible los principios SOLID y Clean Code en el proyecto y s
 ## Paso a paso
 
 ```bash
-ATENCIÓN: Para evitar errores de compatibilidad el proyecto fue restringido, estableciendo los engines 
-en package.json y con un .npmrc, por lo que las únicas versiones de node y npm permitidas para instalar 
+ATENCIÓN: Para evitar errores de compatibilidad el proyecto fue restringido, estableciendo los engines
+en package.json y con un .npmrc, por lo que las únicas versiones de node y npm permitidas para instalar
 las dependencias de este proyecto y levantarlo, son las posteriores a la 16 y 8 respectivamente.
-En caso de no tener las mismas instaladas, recomiendo la utilización de NVM, un manejador de versiones 
+En caso de no tener las mismas instaladas, recomiendo la utilización de NVM, un manejador de versiones
 de node y npm que nos permitirá switchear facilmente entre las mismas.
 
 https://github.com/nvm-sh/nvm

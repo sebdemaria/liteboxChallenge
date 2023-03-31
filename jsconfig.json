@@ -2,30 +2,19 @@
     "compilerOptions": {
         "baseUrl": ".",
         "paths": {
-            "@/components/*": [
-                "components/*"
-            ],
-            "@/hooks/*": [
-                "hooks/*"
-            ],
-            "@/styles/*": [
-                "styles/*"
-            ],
-            "@/public/*": [
-                "public/*"
-            ],
-            "@/templates/*": [
-                "templates/*"
-            ],
-            "@/consts/*": [
-                "consts/*"
-            ],
-            "@/screens/*": [
-                "screens/*"
-            ],
-            "@/actions/*": [
-                "actions/*"
-            ]
+            "@/actions/*": ["actions/*"],
+            "@/components/*": ["components/*"],
+            "@/hooks/*": ["hooks/*"],
+            "@/styles/*": ["styles/*"],
+            "@/public/*": ["public/*"],
+            "@/templates/*": ["templates/*"],
+            "@/consts/*": ["consts/*"],
+            "@/screens/*": ["screens/*"],
+            "@/httpServices/*": ["httpServices/*"],
+            "@/contexts/*": ["contexts/*"],
+            "@/reducers/*": ["reducers/*"],
+            "@/tests/*": ["tests/*"],
+            "@/utils/*": ["utils/*"]
         }
     }
 }
