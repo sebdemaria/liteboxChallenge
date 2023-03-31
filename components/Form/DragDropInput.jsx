@@ -33,6 +33,7 @@ export const DragDropInput = forwardRef(({ setFieldValue, fieldName }, ref) => {
     });
 
     useEffect(() => {
+        // create file object again if any of the dependecies asigned change
         const fileObject = {
             type: acceptedFiles[0]?.type,
             size: acceptedFiles[0]?.size,
@@ -72,6 +73,7 @@ export const DragDropInput = forwardRef(({ setFieldValue, fieldName }, ref) => {
                     className="errorMessage-liteflix"
                 />
 
+                {/* hidden input type file asigned to formik validations and submit */}
                 <Input
                     {...getInputProps()}
                     ref={ref}

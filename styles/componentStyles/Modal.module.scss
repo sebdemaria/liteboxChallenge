@@ -59,7 +59,7 @@
     }
 }
 
-// do not show modal on les than 320px resolutions
+// do not show modal on less than 320px resolutions
 @media not all and (min-width: $xs) {
     .overlay {
         display: none;

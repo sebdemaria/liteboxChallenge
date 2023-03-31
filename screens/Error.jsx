@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import styles from "@/styles/screenStyles/Error.module.scss";
 
 export const Error = ({ children }) => {
@@ -15,4 +17,8 @@ export const Error = ({ children }) => {
             </span>
         </section>
     );
+};
+
+Error.propTypes = {
+    children: PropTypes.node.isRequired,
 };

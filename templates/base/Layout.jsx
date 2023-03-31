@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 import { Header } from "@/components/Header/Header";
 
 export const Layout = ({ children }) => {
@@ -7,4 +9,8 @@ export const Layout = ({ children }) => {
             <main className="h-screen">{children}</main>
         </>
     );
+};
+
+Layout.propTypes = {
+    children: PropTypes.node.isRequired,
 };

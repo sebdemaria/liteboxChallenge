@@ -2,9 +2,11 @@ import PropTypes from "prop-types";
 
 import { Button } from "../Button";
 
+import styles from "@/styles/UIStyles/Loader.module.scss";
+
 export const MovieAddedDone = ({ values, onModalClose }) => {
     return (
-        <div className="flexJustifyCenterWrap default-text-style h-full w-full items-center gap-10 text-center xs:pb-0 md:pb-[7em]">
+        <div className={`${styles.slideIn} flexJustifyCenterWrap default-text-style h-full w-full items-center gap-10 text-center xs:pb-0 md:pb-[7em]`}>
             <p className="w-full text-[2em] font-bold text-aqua xs:hidden md:block">
                 lite<span className="font-thin">flix</span>
             </p>

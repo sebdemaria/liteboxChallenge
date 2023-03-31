@@ -47,14 +47,15 @@ export const CustomModal = () => {
 
     const handleSubmit = async ({ movie_file, movie_name }, setSubmitting) => {
         try {
+            // start loading state and clean existing errors
             setIsLoading((isLoading) => !isLoading);
             setErrors("");
 
             await addMovie(movie_file, movie_name, handleSuccessState);
             handleSubmitState();
 
-            // timeout applied to show loader for 2 seconds
-            // due to localstorage saving being so fast
+            // timeout applied to delay isLoading and success state change
+            // to show loader for 2 second due to localstorage saving being so fast
             setTimeout(() => {
                 setIsLoading((isLoading) => !isLoading);
                 handleSuccessState();
@@ -64,6 +65,7 @@ export const CustomModal = () => {
             setErrors(e.message);
             handleErrorState();
         } finally {
+            // end Formik component submitting state
             setSubmitting(false);
         }
     };
@@ -117,7 +119,7 @@ export const CustomModal = () => {
                         >
                             {/* successfully added movie modal */}
                             {movieActionsState.status ===
-                            addMovieActions.SUCCESS ? (
+                                addMovieActions.SUCCESS ? (
                                 <MovieAddedDone
                                     values={values}
                                     onModalClose={onModalClose}
@@ -131,22 +133,21 @@ export const CustomModal = () => {
                                     {/* loader */}
                                     {isLoading &&
                                         movieActionsState.status ===
-                                            addMovieActions.SUBMIT && (
+                                        addMovieActions.SUBMIT && (
                                             <Loader />
                                         )}
 
                                     {/* drag drop input type file */}
                                     {movieActionsState.status ===
                                         addMovieActions.RESTART && (
-                                        <DragDropInput
-                                            setFieldValue={setFieldValue}
-                                            fieldName={"movie_file"}
-                                        />
-                                    )}
+                                            <DragDropInput
+                                                setFieldValue={setFieldValue}
+                                                fieldName={"movie_file"}
+                                            />
+                                        )}
 
                                     {/* error message */}
-                                    {movieActionsState.status ===
-                                        addMovieActions.ERROR && (
+                                    {movieActionsState.status === addMovieActions.ERROR && (
                                         <ErrorMessage
                                             errorMessage={errors}
                                             handleRestart={handleRestart}
