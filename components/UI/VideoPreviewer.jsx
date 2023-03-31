@@ -31,6 +31,7 @@ export const VideoPreviewer = ({
     `;
 
     return (
+        // in-out animation
         <CSSTransition
             nodeRef={nodeRef}
             in={true}
@@ -52,6 +53,7 @@ export const VideoPreviewer = ({
                 >
                     <style>{css}</style>
 
+                    {/* show movie detail on click */}
                     {!isClicked ? (
                         <div
                             className={`flexJustifyAlignCenterWrap h-full w-full px-3 pt-2 ${

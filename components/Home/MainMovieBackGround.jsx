@@ -11,7 +11,7 @@ import styles from "@/styles/screenStyles/MoviesHome.module.scss";
 export const MainMovieBackGround = () => {
     const { movies } = useAppContext();
 
-    // movie background
+    // movie background image
     const { original_title } = movies[0];
     const background = movies[0].poster_path.original;
 
