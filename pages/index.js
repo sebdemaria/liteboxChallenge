@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { useModalActions } from "actions";
+import { Analytics } from "@vercel/analytics/react";
 
 import AppProvider from "@/hooks/useAppContext";
 
@@ -109,6 +110,7 @@ export default function Home({ movies, popularMovies }) {
                     <CustomModal />
                 </Layout>
             </AppProvider>
+            <Analytics />
         </>
     );
 }
