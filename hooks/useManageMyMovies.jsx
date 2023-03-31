@@ -14,7 +14,8 @@ export const useManageMyMovies = () => {
     const addMovie = (movie_file, movie_name) => {
         // error check
         if (!movie_file || !movie_name) return;
-        if (myMovies.length === 4) throw Error("Llegaste a tu máximo de películas guardadas.");
+        if (myMovies.length === 4)
+            throw Error("Llegaste a tu máximo de películas guardadas.");
 
         myMovies?.push({
             backdrop_path: { original: movie_file?.path },

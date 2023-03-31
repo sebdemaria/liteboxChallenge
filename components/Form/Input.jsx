@@ -6,6 +6,7 @@ import styles from "@/styles/componentStyles/Form/Input.module.scss";
 export const Input = ({
     type = "text",
     name = "default",
+    disabled = false,
     customClass = "",
     ...props
 }) => {
@@ -20,6 +21,7 @@ export const Input = ({
             }`}
         >
             <input
+                disabled={disabled}
                 className={`${customClass} h-min`}
                 type={type}
                 name={name}
@@ -37,6 +39,7 @@ export const Input = ({
 
 Input.propTypes = {
     type: PropTypes.string,
+    disabled: PropTypes.bool,
     name: PropTypes.string,
     customClass: PropTypes.string,
     props: PropTypes.string,

@@ -9,7 +9,6 @@ export const ReactModal = ({
     children,
     ...props
 }) => {
-
     useEffect(() => {
         // prevent screen reader warning
         Modal.setAppElement(document.body);

@@ -9,10 +9,11 @@ export const Button = ({
 }) => {
     return (
         <button
+            role="button"
             className={`${customClass}`}
             type={type}
-            {...props}
             disabled={disabled}
+            {...props}
         >
             {children}
         </button>
