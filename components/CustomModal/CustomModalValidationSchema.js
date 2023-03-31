@@ -4,6 +4,7 @@ import { FORM_ERROR_MESSAGES, IMAGE_SUPPORTED_FORMATS } from "../../consts";
 const MAX_FILE_SIZE = 2097152;
 
 export const ValidationSchema = Yup.object({
+    // error submit validations
     movie_file: Yup.mixed()
         .test(
             "fileSize",

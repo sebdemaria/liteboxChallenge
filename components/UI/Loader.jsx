@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState } from "react";
+
 import styles from "@/styles/UIStyles/Loader.module.scss";
 
 export const Loader = () => {
     const [percentage, setPercentage] = useState(0);
     const loaderRef = useRef(null);
 
+    // loading animation
     useEffect(() => {
         let percentage = 0;
 

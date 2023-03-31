@@ -1,5 +1,6 @@
 @import "../sass-utils/index";
 
+@include slideInFromTop;
 @include slideMenuIn;
 @include slideMenuOut;
 @include slideNavMenuIn;
@@ -29,6 +30,10 @@
     animation-duration: 1s;
     animation-direction: alternate;
     animation-fill-mode: both;
+}
+
+.slideHeaderIn {
+    animation: slideInFromTop 1s;
 }
 
 .bgAnimateIn {

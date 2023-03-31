@@ -22,6 +22,8 @@ export const useManageMyMovies = () => {
             title: movie_name,
         });
 
+        // timeout to give the ilusion of processing the file,
+        // localstorage is way to fast to use a loader
         setTimeout(() => {
             setStorageItem("my_movies", myMovies);
             setMyMovies(getStorageItem("my_movies"));
